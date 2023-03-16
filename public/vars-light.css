@@ -1,0 +1,22 @@
+:root {
+    --test-var: purple;
+    --body-color: #fff;
+    --bg-green: rgb(25, 207, 122);
+    --bg-green-btn: rgb(23, 167, 112);
+    --bg-red: rgb(218, 23, 23);
+    --bg-purple: rgb(27, 11, 119);
+    --purple-gradient: linear-gradient(#000000, 80%, rgb(63, 32, 236));
+    --purple-horizontal-gradient: linear-gradient(90deg,#000000, 80%, rgb(63, 32, 236));
+    --bg-card: rgb(1, 4, 17);
+    --bg-pag-btns: rgba(2, 8, 27);
+    --bg-gray-blue: rgb(16, 17, 37, 0.5);
+    --bg-gray-500: rgba(62, 62, 75, 0.432);
+    --bg-icon: rgb(230, 230, 230);
+    --text-gray:  rgb(168, 168, 168);
+    --border-gray: rgb(22, 22, 22);
+    --bg-scrollbar-thumb: rgba(15, 15, 15, 0.788);
+    --bg-scrollbar: rgb(0, 0, 0);
+}
+body {
+    background-color: var(--body-color); 
+}

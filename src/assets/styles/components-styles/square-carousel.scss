@@ -1,0 +1,119 @@
+@use 'sass:math';
+$carouselSlideWidth: 400px;
+$carouselSlideContainer: $carouselSlideWidth;
+$carouselSlidesSpace: 80px;
+@if $carouselSlidesSpace {
+    // $carouselSlideContainer:  calc(100 * $carouselSlidesSpace / $carouselSlideWidth);
+    $carouselSlideContainer: $carouselSlideWidth - $carouselSlidesSpace;
+}
+$carouselSlideCatetLength: $carouselSlideWidth * math.cos(45deg);
+$carouselRadius:  calc(($carouselSlideWidth + ($carouselSlideCatetLength * 2)) / 2);
+$carouselTransformOrigin: 50% 50% (-$carouselRadius);
+
+.carousel-square {
+    width: $carouselSlideWidth;
+    height: calc($carouselSlideWidth / 2);
+    margin: rem(50) auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transform-origin: 50% 50% (-$carouselRadius);
+    transform: rotateY(180deg);
+    transition: all 1.5s linear;
+    @media (max-width: $mdBreakpoint) {
+      scale: 0.6;
+      margin: 0 auto;
+    }
+    @media (max-width: 500px) {
+      scale: 0.8;
+    }
+    &__wrapp {
+      @include adaptive-value("height", 550, 300, 0);
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: rem(80) auto;
+      perspective: 1900px;
+      &._active-anim {
+        .carousel-square {
+          transform: rotateY(0deg);
+          transition: all 1.5s ease-out;
+        }
+      }
+      @media (max-width: $mdBreakpoint) {
+        margin: rem(20) auto;
+        height: 100%;
+      }
+    }
+    .cs-item {
+      width: $carouselSlideWidth;
+      max-width: $carouselSlideWidth;
+      height: 100%;
+      position: absolute;
+      border-radius:10px;
+      box-sizing: border-box;
+      text-align:center;
+      font-size:3em;
+      transform-style: preserve-3d;
+      background-color: var(--body-color);
+      transform-origin: top left;
+      transition: all 1.2s linear;
+      &_center-anim {
+        .cs-item__container {
+          scale: 1.2;
+          transition: all 1.2s;
+        }
+      }
+      &__container {
+        width: $carouselSlideContainer;
+        height: 100%;
+        margin: 0 auto;
+        position: relative;
+        transition: all 1.2s;
+        img {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          object-fit: fill;
+        }
+      }
+    }
+    &__item {
+      &:nth-child(2) {
+        transform-origin: top right;
+        transform: rotateY(-135deg) ;
+      }
+      &:nth-child(3) {
+        transform-origin: top right;
+        transform: translate3d($carouselSlideCatetLength, 0px, -$carouselSlideCatetLength) rotate3d(0,1,0,-90deg);  
+      }
+      &:nth-child(4) {
+        transform-origin: top right;transform: translate3d($carouselSlideCatetLength, 0px, -($carouselSlideCatetLength + $carouselSlideWidth)) rotate3d(0,1,0,-45deg);
+      }
+      &:nth-child(5) {
+        transform: translate3d(0px, 0px, -($carouselSlideWidth + ($carouselSlideCatetLength * 2))) rotate3d(0,0,0,90deg);
+      }
+      &:nth-child(6) {
+        transform: translate3d(-$carouselSlideCatetLength, 0px, -($carouselSlideCatetLength + $carouselSlideWidth)) rotate3d(0,1,0,45deg);
+      }
+      &:nth-child(7) {
+        transform: translate3d(-$carouselSlideCatetLength, 0px, -$carouselSlideCatetLength) rotate3d(0,1,0,90deg);
+      }
+      &:nth-child(8) {
+        transform:rotateY(135deg);
+      }
+    }
+    &__btns {
+      margin: rem(30) auto rem(5);
+      width: 200px;
+      display: flex;
+      @media (any-pointer: coarse) {
+        display: none;
+      }
+    }
+  }

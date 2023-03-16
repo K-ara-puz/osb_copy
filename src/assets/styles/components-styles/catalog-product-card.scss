@@ -1,0 +1,198 @@
+.catalog-product {
+  &__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-card);
+    margin: 0 auto;
+    text-align: center;
+    max-width: 270px;
+    height: 100%;
+  }
+  &__top-bar {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  &__bottom-bar {
+    display: flex;
+  }
+  &__ic {
+    color: var(--bg-icon);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    &:hover {
+      scale: 1.3;
+      transition: all .2s;
+    }
+  }
+  button {
+    display: flex;
+    align-items: center;
+  }
+}
+.top-bar-catalog-product {
+  padding: 0 0px rem(20);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  @media (max-width: $mdBreakpoint) {
+    padding: 0 0px rem(10);
+  }
+  &__sale-img {
+    position: absolute;
+    right: 0;
+    top: rem(10);
+    margin-right: rem(5);
+    height: 15%;
+    img {
+      height: 100%;
+    }
+  }
+  &__image {
+    padding: rem(5);
+    flex: 0 0 rem(280);
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+    @media (max-width: $mdBreakpoint) {
+      flex: 0 0 rem(250);
+    }
+    @media (max-width: $xsBreakpoint) {
+      flex: 0 1 rem(120);
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+  }
+  &__name {
+    @include adaptive-value("font-size", 12, 8, 0);
+    @include adaptive-value("padding-left", 30, 5, 0);
+    @include adaptive-value("padding-right", 30, 5, 0);
+    font-weight: 200;
+    @include adaptive-value("margin-top", 20, 8, 0);
+    @include adaptive-value("margin-bottom", 10, 5, 0);
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__price-wrapp {
+    display: flex;
+    justify-content: center;
+    margin: rem(5) 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+  &__new-price {
+    font-size: rem(26);
+    font-weight: 300;
+    margin-right: 15px;
+    @media (max-width: $smBreakpoint) {
+      font-size: rem(20);
+      margin-right: 5px;
+    }
+  }
+  &__price {
+    font-size: rem(26);
+    font-weight: 300;
+    display: inline-flex;
+    align-items: center;
+    @media (max-width: $smBreakpoint) {
+      font-size: rem(20);
+    }
+    &__price-currency {
+      font-size: rem(16);
+      margin-left: 5px;
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-end;
+      @media (max-width: $mdBreakpoint) {
+        font-size: rem(10);
+      }
+    }
+  }
+}
+.bottom-bar-catalog-product {
+  width: 100%;
+  &__panel {
+    width: 100%;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-gray-blue);
+    padding: rem(10) 0;
+  }
+  &__container {
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      width: rem(25);
+      height: rem(25);
+      @media (max-width: $smBreakpoint) {
+        width: rem(20);
+        height: rem(20);
+      }
+    }
+  }
+}
+.catalog-product_grid-view {
+  .top-bar-catalog-product {
+    &__image {
+      @media (max-width: $smBreakpoint) {
+        max-height: 120px;
+        flex: 1 1 120px;
+      }    
+    }
+    &__price, &__new-price {
+      font-size: rem(16);
+    }
+  }
+  .bottom-bar-catalog-product {
+    &__container {
+      @media (max-width: $smBreakpoint) {
+        width: 80%;
+      }
+    }
+  }
+}
+.catalog-product_with-sale {
+  .top-bar-catalog-product {
+    &__price {
+      font-size: rem(16);
+      position: relative;
+      @media (max-width: $mdBreakpoint) {
+        font-size: rem(10);
+      }
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        transform: rotate(-15deg);
+        height: 1px;
+        width: 120%;
+        left: -10%;
+        background-color: red;
+      }
+    }
+  }
+}
+.catalog-product {
+  &__ic {
+    width: 20px !important;
+    height: 20px !important;
+    fill: var(--bg-icon);
+    @media (max-width: $smBreakpoint) {
+      width: 15px !important;
+      height: 15px !important;
+    }
+  }
+}

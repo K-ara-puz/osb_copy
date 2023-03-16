@@ -1,0 +1,46 @@
+.custom-btn {
+    min-width: rem(120);
+    &__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      padding: 8px 0px;
+      color: #fff;
+      background-color: rgb(18, 98, 202);
+      cursor: pointer;
+      height: 100%;
+      &__title {
+        margin: 0 20px;
+        word-wrap: break-word;
+        word-break: break-all;
+        text-align: center;
+        font-size: rem(13);
+      }
+      &:hover {
+        background-color: rgb(49, 131, 238);
+      }
+      &__disabled {
+        pointer-events: none;
+        background-color: rgb(161, 161, 161);
+      }
+      &__error {
+        background-color: var(--bg-red);
+        &:hover {
+          background-color: rgb(206, 42, 42);
+        }
+      }
+      &__success {
+        background-color: var(--bg-green-btn);
+        transition: all 1s;
+        &:hover {
+          background-color: var(--bg-purple);
+          border-radius: 20px;
+          transition: all 1s;
+        }
+      }
+      &__purple {
+        background-color: var(--bg-purple);
+      }
+    }
+  }

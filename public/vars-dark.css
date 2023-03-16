@@ -1,0 +1,35 @@
+:root {
+    --test-var: purple;
+    --body-color: #000;
+    --bg-green: rgb(25, 207, 122);
+    --bg-green-log-pop: rgba(25, 207, 122, 0.5);
+    --bg-green-btn: rgb(23, 167, 112);
+    --bg-success-alert: rgb(10, 175, 79);
+    --bg-red: rgb(218, 23, 23);
+    --bg-purple: rgb(27, 11, 119);
+    --bg-purple-shadow: rgba(11, 5, 48);
+    --purple-gradient: linear-gradient(#000000, 80%, rgb(63, 32, 236));
+    --purple-gradient-reverse: linear-gradient(rgba(63, 32, 236, 0.8), 10%, #000000);
+    --purple-horizontal-gradient: linear-gradient(90deg,#000000, 80%, rgb(63, 32, 236));
+    --bg-card: rgb(1, 4, 17);
+    --bg-card-bestseller: rgb(1, 4, 17, 0.8);
+    --bg-pag-btns: rgba(2, 8, 27);
+    --bg-gray-blue: rgb(16, 17, 37, 0.5);
+    --bg-gray-500: rgb(25, 25, 39);
+    --bg-gray-300: rgb(78, 78, 88);
+    --bg-blue-300: rgb(67, 140, 235);
+    --bg-icon: rgb(230, 230, 230);
+    --text-white: #fff;
+    --text-gray:  rgb(168, 168, 168);
+    --border-gray: rgb(22, 22, 22);
+    --border-log-popup: rgba(57, 57, 104, 0.3);
+    --bg-scrollbar-thumb: rgba(36, 36, 36, 0.788);
+    --bg-scrollbar: rgb(0, 0, 0);
+    --bg-cart-popup: rgba(0, 0, 0, 0.7);
+    --bg-log-popup: rgba(0, 0, 8, 0.8);
+    --bg-log-popup-2: rgba(0, 3, 17, 0.97);
+
+}
+body {
+    background-color: var(--body-color); 
+}

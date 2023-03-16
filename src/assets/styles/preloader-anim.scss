@@ -1,0 +1,33 @@
+.pre-anim {
+    width: 100%;
+    height: 100%;
+    background-color: var(--body-color);
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 9999999;
+    align-items: center;
+    &._hide {
+        transition: all 0.1s ease-in-out;
+        opacity: 0;
+        z-index: -1;
+        visibility: hidden;
+    }
+    span {
+      display: inline-flex;
+      width: 70px;
+      height: 70px;
+      background-color: var(--bg-purple);
+      position: relative;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      animation: 0.8s preloader-anim infinite;
+    }
+  }
+  @keyframes preloader-anim {
+    50% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }

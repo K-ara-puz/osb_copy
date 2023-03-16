@@ -1,0 +1,35 @@
+.catalog__swiper-slider {
+    .catalog__swiper-slider__slide-item {
+        transition: all 1s linear;
+        &__animation {
+            animation-name: swiper-slide-anim;
+            animation-duration: 1.5s;
+        }
+        &__center-item__animation {
+            animation-name: swiper-center-slide-anim;
+            animation-duration: 1.5s;
+        }
+    }
+}
+@keyframes swiper-slide-anim {
+    0% {
+        transform: translateZ(0px);
+    }
+    50% {
+        transform: perspective(2000px) translateZ(-200px);
+    }
+    100% {
+        transform: translateZ(0px);
+    }
+}
+@keyframes swiper-center-slide-anim {
+    0% {
+        transform: translateZ(0px);
+    }
+    50% {
+        transform: perspective(500px) translateZ(100px);
+    }
+    100% {
+        transform: translateZ(0px);
+    }
+}

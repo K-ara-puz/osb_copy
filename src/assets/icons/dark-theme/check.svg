@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 100 100"
+   xml:space="preserve"
+   sodipodi:docname="check.svg"
+   width="15"
+   height="15"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+   id="defs1069" /><sodipodi:namedview
+   id="namedview1067"
+   pagecolor="#ffffff"
+   bordercolor="#000000"
+   borderopacity="0.25"
+   inkscape:showpageshadow="2"
+   inkscape:pageopacity="0.0"
+   inkscape:pagecheckerboard="0"
+   inkscape:deskcolor="#d1d1d1"
+   showgrid="false"
+   inkscape:zoom="6.3176985"
+   inkscape:cx="50.097357"
+   inkscape:cy="50.1765"
+   inkscape:window-width="1600"
+   inkscape:window-height="837"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<g
+   id="g1064">
+	<path
+   style="fill:#231f20"
+   d="m 96.747,39.242 c -0.186,-0.782 -0.97,-1.265 -1.755,-1.079 -0.782,0.187 -1.265,0.972 -1.078,1.754 0.766,3.212 1.155,6.604 1.155,10.083 0,24.85 -20.67,45.067 -46.078,45.067 C 23.583,95.067 2.913,74.85 2.913,50 c 0,-24.852 20.67,-45.07 46.078,-45.07 10.119,0 19.785,3.202 27.952,9.26 0.644,0.479 1.558,0.344 2.037,-0.302 0.479,-0.646 0.344,-1.558 -0.302,-2.037 C 70.006,5.417 59.74,2.018 48.991,2.018 21.977,2.018 0,23.542 0,50 0,76.456 21.977,97.98 48.991,97.98 76.005,97.98 97.982,76.456 97.982,50 c 0,-3.705 -0.416,-7.324 -1.235,-10.758 z"
+   id="path1060" />
+	<path
+   style="fill:#231f20"
+   d="m 47.98,71.683 c -0.386,0 -0.756,-0.153 -1.03,-0.426 L 19.637,43.948 c -0.569,-0.569 -0.569,-1.491 0,-2.06 0.568,-0.569 1.49,-0.569 2.059,0 L 47.919,68.107 97.457,12.621 c 0.536,-0.6 1.456,-0.652 2.056,-0.116 0.6,0.536 0.652,1.456 0.117,2.056 L 49.066,71.197 c -0.267,0.299 -0.645,0.475 -1.045,0.486 -0.014,0 -0.027,0 -0.041,0 z"
+   id="path1062" />
+</g>
+</svg>
