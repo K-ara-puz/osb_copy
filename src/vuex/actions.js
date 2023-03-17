@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     LOAD_PRODUCTS({ commit}) {
-        return axios("http://localhost:3000/products", {
+        return axios("http://https://jsonserver-base.herokuapp.com/products", {
           method: "GET",
         })
           .then((products) => {
@@ -14,7 +14,7 @@ export default {
           });
       },
       LOAD_BESTSELLERS_PRODUCTS({ commit}) {
-        return axios("http://localhost:3000/bestsellers", {
+        return axios("http://https://jsonserver-base.herokuapp.com/bestsellers", {
           method: "GET",
         })
           .then((products) => {
@@ -26,7 +26,7 @@ export default {
           });
       },
       LOAD_CAROUSEL_IMG_PRODUCTS({ commit}) {
-        return axios("http://localhost:3000/carouselImgItems", {
+        return axios("http://https://jsonserver-base.herokuapp.com/carouselImgItems", {
           method: "GET",
         })
           .then((products) => {
