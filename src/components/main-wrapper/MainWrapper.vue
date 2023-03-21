@@ -8,6 +8,7 @@
     <div class="main-wrpper__content">
       <router-view> </router-view>
     </div>
+    <VueAnchor></VueAnchor>
     <VueFooter></VueFooter>
   </div>
 </template>
@@ -19,13 +20,15 @@ import { useDynamicAdapt } from "../../dynamicAdapt.js";
 import CartPopup from '../CartPopup.vue';
 import LogSignPopup from "../LogSignPopup.vue";
 import VueFooter from "../footer/VueFooter.vue";
+import VueAnchor from "../VueAnchor.vue";
 
 export default {
   components: {
     VueHeader,
     CartPopup,
     LogSignPopup,
-    VueFooter
+    VueFooter,
+    VueAnchor
 },
   data() {
     return {};
@@ -54,15 +57,5 @@ export default {
 </script>
 
 <style lang="scss">
-.main-wrapper {
-  min-height: 100vh;
-  margin-top: 100px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  &__content {
-    flex: 1 0 auto;
-  }
-}
+@import '../../assets/styles/main-wrapper.scss'; 
 </style>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     LOAD_PRODUCTS({ commit}) {
-        return axios("https://jsonserver-base.herokuapp.com/products", {
+        return axios("http://localhost:3000/products", {
           method: "GET",
         })
           .then((products) => {
@@ -15,7 +15,7 @@ export default {
           });
       },
       LOAD_CAROUSEL_IMG_PRODUCTS({ commit}) {
-        return axios("https://jsonserver-base.herokuapp.com/carouselImgItems", {
+        return axios("http://localhost:3000/carouselImgItems", {
           method: "GET",
         })
           .then((products) => {

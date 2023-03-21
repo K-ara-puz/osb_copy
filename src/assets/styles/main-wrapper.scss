@@ -1,0 +1,11 @@
+.main-wrapper {
+  min-height: 100vh;
+  margin-top: 100px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &__content {
+    flex: 1 0 auto;
+  }
+}
