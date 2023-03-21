@@ -3,7 +3,7 @@
     <div class="catalog-product__wrapper">
       <div class="catalog-product__top-bar top-bar-catalog-product">
         <div class="top-bar-catalog-product__sale-img" v-if="this.isOnSale">
-          <img src="../../assets/icons/dark-theme/sale1.png" />
+          <img src="../../assets/icons/dark-theme/sale1.webp" />
         </div>
         <div class="top-bar-catalog-product__image" >
             <img
@@ -27,7 +27,7 @@
           <span
             id="product-card-currency"
             class="top-bar-catalog-product__price__price-currency"
-            >UAH
+            >{{ this.CURRENCY }}
           </span>
         </div>
       </div>
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   props: {
     productData: {
@@ -71,6 +71,7 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(["CURRENCY"]),
     isOnSale() {
       return this.productData.isOnSale;
     },

@@ -3,8 +3,14 @@ export default {
         state.products = products;
         state.filteredProducts = products;
       },
-      SET_BESTSELLERS_PRODUCTS_TO_STATE(state, products) {
-        state.bestSellerProducts = products;
+      SET_BESTSELLERS_PRODUCTS_TO_STATE(state) {
+        state.products.forEach( el => {
+          if (el.bestseller) {
+            if (el.bestseller === 'true') {
+              state.bestSellerProducts.push(el)
+            }
+          }
+        })
       },
       SET_CAROUSEL_IMG_PRODUCTS_TO_STATE(state, products) {
         state.carouselImgItems = products;
@@ -17,9 +23,6 @@ export default {
           state.isMobile = false;
         }
       },
-      SET_SEARCH_VALUE(state, value) {
-        state.searchProductValue = value
-      },
       DELETE_SEARCH_VALUE(state) {
         state.searchProductValue = ''
       },
@@ -28,7 +31,7 @@ export default {
         state.minProductPrice = allFilters.minPrice;
         state.maxProductPrice = allFilters.maxPrice;
       },
-      FILTER_PRODUCTS_BY_SEARCH(state, searchValue) {  
+      FILTER_PRODUCTS_BY_SEARCH(state, searchValue) {
         if (searchValue != undefined) state.searchProductValue = searchValue
         if (state.searchProductValue != '') {
           state.filteredProducts = state.filteredProducts.filter( item => {
@@ -43,7 +46,7 @@ export default {
         state.sortValue = value;
         if (state.sortValue === 'От дешевых к дорогим') {
           state.filteredProducts.sort(function(a,b) {
-            if (Math.trunc(a.price) > Math.trunc(b.price)) {
+            if (Math.trunc(a.newPrice ? a.newPrice : a.price) > Math.trunc(b.newPrice ? b.newPrice : b.price)) {
               return 1;
             }
             if (Math.trunc(a.price) < Math.trunc(b.price)) {
@@ -53,10 +56,10 @@ export default {
           })
         } else {
           state.filteredProducts.sort(function(a,b) {
-            if (Math.trunc(a.price) < Math.trunc(b.price)) {
+            if (Math.trunc(a.newPrice ? a.newPrice : a.price) < Math.trunc(b.newPrice ? b.newPrice : b.price)) {
               return 1;
             }
-            if (Math.trunc(a.price) > Math.trunc(b.price)) {
+            if (Math.trunc(a.newPrice ? a.newPrice : a.price) > Math.trunc(b.newPrice ? b.newPrice : b.price)) {
               return -1;
             }
             return 0;
@@ -91,8 +94,8 @@ export default {
             if (counter === Object.keys(temporaryFilters).length) {
               // SORT BY PRICE
               if (
-                Math.trunc(product.price) >= state.minProductPrice &&
-                Math.trunc(product.price) <= state.maxProductPrice
+                Math.trunc(product.newPrice ? product.newPrice : product.price) >= state.minProductPrice &&
+                Math.trunc(product.newPrice ? product.newPrice : product.price) <= state.maxProductPrice
               ) {
                 state.filteredProducts.push(product);
               }
@@ -101,8 +104,8 @@ export default {
         } else if(state.minProductPrice || state.maxProductPrice) {
           state.products.forEach( product => {
             if (
-              Math.trunc(product.price) >= state.minProductPrice &&
-              Math.trunc(product.price) <= state.maxProductPrice
+              Math.trunc(product.newPrice ? product.newPrice : product.price) >= state.minProductPrice &&
+              Math.trunc(product.newPrice ? product.newPrice : product.price) <= state.maxProductPrice
             ) {
               state.filteredProducts.push(product);
             }

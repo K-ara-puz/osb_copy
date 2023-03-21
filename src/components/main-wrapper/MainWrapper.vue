@@ -39,13 +39,16 @@ export default {
       useDynamicAdapt();
     });
     this.LOAD_PRODUCTS();
-    this.LOAD_BESTSELLERS_PRODUCTS();
+  },
+  unmounted() {
+    window.removeEventListener("resize", this.$root.emptyFuncToRemoveListener());
+    document.removeEventListener("DOMContentLoaded", this.$root.emptyFuncToRemoveListener());
   },
   methods: {
     ...mapActions(["LOAD_PRODUCTS", "CHECK_DEVICE", "LOAD_BESTSELLERS_PRODUCTS"]),
   },
   computed: {
-    ...mapGetters(["CART_POPUP"])
+    ...mapGetters(["CART_POPUP", "PRODUCTS"])
   }
 };
 </script>

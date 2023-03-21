@@ -44,12 +44,12 @@
                 default() {
                     return true
                 }
-            }
+            },
         },
         data() {
             return {
                 isSelectOpen: false,
-                sel: this.selectedValue
+                sel: this.selectedValue,
             }
         },
         mounted() {
@@ -59,8 +59,14 @@
                 }
             })
         },
+        unmounted() {
+            document.removeEventListener("click", this.$root.emptyFuncToRemoveListener());
+        },
         methods: {
             selectOption(name) {
+                if (name === 'Все') {
+                    name = this.selectedValue;
+                }
                 this.sel = name;
                 this.$emit('select-filter', name);
                 this.isSelectOpen = false;

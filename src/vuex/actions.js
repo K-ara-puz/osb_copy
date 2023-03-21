@@ -7,18 +7,7 @@ export default {
         })
           .then((products) => {
             commit("SET_PRODUCTS_TO_STATE", products.data);
-            return products;
-          })
-          .catch((error) => {
-            return error;
-          });
-      },
-      LOAD_BESTSELLERS_PRODUCTS({ commit}) {
-        return axios("https://jsonserver-base.herokuapp.com/bestsellers", {
-          method: "GET",
-        })
-          .then((products) => {
-            commit("SET_BESTSELLERS_PRODUCTS_TO_STATE", products.data);
+            commit("SET_BESTSELLERS_PRODUCTS_TO_STATE");
             return products;
           })
           .catch((error) => {
@@ -48,7 +37,7 @@ export default {
       },
       SEARCH_FROM_OUTPUT({commit, state}, searchValue) {
         state.filteredProducts = state.products
-        commit("SET_SEARCH_VALUE", searchValue)
+        commit("FILTER_PRODUCTS_BY_SEARCH", searchValue);
       },
       SEARCH_PRODUCT({commit, state}, searchValue) {
         commit("FILTER_PRODUCTS_BY_FILTER");
@@ -82,9 +71,17 @@ export default {
         commit("UNSHOW_CART_POPUP");
       },
       ADD_PR_TO_CART({commit, state}, product) {
-        if (state.cart.includes(product)) {
-          let target = state.cart[state.cart.indexOf(product)];
-          target.cartQty++;
+        if (state.cart.length > 0) {
+          let coincidence = false;
+          state.cart.forEach(el => {
+            if (el.name === product.name) {
+              el.cartQty++;
+              coincidence = true;
+            }
+          });
+          if (coincidence === false) {
+            commit("ADD_PRODUCT_TO_CART", product);
+          }
         } else {
           commit("ADD_PRODUCT_TO_CART", product);
         }

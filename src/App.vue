@@ -24,11 +24,16 @@ export default {
   data() {
     return {
       isLogPopupOpen: false,
+      isAnyPopupOpen: false,
     };
   },
   mounted() {
     this.LOAD_PRODUCTS();
     this.checkContentLoad();
+  },
+  unmounted() {
+    window.removeEventListener("load", this.emptyFuncToRemoveListener());
+    window.removeEventListener("scroll", this.emptyFuncToRemoveListener());
   },
   methods: {
     ...mapActions(["LOAD_PRODUCTS", "CLOSE_CART_POPUP"]),
@@ -61,6 +66,10 @@ export default {
           if (parent.includes("cart")) this.CLOSE_CART_POPUP();
         }
       }
+      this.isAnyPopupOpen = false;
+    },
+    emptyFuncToRemoveListener() {
+      
     }
   },
   watch: {
@@ -74,6 +83,13 @@ export default {
           });
         }
     },
+    isAnyPopupOpen() {
+      if (this.isAnyPopupOpen === true) {
+        document.querySelector("body").classList.add("_scroll-wrapp-hide");
+      } else {
+        document.querySelector("body").classList.remove("_scroll-wrapp-hide");
+      }
+    }
   },
 };
 </script>

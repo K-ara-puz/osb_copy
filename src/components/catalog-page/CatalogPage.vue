@@ -25,10 +25,10 @@
       </div>
       <div class="catalog__top-bar__view-panel">
         <button @click="lineView()">
-          <img src="../../assets/icons/dark-theme/view_line.png" />
+          <img src="../../assets/icons/dark-theme/view_line.webp" />
         </button>
         <button @click="gridView()">
-          <img src="../../assets/icons/dark-theme/view_grid.png" />
+          <img src="../../assets/icons/dark-theme/view_grid.webp" />
         </button>
       </div>
     </div>
@@ -225,6 +225,9 @@ export default {
   },
   updated() {
     this.$root.itemsShowAnimation();
+  },
+  unmounted() {
+    window.removeEventListener("resize", this.$root.emptyFuncToRemoveListener());
   },
   methods: {
     ...mapActions([

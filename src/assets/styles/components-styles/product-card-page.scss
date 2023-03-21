@@ -131,7 +131,7 @@
                     justify-content: center;
                     align-items: center;
                     &__bg {
-                        background: no-repeat 50% / cover url("../../assets/icons/dark-theme/price_tag.png");
+                        background: no-repeat 50% / cover url("../../assets/icons/dark-theme/price_tag.webp");
                         padding: 50px 15px 50px 0px;
                         @include adaptive-value("width", 300, 200, 0);
                         text-align: center;

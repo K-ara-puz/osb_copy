@@ -44,12 +44,12 @@
                 <div class="params-top-bar__head__price__bg">
                   <div class="params-top-bar__head__price__price">
                     <div class="params-top-bar__head__price__price__wrapp">
-                      {{this.currentProduct.price}}<span>UAH</span>
+                      {{this.currentProduct.price}}<span>{{this.CURRENCY}}</span>
                     </div>
                     <div
                       v-if="this.currentProduct.newPrice"
                       class="params-top-bar__head__price__price_new"
-                    >{{this.currentProduct.newPrice}}<span>UAH</span>
+                    >{{this.currentProduct.newPrice}}<span>{{this.CURRENCY}}</span>
                     </div>
                   </div>
                 </div>
@@ -190,7 +190,7 @@
                   <span>
                     <img
                       :src="
-                        require('../../assets/users-avatar/' + item[1] + '.jpg')
+                        require('../../assets/users-avatar/' + item[1] + '.webp')
                       "
                     />
                   </span>
@@ -290,7 +290,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["PRODUCTS"]),
+    ...mapGetters(["PRODUCTS", "CURRENCY"]),
     prCardClasses() {
       return {
         "pr-card_with-sale": this.currentProduct.isOnSale,

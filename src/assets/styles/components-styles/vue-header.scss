@@ -12,6 +12,14 @@
   left: 0;
   color: var(--text-gray);
   transform: translateY(-90px);
+  &.nav-up {
+      top: -100px;
+      transition: all 0.5s;
+  }
+  &.nav-down {
+      top: 0px;
+      transition: all 0.5s;
+  }
   &._active-anim {
     transition: all 1s linear;
     transform: translateY(0px);

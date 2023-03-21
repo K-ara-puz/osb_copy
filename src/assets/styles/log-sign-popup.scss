@@ -107,6 +107,9 @@
             width: 100%;
             font-size: rem(14);
             font-weight: normal;
+            @media (max-width: $smBreakpoint) {
+                font-size: rem(12);
+            }
             &__memory {
                 display: flex;
                 align-items: center;

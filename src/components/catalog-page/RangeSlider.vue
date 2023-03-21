@@ -10,6 +10,7 @@
           max="5000"
           :value="this.minPrice"
           @click="updateMinValue($event.target.value)"
+          @touchend="updateMinValue($event.target.value)"
         />
         <input
           type="range"
@@ -19,6 +20,7 @@
           max="5000"
           :value="this.maxPrice"
           @click="updateMaxValue($event.target.value)"
+          @touchend="updateMaxValue($event.target.value)"
         />
       </div>
     </div>
@@ -33,7 +35,7 @@
             @change="updateMinValueFromInput($event)"
           />
         </div>
-        UAH
+        {{ this.CURRENCY }}
       </span>
       <span class="count-range-slider__span">
         до
@@ -45,13 +47,15 @@
             @change="updateMaxValueFromInput($event)"
           />
         </div>
-        UAH
+        {{ this.CURRENCY }}
       </span>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -61,7 +65,9 @@ export default {
       priceGap: 50,
     };
   },
-  mounted() {},
+  computed: {
+    ...mapGetters(["CURRENCY"])
+  },
   methods: {
     updateMinValue(value) {
       if (this.maxPrice - value > this.priceGap) {
