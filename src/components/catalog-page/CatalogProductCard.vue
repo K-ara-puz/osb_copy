@@ -2,9 +2,6 @@
   <div class="catalog-product" :class="this.productClasses">
     <div class="catalog-product__wrapper">
       <div class="catalog-product__top-bar top-bar-catalog-product">
-        <div class="top-bar-catalog-product__sale-img" v-if="this.isOnSale">
-          <img src="../../assets/icons/dark-theme/sale1.webp" />
-        </div>
         <div class="top-bar-catalog-product__image" >
             <img
               @click="route()"

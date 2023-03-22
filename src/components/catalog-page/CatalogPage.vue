@@ -140,7 +140,7 @@ import CustomBtn from "../CustomBtn.vue";
 import SwiperSlider from "../sliders/SwiperSlider.vue";
 import BestSellersItemCart from "../BestSellersItemCart.vue";
 import SquareCarousel from "../sliders/SquareCarousel";
-
+import {useDynamicAdapt} from '../../dynamicAdapt';
 export default {
   components: {
     CustomSearchInput,
@@ -213,6 +213,7 @@ export default {
   },
   mounted() {
     this.CHECK_IS_SEARCH();
+    useDynamicAdapt();
     window.addEventListener("resize", () => {
       if (document.documentElement.clientWidth <= 980) {
         this.elemCountOnPage = 6;
@@ -297,11 +298,13 @@ export default {
       if (this.page > 1) {
         this.page--;
       }
+      window.scrollTo(0, 0);
     },
     toNextPage() {
       if (this.page < this.products.length / this.elemCountOnPage) {
         this.page++;
       }
+      window.scrollTo(0, 0);
     },
     getRef(swiperInstance) {
       this.swiperData = swiperInstance;

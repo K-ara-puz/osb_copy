@@ -43,4 +43,8 @@ const router = createRouter({
     routes, // short for `routes: routes`
 })
 
+router.beforeEach(() => {
+    window.scrollTo(0, 0);
+});
+
 export default router;

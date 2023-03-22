@@ -41,16 +41,6 @@
   @media (max-width: $mdBreakpoint) {
     padding: 0 0px rem(10);
   }
-  &__sale-img {
-    position: absolute;
-    right: 0;
-    top: rem(10);
-    margin-right: rem(5);
-    height: 15%;
-    img {
-      height: 100%;
-    }
-  }
   &__image {
     padding: rem(5);
     flex: 0 0 rem(280);

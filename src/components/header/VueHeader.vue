@@ -354,6 +354,11 @@ export default {
       }
     },
   },
+  watch: {
+    '$route'() {
+      this.isMobileMenuOpen = false;
+    }
+  }
 };
 </script>
 

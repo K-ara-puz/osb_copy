@@ -63,13 +63,7 @@
                 flex: 0 0 400px;
             }
             &__sale::before {
-                content: 'SALE';
-                font-size: 18px;
-                display: block;
-                word-wrap: break-word;
-                line-height: 1.2;
-                width: 12px;
-                height: 80px;            
+                @extend %product-sale-icon;
             }
             img {
                 width: 88%;
@@ -354,7 +348,6 @@
                 width: 90%;
                 height: 60%;
                 white-space: normal;
-                z-index: 5;
                 @media (max-width: $lgBreakpoint) {
                     width: 100%;
                 }

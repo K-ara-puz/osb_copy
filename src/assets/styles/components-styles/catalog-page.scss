@@ -41,7 +41,6 @@
     transform: translateX(-120%);
     width: 80%;
     max-width: 1300px;
-    z-index: 6;
     @media (max-width: $xlBreakpoint) {
       margin: 20px 0;
       width: 100%;
@@ -89,7 +88,7 @@
       font-size: rem(18);
       color: var(--text-gray);
       &:nth-child(3), &:nth-child(4) {
-        z-index: 19;
+        z-index: 1;
       }
       @media (max-width: $mdBreakpoint) {
         flex: 0 0 40%;
@@ -99,7 +98,7 @@
   &__main {
     width: 100%;
     padding: rem(5);
-    z-index: 3;
+    z-index: 1;
     overflow: hidden;
     &__container {
       margin: 0 auto;

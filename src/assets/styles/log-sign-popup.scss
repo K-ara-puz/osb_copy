@@ -92,12 +92,12 @@
             position: relative;
             > button {
                 position: absolute;
-                width: 30px;
-                height: 23px;
                 right: 0;
             }
             svg {
                 stroke-width: 0.1;
+                width: 30px;
+                height: 23px;
             }
         }
         &__nav {
