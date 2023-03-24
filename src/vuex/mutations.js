@@ -15,6 +15,15 @@ export default {
       SET_CAROUSEL_IMG_PRODUCTS_TO_STATE(state, products) {
         state.carouselImgItems = products;
       },
+      SET_PRODUCTS_ON_SALE(state) {
+        state.products.forEach( el => {
+          if (el.isOnSale) {
+            if (el.isOnSale === true) {
+              state.productsOnSale.push(el)
+            }
+          }
+        })
+      },
       IS_MOBILE_DEVICE(state) {
         let widthBreakpoint = window.innerWidth;
         if (widthBreakpoint <= 768) {
@@ -130,7 +139,6 @@ export default {
       },
       MINUS_PR_CART_QTY(state, product) {
         let targetIndex = state.cart.indexOf(product);
-        console.log(product);
         if (product.cartQty < 2) {
           return
         } else {

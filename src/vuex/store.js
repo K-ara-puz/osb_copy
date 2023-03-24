@@ -22,6 +22,7 @@ const store = createStore({
       maxProductPrice: 5000,
       isMobile: false,
       bestSellerProducts: [],
+      productsOnSale: [],
       carouselImgItems: [],
       isCartPopupOpen: false,
       cart: [],

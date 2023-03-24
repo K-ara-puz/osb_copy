@@ -40,7 +40,6 @@ export function useDynamicAdapt(type = 'max') {
     function getDNodes() {
       const result = []
       const elements = [...document.querySelectorAll(`[${attrName}]`)]
-      
       elements.forEach((element) => {
         const attr = element.getAttribute(attrName)
         const [toSelector, breakpoint, order] = attr.split(',').map((val) => val.trim())

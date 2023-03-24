@@ -28,18 +28,23 @@ export default {
     };
   },
   mounted() {
-    this.LOAD_PRODUCTS();
-    this.checkContentLoad();
+    this.LOAD_PRODUCTS()
+    .then(() => {
+      this.LOAD_PRODUCTS_ON_SALE()
+    })
+    .then(() => {
+      this.checkContentLoad()
+    })
+    
   },
   unmounted() {
     window.removeEventListener("load", this.emptyFuncToRemoveListener());
     window.removeEventListener("scroll", this.emptyFuncToRemoveListener());
   },
   methods: {
-    ...mapActions(["LOAD_PRODUCTS", "CLOSE_CART_POPUP"]),
+    ...mapActions(["LOAD_PRODUCTS", "LOAD_PRODUCTS_ON_SALE", "CLOSE_CART_POPUP"]),
     checkContentLoad() {
       window.addEventListener("load", () => {
-        console.log("APP WINDOW LOADED");
         this.itemsShowAnimation();
         document.querySelector(".pre-anim").classList.add("_hide");
       });
@@ -86,7 +91,7 @@ export default {
     isAnyPopupOpen() {
       if (this.isAnyPopupOpen === true) {
         document.querySelector("body").classList.add("_scroll-wrapp-hide");
-      } else {
+      } else if (this.isAnyPopupOpen === false) {
         document.querySelector("body").classList.remove("_scroll-wrapp-hide");
       }
     }

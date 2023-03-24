@@ -26,6 +26,9 @@ export default {
             return error;
           });
       },
+      LOAD_PRODUCTS_ON_SALE({commit}) {
+        commit("SET_PRODUCTS_ON_SALE")
+      },
       CHECK_DEVICE({commit}) {
         commit("IS_MOBILE_DEVICE");
       },

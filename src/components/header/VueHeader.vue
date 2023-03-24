@@ -314,7 +314,7 @@ export default {
       // Hide Header on on scroll down
       var didScroll;
       var lastScrollTop = 0;
-      var delta = 5;
+      var delta = 2;
       var navbarHeight = document.querySelector("header").offsetHeight;
       window.onscroll = function () {
         didScroll = true;
@@ -357,7 +357,9 @@ export default {
   watch: {
     '$route'() {
       this.isMobileMenuOpen = false;
-    }
+      const body = document.querySelector("body");
+      body.classList.remove("_scroll-wrapp-hide");
+    },
   }
 };
 </script>

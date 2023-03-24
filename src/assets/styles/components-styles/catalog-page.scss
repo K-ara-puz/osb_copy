@@ -152,9 +152,7 @@
     &__header {
       text-align: center;
       @include adaptive-value("font-size", 40, 20, 0);
-      position: absolute;
       width: 100%;
-      z-index: 8;
       margin-top: rem(25);
       transform: translateY(200%);
       transform-style: preserve-3d;

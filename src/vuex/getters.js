@@ -2,6 +2,9 @@ export default {
       PRODUCTS(state) {
         return state.products;
       },
+      PRODUCTS_ON_SALE(state) {
+        return state.productsOnSale;
+      },
       FILTERED_PRODUCTS(state) {
         return state.filteredProducts;
       },

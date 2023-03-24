@@ -160,53 +160,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="pr-card__feedbacks _anim-scroll"
-        v-if="this.currentProduct.feedbacks"
-      >
-        <div class="pr-card__feedbacks__container">
-          <button
-            class="pr-card__feedbacks__prev-btn"
-            @click="swiperPrevSlide()"
-          ></button>
-          <SwiperSlider
-            ref="swiperRef"
-            @swiper="this.getRef"
-            :speed="1000"
-            :slides-per-view="this.feedbacksSlidesPerView"
-            :space-between="30"
-            :slots-count="this.cuttedFeedbacks.length"
-            pagination
-            :breakpoints="this.swiperBreakpoints"
-            class="pr-card__feedbacks__swiper"
-          >
-            <template
-              v-for="(item, index) in this.cuttedFeedbacks"
-              :key="index"
-              v-slot:[index]
-            >
-              <div class="pr-card__feedbacks__fb">
-                <div class="pr-card__feedbacks__fb__user _anim-scroll">
-                  <span>
-                    <img
-                      :src="
-                        require('../../assets/users-avatar/' + item[1] + '.webp')
-                      "
-                    />
-                  </span>
-                </div>
-                <div class="pr-card__feedbacks__fb__text">
-                  {{ item[0] }}
-                </div>
-              </div>
-            </template>
-          </SwiperSlider>
-          <button
-            class="pr-card__feedbacks__next-btn"
-            @click="swiperNextSlide()"
-          ></button>
-        </div>
-      </div>
+      <VueFeedbacks :current-product="this.currentProduct"></VueFeedbacks>
     </div>
   </div>
 </template>
@@ -215,17 +169,18 @@
 import { mapGetters, mapActions } from "vuex";
 import CustomBtn from "../CustomBtn.vue";
 import SwiperSlider from "../sliders/SwiperSlider.vue";
+import VueFeedbacks from "../VueFeedbacks.vue";
 
 export default {
   components: {
     CustomBtn,
     SwiperSlider,
-  },
+    VueFeedbacks
+},
   data() {
     return {
       currentProduct: null,
       activeNavPage: 0,
-      swiperData: null,
     };
   },
   mounted() {
@@ -247,15 +202,6 @@ export default {
       let message = "Товар добавлен в корзину : id ";
       let product = this.currentProduct.id;
       this.PUSH_ALERT({ message, product });
-    },
-    getRef(swiperInstance) {
-      this.swiperData = swiperInstance;
-    },
-    swiperNextSlide() {
-      this.swiperData.slideNext();
-    },
-    swiperPrevSlide() {
-      this.swiperData.slidePrev();
     },
     changeActiveNavPage(pageIndex) {
       this.activeNavPage = pageIndex;
@@ -295,47 +241,6 @@ export default {
       return {
         "pr-card_with-sale": this.currentProduct.isOnSale,
       };
-    },
-    feedbacksLength() {
-      return this.cuttedFeedbacks.length;
-    },
-    swiperBreakpoints() {
-      // when window width is >= 480px
-      let res = {
-        200: {
-          slidesPerView: 2,
-        },
-        700: {
-          slidesPerView: this.feedbacksSlidesPerView,
-        },
-        850: {
-          slidesPerView: this.feedbacksSlidesPerView,
-        },
-      };
-      return res;
-    },
-    cuttedFeedbacks() {
-      let res = [];
-      if (this.currentProduct) {
-        this.currentProduct.feedbacks.forEach((el) => {
-          let tempArr = [];
-          let tempRes = el[0].slice(0, 150);
-          tempRes = tempRes + "...";
-          tempArr.push(tempRes);
-          tempArr.push(el[1]);
-          res.push(tempArr);
-        });
-        return res;
-      } else {
-        return 0;
-      }
-    },
-    feedbacksSlidesPerView() {
-      if (this.cuttedFeedbacks.length < 4) {
-        return Number(this.cuttedFeedbacks.length);
-      } else {
-        return 4;
-      }
     },
     characteristicsTitles() {
       let res = [];
