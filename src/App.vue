@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <PreloaderAnimation></PreloaderAnimation>
+    <!-- <PreloaderAnimation></PreloaderAnimation> -->
     <CustomAlert></CustomAlert>
     <!-- <button id="change-btn" @click="changeTheme()">Change Theme</button> -->
     <MainWrapper class="app__main-wrapp"> </MainWrapper>
@@ -9,7 +9,7 @@
 
 <script>
 import MainWrapper from "./components/main-wrapper/MainWrapper.vue";
-import PreloaderAnimation from "./PreloaderAnimation.vue";
+// import PreloaderAnimation from "./PreloaderAnimation.vue";
 import { itemsScrollAnim } from "./itemsScrollAnimation.js";
 import { mapActions } from "vuex";
 import CustomAlert from "./components/CustomAlert.vue";
@@ -18,7 +18,7 @@ export default {
   name: "App",
   components: {
     MainWrapper,
-    PreloaderAnimation,
+    // PreloaderAnimation,
     CustomAlert
 },
   data() {
