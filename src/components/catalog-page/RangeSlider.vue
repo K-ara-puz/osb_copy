@@ -10,7 +10,7 @@
           max="5000"
           :value="this.minPrice"
           @click="updateMinValue($event.target.value)"
-          @touchend="updateMinValue($event.target.value)"
+          @touchend.passive="updateMinValue($event.target.value)"
         />
         <input
           type="range"
@@ -20,7 +20,7 @@
           max="5000"
           :value="this.maxPrice"
           @click="updateMaxValue($event.target.value)"
-          @touchend="updateMaxValue($event.target.value)"
+          @touchend.passive="updateMaxValue($event.target.value)"
         />
       </div>
     </div>

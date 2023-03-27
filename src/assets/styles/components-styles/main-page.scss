@@ -229,7 +229,7 @@
         flex: 0 0 65%;
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items: flex-start;
         gap: 15px;
         @media (max-width: $mainNotifyBreakpoint) {
           flex: 0 0 100%;
@@ -328,7 +328,7 @@
         width: 100%;
         max-width: 1500px;
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         @include adaptive-value("padding-right", 300, 50, 0);
         @media (max-width: $smBreakpoint) {
           padding-right: 0;

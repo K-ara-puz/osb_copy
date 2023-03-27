@@ -3,8 +3,8 @@
     <div
       class="carousel-square"
       v-if="this.CAROUSEL_IMG_PRODUCTS"
-      @touchstart="this.touchSlideChangeStart($event)"
-      @touchend="this.touchSlideChangeEnd($event)"
+      @touchstart.passive="this.touchSlideChangeStart($event)"
+      @touchend.passive="this.touchSlideChangeEnd($event)"
     >
       <div
         v-for="item in this.CAROUSEL_IMG_PRODUCTS"
