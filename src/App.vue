@@ -33,7 +33,11 @@ export default {
       this.LOAD_PRODUCTS_ON_SALE()
     })
     .then(() => {
-      this.checkContentLoad()
+      // this.checkContentLoad()
+      this.itemsShowAnimation();
+      window.addEventListener("scroll", () => {
+        this.itemsShowAnimation();
+      });
     })
     
   },
@@ -47,9 +51,6 @@ export default {
       window.addEventListener("load", () => {
         this.itemsShowAnimation();
         document.querySelector(".pre-anim").classList.add("_hide");
-      });
-      window.addEventListener("scroll", () => {
-        this.itemsShowAnimation();
       });
     },
     changeTheme() {
