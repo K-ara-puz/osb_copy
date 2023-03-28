@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <!-- <PreloaderAnimation></PreloaderAnimation> -->
+    <PreloaderAnimation></PreloaderAnimation>
     <CustomAlert></CustomAlert>
     <!-- <button id="change-btn" @click="changeTheme()">Change Theme</button> -->
     <MainWrapper class="app__main-wrapp"> </MainWrapper>
@@ -9,7 +9,7 @@
 
 <script>
 import MainWrapper from "./components/main-wrapper/MainWrapper.vue";
-// import PreloaderAnimation from "./PreloaderAnimation.vue";
+import PreloaderAnimation from "./PreloaderAnimation.vue";
 import { itemsScrollAnim } from "./itemsScrollAnimation.js";
 import { mapActions } from "vuex";
 import CustomAlert from "./components/CustomAlert.vue";
@@ -18,7 +18,7 @@ export default {
   name: "App",
   components: {
     MainWrapper,
-    // PreloaderAnimation,
+    PreloaderAnimation,
     CustomAlert
 },
   data() {
@@ -30,16 +30,16 @@ export default {
   mounted() {
     this.LOAD_PRODUCTS()
     .then(() => {
-      this.LOAD_PRODUCTS_ON_SALE()
-    })
-    .then(() => {
-      // this.checkContentLoad()
-      this.itemsShowAnimation();
+      this.LOAD_PRODUCTS_ON_SALE();
+      let vm = this;
+      this.$nextTick( () => {
+        document.querySelector(".pre-anim").classList.add("_hide");
+        vm.itemsShowAnimation();
+      });
       window.addEventListener("scroll", () => {
         this.itemsShowAnimation();
       });
-    })
-    
+    });
   },
   unmounted() {
     window.removeEventListener("load", this.emptyFuncToRemoveListener());
@@ -47,12 +47,6 @@ export default {
   },
   methods: {
     ...mapActions(["LOAD_PRODUCTS", "LOAD_PRODUCTS_ON_SALE", "CLOSE_CART_POPUP"]),
-    checkContentLoad() {
-      window.addEventListener("load", () => {
-        this.itemsShowAnimation();
-        document.querySelector(".pre-anim").classList.add("_hide");
-      });
-    },
     changeTheme() {
       const themeCss = document.querySelector("#themeRef");
       if (themeCss.getAttribute("href") === "./vars-dark.css") {
