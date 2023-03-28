@@ -3,7 +3,7 @@
     <div class="pr-card" v-if="this.currentProduct" :class="this.prCardClasses">
       <div class="pr-card__top-bar">
         <div class="pr-card__top-bar__pr top-bar-pr">
-          <div class="top-bar-pr__swiper _anim-scroll">
+          <div class="top-bar-pr__swiper _anim-scroll _anim-no-hide">
             <SwiperSlider
               ref="swiperRef"
               :speed="1000"
@@ -35,7 +35,7 @@
               </template>
             </SwiperSlider>
           </div>
-          <div class="top-bar-pr__params params-top-bar _anim-scroll">
+          <div class="top-bar-pr__params params-top-bar _anim-scroll _anim-no-hide">
             <div class="params-top-bar__head">
               <div class="params-top-bar__head__name">
                 <span> {{ this.currentProduct.name }} </span>
@@ -116,7 +116,7 @@
           :key="index"
           class="pr-card__descriptions__section"
         >
-          <div class="pr-card__descriptions__section__image _anim-scroll">
+          <div class="pr-card__descriptions__section__image _anim-scroll _anim-no-hide">
             <img
               :src="
                 require('../../assets/products-images/small/' +
@@ -125,7 +125,7 @@
               "
             />
           </div>
-          <div class="pr-card__descriptions__section__text _anim-scroll">
+          <div class="pr-card__descriptions__section__text _anim-scroll _anim-no-hide">
             <div class="pr-card__descriptions__section__text__title">
               {{ item[1] }}
             </div>
@@ -136,7 +136,7 @@
         </div>
       </div>
       <div
-        class="pr-card__characteristics _anim-scroll"
+        class="pr-card__characteristics _anim-scroll _anim-no-hide"
         v-if="this.currentProduct.characteristics"
       >
         <div class="pr-card__characteristics__container">

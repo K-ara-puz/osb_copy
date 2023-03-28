@@ -1,5 +1,5 @@
 <template>
-    <div class="best-seller _anim-scroll" :class="{'best-seller_with-sale' : this.productData.isOnSale}">
+    <div class="best-seller _anim-scroll _anim-no-hide" :class="{'best-seller_with-sale' : this.productData.isOnSale}">
     <div class="best-seller__container">
       <div class="best-seller__top-bar top-bar-best-seller">
         <div class="top-bar-best-seller__sale-img" v-if="this.productData.isOnSale">

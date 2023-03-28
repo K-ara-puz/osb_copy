@@ -1,7 +1,7 @@
 <template>
   <div class="custom-slider">
-    <div class="custom-slider__header _anim-scroll">
-      <div class="_anim-scroll">{{ this.title }}</div>
+    <div class="custom-slider__header _anim-scroll _anim-no-hide">
+      <div class="_anim-scroll _anim-no-hide">{{ this.title }}</div>
     </div>
     <div class="custom-slider__container">
       <button
@@ -29,7 +29,7 @@
       >
         <BestSellersItemCart
           :product-data="item"
-          class="custom-slider__slider__slide-item _anim-scroll"
+          class="custom-slider__slider__slide-item _anim-scroll _anim-no-hide"
         >
         </BestSellersItemCart>
       </template>

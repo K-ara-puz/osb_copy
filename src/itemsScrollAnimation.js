@@ -5,7 +5,6 @@ export function itemsScrollAnim() {
     }
 }
 function animOnScroll(animItems) {
-    // console.log(animItems)
     for (let index = 0; index < animItems.length; index++) {
         const animItem = animItems[index];
         const animItemHeight = animItem.offsetHeight;

@@ -1,5 +1,5 @@
 <template>
-  <header class="header _anim-scroll">
+  <header class="header _anim-scroll _anim-no-hide">
     <div class="header__wrapper">
       <div class="header__column">
         <button class="header__search-icon" @click="isSearchInputShow = true">

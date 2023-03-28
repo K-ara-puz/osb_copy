@@ -1,6 +1,6 @@
 <template>
   <div class="catalog">
-    <div class="catalog__top-bar _anim-scroll">
+    <div class="catalog__top-bar _anim-scroll _anim-no-hide">
       <div class="catalog__top-bar__search-panel">
         <CustomSearchInput
           :isBorder="false"
@@ -32,7 +32,7 @@
         </button>
       </div>
     </div>
-    <div class="catalog__filters-bar _anim-scroll">
+    <div class="catalog__filters-bar _anim-scroll _anim-no-hide">
       <div class="catalog__filters-bar__container">
         <div class="catalog__filters-bar__column">
           <div class="catalog__filters-bar__select">
@@ -96,8 +96,8 @@
       </PaginationButtons>
     </div>
     <div class="catalog__swiper-slider">
-      <div class="catalog__swiper-slider__header _anim-scroll">
-        <div class="_anim-scroll">БЕСТСЕЛЛЕРЫ</div>
+      <div class="catalog__swiper-slider__header _anim-scroll _anim-no-hide">
+        <div class="_anim-scroll _anim-no-hide">БЕСТСЕЛЛЕРЫ</div>
       </div>
       <SwiperSlider
         v-if="this.BESTSELLERS_PRODUCTS.length"
@@ -120,7 +120,7 @@
         >
           <BestSellersItemCart
             :product-data="item"
-            class="catalog__swiper-slider__slide-item _anim-scroll"
+            class="catalog__swiper-slider__slide-item _anim-scroll _anim-no-hide"
           >
           </BestSellersItemCart>
         </template>

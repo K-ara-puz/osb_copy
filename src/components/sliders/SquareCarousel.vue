@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel-square__wrapp _anim-scroll">
+  <div class="carousel-square__wrapp _anim-scroll _anim-no-hide">
     <div
       class="carousel-square"
       v-if="this.CAROUSEL_IMG_PRODUCTS"

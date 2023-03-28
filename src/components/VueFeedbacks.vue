@@ -1,6 +1,6 @@
 <template>
   <div
-    class="feedbacks _anim-scroll"
+    class="feedbacks _anim-scroll _anim-no-hide"
     v-if="this.mainFeedbacks"
   >
     <div class="feedbacks__container">
@@ -24,7 +24,7 @@
           v-slot:[index]
         >
           <div class="feedbacks__fb">
-            <div class="feedbacks__fb__user _anim-scroll">
+            <div class="feedbacks__fb__user _anim-scroll _anim-no-hide">
               <span>
                 <img
                   :src="
