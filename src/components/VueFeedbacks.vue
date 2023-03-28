@@ -1,7 +1,7 @@
 <template>
   <div
     class="feedbacks _anim-scroll _anim-no-hide"
-    v-if="this.mainFeedbacks"
+    v-if="this.feedbacks"
   >
     <div class="feedbacks__container">
       <button
