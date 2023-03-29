@@ -85,6 +85,7 @@ export default {
       if (this.clearAfterSearch == true) {
         this.modelV = "";
       }
+      document.querySelector(".search__input").blur();
     },
     search2() {
       console.log("seaaaaaaaaarch22222222222");
