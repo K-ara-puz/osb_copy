@@ -62,6 +62,7 @@
         </div>
         <div class="catalog__filters-bar__column">
           <RangeSlider
+            inputmode="none"
             class="catalog__filters-bar__range-slider"
             @min-price-updated="this.updateMinProductPriceForFilter"
             @max-price-updated="this.updateMaxProductPriceForFilter"
