@@ -61,12 +61,12 @@
           </div>
         </div>
         <div class="catalog__filters-bar__column">
-          <!-- <RangeSlider
+          <RangeSlider
             class="catalog__filters-bar__range-slider"
             @min-price-updated="this.updateMinProductPriceForFilter"
             @max-price-updated="this.updateMaxProductPriceForFilter"
           >
-          </RangeSlider> -->
+          </RangeSlider>
           <CustomBtn title="Применить" :success="true" @click="applyFilters()">
           </CustomBtn>
         </div>
@@ -135,7 +135,7 @@ import CustomFilterSelect from "../CustomFilterSelect.vue";
 import { mapActions, mapGetters } from "vuex";
 import CatalogProductCard from "./CatalogProductCard.vue";
 import PaginationButtons from "../PaginationButtons.vue";
-// import RangeSlider from "./RangeSlider.vue";
+import RangeSlider from "./RangeSlider.vue";
 import CustomBtn from "../CustomBtn.vue";
 import SwiperSlider from "../sliders/SwiperSlider.vue";
 import BestSellersItemCart from "../BestSellersItemCart.vue";
@@ -147,7 +147,7 @@ export default {
     CustomFilterSelect,
     CatalogProductCard,
     PaginationButtons,
-    // RangeSlider,
+    RangeSlider,
     CustomBtn,
     SwiperSlider,
     BestSellersItemCart,
