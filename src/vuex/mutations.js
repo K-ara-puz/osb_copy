@@ -80,6 +80,7 @@ export default {
         let temporaryFilters = state.filters;
         for (let key in temporaryFilters) {
           if (temporaryFilters[key] === "Все") {
+            console.log(temporaryFilters[key])
             delete temporaryFilters[key];
           }
           if (temporaryFilters[key] == "") {

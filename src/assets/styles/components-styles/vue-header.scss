@@ -190,15 +190,16 @@
   background-color: red;
   padding: 100px 0 20px;
   width: 100%;
-  height: calc(100vh - 100px);
-  z-index: 99999999999999999;
-  box-sizing: border-box;
+  height: 100vh;
+  // z-index: 99999999999999999;
+  // box-sizing: border-box;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
   overflow-x: hidden;
   position: fixed;
-  top: 90px;
+  // top: 90px;
+  top: 0;
   left: 0;
   transition: all 1s ease-out;
   &__container {

@@ -36,6 +36,7 @@
     }
   }
   &__filters-bar {
+    z-index: 10;
     padding: 0 rem(10);
     margin: rem(20) 0 rem(50) 0;
     transform: translateX(-120%);
