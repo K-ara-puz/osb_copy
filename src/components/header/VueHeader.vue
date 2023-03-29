@@ -157,8 +157,7 @@
             </router-link>
             <span></span>
           </div>
-        </div>
-        <div
+          <div
           class="mobile-menu-header__contacts-panel contacts-panel-mobile-menu"
         >
           <div class="contacts-panel-mobile-menu__wrapper">
@@ -247,6 +246,8 @@
             </a>
           </div>
         </div>
+        </div>
+
       </nav>
     </transition>
   </header>
