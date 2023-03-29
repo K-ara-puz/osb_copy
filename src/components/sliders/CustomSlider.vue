@@ -14,7 +14,6 @@
       :speed="1000"
       :loop="true"
       :slides-per-view="3"
-      :space-between="50"
       :slots-count="this.products.length"
       :breakpoints="this.swiperBreakpoints"
       navigation
@@ -68,10 +67,15 @@ export default {
         // when window width is >= 480px
         200: {
           slidesPerView: 2,
+          spaceBetween: 10,
+        },
+        550: {
+          slidesPerView: 3,
+          spaceBetween: 10,
         },
         700: {
-          slidesPerView: 3,
-        },
+          spaceBetween: 40,
+        }
       },
     };
   },
