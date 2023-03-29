@@ -10,7 +10,7 @@
           type="text"
           :value="this.modelV"
           @blur="emitBlur()"
-          @input="this.modelV = $event.target.value"
+          @input="this.modelV = $event.target.value, this.afterInput($event.target.value)"
           @keyup.enter="search()"
           @keydown.enter="search()"          
           @keydown.tab="search2()"
@@ -80,7 +80,8 @@ export default {
       this.modelV = "";
     },
     search() {
-      console.log("seaaaaaaaaarch")
+      console.log("seaaaaaaaaarch");
+      alert("from SEARCHHH");
       this.$emit("search-item", this.modelV);
       if (this.clearAfterSearch == true) {
         this.modelV = "";
@@ -94,6 +95,9 @@ export default {
         this.modelV = "";
       }
     },
+    afterInput(e) {
+      console.log(e)
+    }
   },
   watch: {
     modelV() {
