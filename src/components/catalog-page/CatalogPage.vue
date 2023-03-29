@@ -126,7 +126,7 @@
         </template>
       </SwiperSlider>
     </div>
-    <SquareCarousel></SquareCarousel>
+    <SquareCarousel class="catalog__carousel"></SquareCarousel>
   </div>
 </template>
 <script>

@@ -157,6 +157,6 @@ export default {
         state.alerts.push(temp);
         setTimeout( () => {
           state.alerts.shift();
-        }, 5000)
+        }, 3000)
       }
 }
