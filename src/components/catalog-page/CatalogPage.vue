@@ -140,7 +140,7 @@ import CustomBtn from "../CustomBtn.vue";
 import SwiperSlider from "../sliders/SwiperSlider.vue";
 import BestSellersItemCart from "../BestSellersItemCart.vue";
 import SquareCarousel from "../sliders/SquareCarousel";
-import {useDynamicAdapt} from '../../dynamicAdapt';
+import { useDynamicAdapt } from "../../dynamicAdapt";
 export default {
   components: {
     CustomSearchInput,
@@ -228,7 +228,10 @@ export default {
     this.$root.itemsShowAnimation();
   },
   unmounted() {
-    window.removeEventListener("resize", this.$root.emptyFuncToRemoveListener());
+    window.removeEventListener(
+      "resize",
+      this.$root.emptyFuncToRemoveListener()
+    );
   },
   methods: {
     ...mapActions([
@@ -253,20 +256,20 @@ export default {
       });
     },
     setFilterCategory(name) {
-      if (name === 'Категории') {
-        name = 'Все'
+      if (name === "Категории") {
+        name = "Все";
       }
       this.filters.category = name;
     },
     setFilterSize(name) {
-      if (name === 'Размер') {
-        name = 'Все'
+      if (name === "Размер") {
+        name = "Все";
       }
       this.filters.size = name;
     },
     setFilterColor(name) {
-      if (name === 'Цвет') {
-        name = 'Все'
+      if (name === "Цвет") {
+        name = "Все";
       }
       this.filters.color = name;
     },

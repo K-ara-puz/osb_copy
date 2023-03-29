@@ -131,7 +131,6 @@
           <CustomSearchInput
             @search-item="this.searchProducts"
             @blur-it="this.closeInput()"
-            id="searchInputId"
             class="mobile-menu-header__search"
             :clear-after-search="true"
           >
