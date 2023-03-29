@@ -22,12 +22,9 @@
             font-size: rem(10);
         }
     }
-    svg {
-        width: 20px;
+    img {
+        width: rem(22);
         margin: rem(5) 0;
-        display: inline-flex;
-        fill: var(--bg-gray-300);
-        stroke: var(--bg-gray-300);
     }
     &__right-bar {
         text-align: right;

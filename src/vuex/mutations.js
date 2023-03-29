@@ -80,6 +80,7 @@ export default {
         let temporaryFilters = state.filters;
         for (let key in temporaryFilters) {
           if (temporaryFilters[key] === "Все") {
+            console.log(temporaryFilters[key])
             delete temporaryFilters[key];
           }
           if (temporaryFilters[key] == "") {
@@ -156,6 +157,6 @@ export default {
         state.alerts.push(temp);
         setTimeout( () => {
           state.alerts.shift();
-        }, 5000)
+        }, 3000)
       }
 }

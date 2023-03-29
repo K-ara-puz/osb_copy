@@ -28,7 +28,7 @@
     --bg-cart-popup: rgba(0, 0, 0, 0.7);
     --bg-log-popup: rgba(0, 0, 8, 0.8);
     --bg-log-popup-2: rgba(0, 3, 17, 0.97);
-
+    --border-select: rgba(73, 73, 73, 0.15);
 }
 body {
     background-color: var(--body-color); 

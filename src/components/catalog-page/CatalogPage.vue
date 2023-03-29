@@ -126,7 +126,7 @@
         </template>
       </SwiperSlider>
     </div>
-    <SquareCarousel></SquareCarousel>
+    <SquareCarousel class="catalog__carousel"></SquareCarousel>
   </div>
 </template>
 <script>
@@ -253,12 +253,21 @@ export default {
       });
     },
     setFilterCategory(name) {
+      if (name === 'Категории') {
+        name = 'Все'
+      }
       this.filters.category = name;
     },
     setFilterSize(name) {
+      if (name === 'Размер') {
+        name = 'Все'
+      }
       this.filters.size = name;
     },
     setFilterColor(name) {
+      if (name === 'Цвет') {
+        name = 'Все'
+      }
       this.filters.color = name;
     },
     applyFilters() {
