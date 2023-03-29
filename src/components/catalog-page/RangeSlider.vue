@@ -29,6 +29,7 @@
         От
         <div class="count-range-slider__input">
           <input
+            tabindex="-1"
             type="number"
             class="count-range-slider__span__min"
             v-model="this.minPrice"
@@ -41,6 +42,7 @@
         до
         <div class="count-range-slider__input">
           <input
+            tabindex="-1"
             type="number"
             class="count-range-slider__span__max"
             v-model="this.maxPrice"
