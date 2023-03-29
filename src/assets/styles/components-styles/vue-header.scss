@@ -192,6 +192,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   overflow-y: scroll;
   overflow-x: hidden;
   position: fixed;
@@ -199,7 +200,6 @@
   left: 0;
   transition: all 1s ease-out;
   &__container {
-    background-color: darkcyan;
     padding: 90px 0 60px;
     display: flex;
     gap: 90px;
