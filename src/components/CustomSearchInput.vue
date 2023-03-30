@@ -78,6 +78,7 @@ export default {
       this.modelV = "";
     },
     search() {
+      console.log("SEARCH INSIDE INPUT")
       this.$emit("search-item", this.modelV);
       if (this.clearAfterSearch == true) {
         this.modelV = "";

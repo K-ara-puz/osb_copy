@@ -232,7 +232,7 @@ export default {
       "OPEN_CART_POPUP",
     ]),
     searchProducts(value) {
-      
+      alert("SEARCH PRRRRRRR1")
       this.SEARCH_FROM_OUTPUT(value)
         .then(() => {
           if (value != "") {
@@ -240,7 +240,6 @@ export default {
           }
         })
         .then(this.closeInput());
-        alert("SEARCH PRRRRRRR")
     },
     closeInput() {
       this.isSearchInputShow = false;
