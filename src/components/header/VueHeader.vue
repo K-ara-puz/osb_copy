@@ -232,6 +232,7 @@ export default {
       "OPEN_CART_POPUP",
     ]),
     searchProducts(value) {
+      
       this.SEARCH_FROM_OUTPUT(value)
         .then(() => {
           if (value != "") {
@@ -239,6 +240,7 @@ export default {
           }
         })
         .then(this.closeInput());
+        alert("SEARCH PRRRRRRR")
     },
     closeInput() {
       this.isSearchInputShow = false;
@@ -247,6 +249,7 @@ export default {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
       const body = document.querySelector("body");
       body.classList.toggle("_scroll-wrapp-hide");
+      alert("SHOW MOBILE MENU")
     },
     openCartPopup() {
       this.OPEN_CART_POPUP();
