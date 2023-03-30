@@ -10,9 +10,8 @@
           type="text"
           :value="this.modelV"
           @blur="emitBlur()"
-          @input="this.modelV = $event.target.value, this.afterInput($event.target.value)"
+          @input="this.modelV = $event.target.value"
           @keyup.enter="search()"
-          @keydown.tab="search2()"
         />
         <div v-show="this.isEmpty == true" @click="this.clear()">
           <svg v-if="this.isCancelIcon" class="search__clear" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 24 24"><path d="M23.707.293a1 1 0 0 0-1.414 0L12 10.586 1.707.293a1 1 0 0 0-1.414 0 1 1 0 0 0 0 1.414L10.586 12 .293 22.293a1 1 0 0 0 0 1.414 1 1 0 0 0 1.414 0L12 13.414l10.293 10.293a1 1 0 0 0 1.414 0 1 1 0 0 0 0-1.414L13.414 12 23.707 1.707a1 1 0 0 0 0-1.414Z"/></svg>
@@ -79,25 +78,11 @@ export default {
       this.modelV = "";
     },
     search() {
-      console.log("seaaaaaaaaarch");
-      // alert("from SEARCHHH");
-      this.$emit("search-item", this.modelV);
-      if (this.clearAfterSearch == true) {
-        this.modelV = "";
-      }
-      this.emitBlur();
-    },
-    search2() {
-      console.log("seaaaaaaaaarch22222222222");
-      alert("from TAB")
       this.$emit("search-item", this.modelV);
       if (this.clearAfterSearch == true) {
         this.modelV = "";
       }
     },
-    afterInput(e) {
-      console.log(e)
-    }
   },
   watch: {
     modelV() {

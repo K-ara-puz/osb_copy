@@ -129,8 +129,7 @@
       >
         <div class="mobile-menu-header__container mobile-menu__body">
           <CustomSearchInput
-            @search-item="this.searchProducts"
-            @blur-it="this.closeInput()"
+            @search-item="this.searchProducts($event), this.showMobileMenu()"
             class="mobile-menu-header__search"
             :clear-after-search="true"
           >
