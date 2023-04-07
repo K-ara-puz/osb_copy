@@ -21,6 +21,9 @@
         z-index: -1;
         transform: rotate(-30deg);
         opacity: 0.5;
+        @media (max-width: $smBreakpoint) {
+            background: center 400px/100px url('../assets/OCB.webp') var(--bg-cart-popup) round;
+        }
     }
     &__wrapper {
         background-color: var(--bg-card);
