@@ -190,19 +190,6 @@
       }
     }
     .swiper {
-      z-index: 7;
-      @include adaptive-value("height", 800, 400, 0);
-      max-width: 1200px;
-      display: flex;
-      padding: 0 10px;
-      &-slide {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: no-repeat 50% / contain url('../../assets/icons/dark-theme/best_bg_2.webp');
-      }
       &-button-prev,
       &-button-next {
         display: flex;

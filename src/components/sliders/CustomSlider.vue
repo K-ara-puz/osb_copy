@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-slider">
+  <div class="custom-slider" :class="this.compClasses">
     <div class="custom-slider__header _anim-scroll _anim-no-hide">
       <div class="_anim-scroll _anim-no-hide">{{ this.title }}</div>
     </div>
@@ -19,6 +19,7 @@
       navigation
       :products="this.products"
       @swiper="this.getRef"
+      @realIndexChange="this.addSwiperSlideAnimation"
       class="custom-slider__slider"
     >
       <template
@@ -59,6 +60,10 @@ export default {
     products: {
       type: Array,
     },
+    isBackground: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -81,11 +86,50 @@ export default {
   },
   computed: {
     ...mapGetters(["PRODUCTS_ON_SALE"]),
+    compClasses() {
+      return {
+        'custom-slider _with-bg' : this.isBackground === true,
+      }
+    }
   },
   methods: {
     getRef(swiperInstance) {
       this.swiperData = swiperInstance;
-    }
+    },
+    addSwiperSlideAnimation(swiperInstance) {
+      let centerSlideIndex = Number(swiperInstance.activeIndex);
+      ++centerSlideIndex;
+      let centerSlideItem = swiperInstance.slides[
+        centerSlideIndex
+      ].querySelector(".custom-slider__slider__slide-item");
+      let centerSiblingElements = [];
+      centerSiblingElements.push(
+        swiperInstance.slides[centerSlideIndex].nextSibling.querySelector(
+          ".custom-slider__slider__slide-item"
+        )
+      );
+      centerSiblingElements.push(
+        swiperInstance.slides[centerSlideIndex].previousSibling.querySelector(
+          ".custom-slider__slider__slide-item"
+        )
+      );
+      centerSiblingElements.forEach((el) => {
+        el.classList.add("custom-slider__slider__slide-item__animation");
+      });
+      centerSlideItem.classList.add(
+        "custom-slider__slider__slide-item__center-item__animation"
+      );
+      let timeout = swiperInstance.params.speed;
+      timeout = timeout + 500;
+      setTimeout(() => {
+        centerSlideItem.classList.remove(
+          "custom-slider__slider__slide-item__center-item__animation"
+        );
+        centerSiblingElements.forEach((el) => {
+          el.classList.remove("custom-slider__slider__slide-item__animation");
+        });
+      }, timeout);
+    },
   }
 };
 </script>

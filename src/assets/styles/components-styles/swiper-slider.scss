@@ -1,6 +1,7 @@
-.catalog__swiper-slider {
-    .catalog__swiper-slider__slide-item {
+.custom-slider__slider {
+    &__slide-item {
         transition: all 1s linear;
+        align-items: center;
         &__animation {
             animation-name: swiper-slide-anim;
             animation-duration: 1.5s;

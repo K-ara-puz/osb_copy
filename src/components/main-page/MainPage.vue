@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <CustomSlider class="main__sales" :products="this.PRODUCTS_ON_SALE" :title="'Акции'"></CustomSlider>
+    <CustomSlider class="main__sales" :is-background="true" :products="this.PRODUCTS_ON_SALE" :title="'Акции'"></CustomSlider>
     <div class="main__carousel">
         <SquareCarousel></SquareCarousel>
     </div>

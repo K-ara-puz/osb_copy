@@ -54,6 +54,9 @@
       padding-bottom: rem(30);
       max-width: 1000px;
       display: flex;
+      align-items: center;
+      justify-content: center;
+      @include adaptive-value("height", 800, 400, 0);
       &-slide {
         height: 100%;
         display: flex;
@@ -65,6 +68,9 @@
       &-button-next {
         display: none;
       }
+    }
+    &._with-bg .swiper-slide{
+      background: no-repeat 50% / contain url('../../assets/icons/dark-theme/best_bg_2.webp') !important;
     }
     &__next-btn,
     &__prev-btn {

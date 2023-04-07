@@ -97,35 +97,7 @@
       </PaginationButtons>
     </div>
     <div class="catalog__swiper-slider">
-      <div class="catalog__swiper-slider__header _anim-scroll _anim-no-hide">
-        <div class="_anim-scroll _anim-no-hide">БЕСТСЕЛЛЕРЫ</div>
-      </div>
-      <SwiperSlider
-        v-if="this.BESTSELLERS_PRODUCTS.length"
-        ref="swiperRef"
-        :speed="1000"
-        :loop="true"
-        :slides-per-view="3"
-        :space-between="50"
-        :slots-count="this.BESTSELLERS_PRODUCTS.length"
-        :breakpoints="this.swiperBreakpoints"
-        navigation
-        @swiper="this.getRef"
-        @realIndexChange="this.addSwiperSlideAnimation"
-        :products="this.BESTSELLERS_PRODUCTS"
-      >
-        <template
-          v-for="(item, index) of this.BESTSELLERS_PRODUCTS"
-          :key="index"
-          v-slot:[index]
-        >
-          <BestSellersItemCart
-            :product-data="item"
-            class="catalog__swiper-slider__slide-item _anim-scroll _anim-no-hide"
-          >
-          </BestSellersItemCart>
-        </template>
-      </SwiperSlider>
+      <CustomSlider class="main__sales" :is-background="true" :products="this.BESTSELLERS_PRODUCTS" :title="'БЕСТСЕЛЛЕРЫ'"></CustomSlider>
     </div>
     <SquareCarousel class="catalog__carousel"></SquareCarousel>
   </div>
@@ -133,13 +105,12 @@
 <script>
 import CustomSearchInput from "../CustomSearchInput.vue";
 import CustomFilterSelect from "../CustomFilterSelect.vue";
+import CustomSlider from "../sliders/CustomSlider.vue";
 import { mapActions, mapGetters } from "vuex";
 import CatalogProductCard from "./CatalogProductCard.vue";
 import PaginationButtons from "../PaginationButtons.vue";
 import RangeSlider from "./RangeSlider.vue";
 import CustomBtn from "../CustomBtn.vue";
-import SwiperSlider from "../sliders/SwiperSlider.vue";
-import BestSellersItemCart from "../BestSellersItemCart.vue";
 import SquareCarousel from "../sliders/SquareCarousel";
 import { useDynamicAdapt } from "../../dynamicAdapt";
 export default {
@@ -150,8 +121,7 @@ export default {
     PaginationButtons,
     RangeSlider,
     CustomBtn,
-    SwiperSlider,
-    BestSellersItemCart,
+    CustomSlider,
     SquareCarousel,
   },
   data() {
@@ -318,57 +288,6 @@ export default {
         this.page++;
       }
       window.scrollTo(0, 0);
-    },
-    getRef(swiperInstance) {
-      this.swiperData = swiperInstance;
-    },
-    swiperSlideNext() {
-      this.swiperData.slideNext();
-    },
-    addSwiperSlideAnimation(swiperInstance) {
-      let centerSlideIndex = Number(swiperInstance.activeIndex);
-      ++centerSlideIndex;
-      let centerSlideItem = swiperInstance.slides[
-        centerSlideIndex
-      ].querySelector(".catalog__swiper-slider__slide-item");
-      let centerSiblingElements = [];
-      centerSiblingElements.push(
-        swiperInstance.slides[centerSlideIndex].nextSibling.querySelector(
-          ".catalog__swiper-slider__slide-item"
-        )
-      );
-      centerSiblingElements.push(
-        swiperInstance.slides[centerSlideIndex].previousSibling.querySelector(
-          ".catalog__swiper-slider__slide-item"
-        )
-      );
-      centerSiblingElements.forEach((el) => {
-        el.classList.add("catalog__swiper-slider__slide-item__animation");
-      });
-      centerSlideItem.classList.add(
-        "catalog__swiper-slider__slide-item__center-item__animation"
-      );
-      let timeout = swiperInstance.params.speed;
-      timeout = timeout + 500;
-      setTimeout(() => {
-        centerSlideItem.classList.remove(
-          "catalog__swiper-slider__slide-item__center-item__animation"
-        );
-        centerSiblingElements.forEach((el) => {
-          el.classList.remove("catalog__swiper-slider__slide-item__animation");
-        });
-      }, timeout);
-    },
-    afterSwiperCarouselInit() {
-      let swiperElems = document.querySelectorAll(
-        ".catalog__carousel .swiper-wrapper .swiper-slide"
-      );
-      swiperElems = [...swiperElems];
-      let targetElems = [];
-      targetElems = swiperElems.slice(3);
-      targetElems.forEach((el) => {
-        el.classList.add("swiper-slide_anim");
-      });
     },
   },
   computed: {
