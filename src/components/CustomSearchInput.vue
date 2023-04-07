@@ -78,22 +78,11 @@ export default {
       this.modelV = "";
     },
     search(e) {
-      console.log(e.target);
-
-      console.log("SEARCH INSIDE INPUT")
       this.$emit("search-item", this.modelV);
       if (this.clearAfterSearch == true) {
         this.modelV = "";
       }
       e.target.blur();
-    },
-    search2(e) {
-      console.log("SEARCH22222222 INSIDE INPUT")
-      console.log(e.target.value)
-      // this.$emit("search-item", this.modelV);
-      // if (this.clearAfterSearch == true) {
-      //   this.modelV = "";
-      // }
     },
   },
   watch: {

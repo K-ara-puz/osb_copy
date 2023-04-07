@@ -8,6 +8,7 @@
   background-color: var(--body-color);
   color: var(--text-white);
   &__top-bar {
+    z-index: 10;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -36,7 +37,7 @@
     }
   }
   &__filters-bar {
-    z-index: 10;
+    z-index: 1;
     padding: 0 rem(10);
     margin: rem(20) 0 rem(50) 0;
     transform: translateX(-120%);
@@ -99,7 +100,6 @@
   &__main {
     width: 100%;
     padding: rem(5);
-    z-index: 1;
     overflow: hidden;
     &__container {
       margin: 0 auto;

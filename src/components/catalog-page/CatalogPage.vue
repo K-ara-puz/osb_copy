@@ -9,6 +9,7 @@
           :isClear="this.isSearchClear"
           @search-item="this.searchProducts"
           @cleared-it="this.clearSearchValue"
+          :clearAfterSearch="true"
         >
         </CustomSearchInput>
       </div>
