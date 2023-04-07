@@ -235,7 +235,7 @@ export default {
       alert("SEARCH PRRRRRRR1")
       this.SEARCH_FROM_OUTPUT(value)
         .then(() => {
-          if (value != "") {
+          if (value !== "") {
             this.$router.push("/catalog");
           }
         })
