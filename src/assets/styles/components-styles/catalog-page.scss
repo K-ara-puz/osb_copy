@@ -101,6 +101,7 @@
     width: 100%;
     padding: rem(5);
     overflow: hidden;
+    text-align: center;
     &__container {
       margin: 0 auto;
       max-width: 1300px;
@@ -134,6 +135,15 @@
           transition: all 1s ease-out;
         }
       }
+    }
+    &__empty-block {
+      border: 1px solid rgba(255, 0, 0, 0.226);
+      text-align: center;
+      padding: 10px 20px;
+      display: inline-flex;
+      font-weight: 100;
+      letter-spacing: 2px;
+      word-spacing: 8px;
     }
   }
    &__pagination-panel {

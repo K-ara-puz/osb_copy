@@ -75,7 +75,7 @@
     </div>
     <div class="catalog__main">
       <div class="catalog__main__container">
-        <div class="catalog__main__main-block">
+        <div class="catalog__main__main-block" v-if="this.paginatedProducts.length > 0">
           <CatalogProductCard
             v-for="product in this.paginatedProducts"
             :key="product.id"
@@ -84,6 +84,9 @@
             class="catalog__main__main-block__product _anim-scroll"
           >
           </CatalogProductCard>
+        </div>
+        <div v-else class="catalog__main__empty-block">
+          NOTHING FOUNDED
         </div>
       </div>
     </div>
