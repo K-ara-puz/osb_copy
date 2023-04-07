@@ -2,7 +2,6 @@
   <div class="app">
     <PreloaderAnimation></PreloaderAnimation>
     <CustomAlert></CustomAlert>
-    <!-- <button id="change-btn" @click="changeTheme()">Change Theme</button> -->
     <MainWrapper class="app__main-wrapp"> </MainWrapper>
   </div>
 </template>
@@ -47,14 +46,6 @@ export default {
   },
   methods: {
     ...mapActions(["LOAD_PRODUCTS", "LOAD_PRODUCTS_ON_SALE", "CLOSE_CART_POPUP"]),
-    changeTheme() {
-      const themeCss = document.querySelector("#themeRef");
-      if (themeCss.getAttribute("href") === "./vars-dark.css") {
-        themeCss.setAttribute("href", "./vars-light.css");
-      } else {
-        themeCss.setAttribute("href", "./vars-dark.css");
-      }
-    },
     itemsShowAnimation() {
       itemsScrollAnim();
     },
@@ -94,6 +85,9 @@ export default {
 };
 </script>
 <style lang="scss">
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 .app {
   font-family: "Raleway", sans-serif;
 }

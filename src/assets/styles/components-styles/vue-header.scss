@@ -78,6 +78,10 @@
       @media (any-pointer) {
         padding: 2px 4px;
       }
+      @media (max-width: $smBreakpoint) {
+        padding: 2px 4px;
+        font-weight: 400;
+      }
     }
   }
   &__ic-social {

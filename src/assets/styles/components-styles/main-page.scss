@@ -19,7 +19,7 @@
     justify-content: center;
     opacity: 0;
     @media (max-width: $smBreakpoint) {
-      height: calc(100vw / 1.5);
+      height: calc(100vw / 1.8);
     }
     &._active-anim {
       transition: all 1s linear;

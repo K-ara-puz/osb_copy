@@ -56,7 +56,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      @include adaptive-value("height", 800, 400, 0);
+      @include adaptive-value("height", 800, 250, 0);
       &-slide {
         height: 100%;
         display: flex;
@@ -69,8 +69,17 @@
         display: none;
       }
     }
-    &._with-bg .swiper-slide{
-      background: no-repeat 50% / contain url('../../assets/icons/dark-theme/best_bg_2.webp') !important;
+    &._with-bg {
+      .custom-slider__header {
+        margin-bottom: 0px;
+      }
+      & .swiper {
+        @include adaptive-value("height", 800, 380, 0);
+        &-slide {
+          background: no-repeat 50% / contain url('../../assets/icons/dark-theme/best_bg_2.webp') !important;
+          background-size: 25% !important;
+        }
+      }
     }
     &__next-btn,
     &__prev-btn {
