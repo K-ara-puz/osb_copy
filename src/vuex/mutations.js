@@ -41,8 +41,8 @@ export default {
         state.maxProductPrice = allFilters.maxPrice;
       },
       FILTER_PRODUCTS_BY_SEARCH(state, searchValue) {
-        if (searchValue != undefined) state.searchProductValue = searchValue
-        if (state.searchProductValue != '') {
+        if (searchValue !== undefined && searchValue !== null) state.searchProductValue = searchValue
+        if (state.searchProductValue !== '') {
           state.filteredProducts = state.filteredProducts.filter( item => {
             if (item.name.toLowerCase().includes(state.searchProductValue.toLowerCase())) {
               return true

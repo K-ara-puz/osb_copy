@@ -36,7 +36,6 @@ export default {
         if (state.searchProductValue) {
           commit("FILTER_PRODUCTS_BY_SEARCH", state.searchProductValue)
         }
-        state.searchProductValue = ''
       },
       SEARCH_FROM_OUTPUT({commit, state}, searchValue) {
         state.filteredProducts = state.products
