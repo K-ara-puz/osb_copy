@@ -11,6 +11,7 @@ $carouselRadius:  calc(($carouselSlideWidth + ($carouselSlideCatetLength * 2)) /
 $carouselTransformOrigin: 50% 50% (-$carouselRadius);
 
 .carousel-square {
+    user-select: none;
     width: $carouselSlideWidth;
     height: calc($carouselSlideWidth / 2);
     margin: rem(50) auto;
@@ -48,6 +49,7 @@ $carouselTransformOrigin: 50% 50% (-$carouselRadius);
       }
     }
     .cs-item {
+      user-select: none;
       width: $carouselSlideWidth;
       max-width: $carouselSlideWidth;
       height: 100%;
@@ -73,6 +75,8 @@ $carouselTransformOrigin: 50% 50% (-$carouselRadius);
         position: relative;
         transition: all 1.2s;
         img {
+          user-select: none;
+          pointer-events: none;
           width: 100%;
           height: 100%;
           position: absolute;
