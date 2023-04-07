@@ -75,6 +75,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      @media (any-pointer) {
+        padding: 2px 4px;
+      }
     }
   }
   &__ic-social {
