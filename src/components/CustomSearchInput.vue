@@ -3,10 +3,9 @@
     <div class="search">
       <div class="search__wrapper">
         <input
-          tabindex="-1"
           class="search__input"
           :class="{ 'search-without-border': this.isBorder === false }"
-          :style="{ fontSize: (this.fontSize / 16) + 'rem',  }"
+          :style="{ fontSize: (this.fontSize / 16) + 'rem' }"
           :placeholder="'Поиск...'"
           type="text"
           :value="this.modelV"

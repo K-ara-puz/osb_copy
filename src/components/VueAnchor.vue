@@ -6,7 +6,6 @@
     export default {
         methods: {
             toPageTop() {
-                console.log("fff");
                 window.scrollTo({ top: 0, behavior: "smooth" });
             }
         }
