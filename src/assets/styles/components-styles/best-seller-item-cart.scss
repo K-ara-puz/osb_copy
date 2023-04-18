@@ -141,14 +141,6 @@
     }
   }
 }
-.catalog-product {
-  &__ic {
-    @media (max-width: $smBreakpoint) {
-      width: 15px !important;
-      height: 15px !important;
-    }
-  }
-}
 .best-seller_with-sale {
   .top-bar-best-seller {
     &__price {
