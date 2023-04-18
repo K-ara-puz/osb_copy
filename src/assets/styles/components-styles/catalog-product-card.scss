@@ -196,9 +196,5 @@
     width: 20px !important;
     height: 20px !important;
     fill: var(--bg-icon);
-    @media (max-width: $smBreakpoint) {
-      width: 15px !important;
-      height: 15px !important;
-    }
   }
 }
