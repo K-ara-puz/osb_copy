@@ -123,12 +123,6 @@ export default {
           state.filteredProducts = state.products;
         }
       },
-      UNSHOW_CART_POPUP(state) {
-        state.isCartPopupOpen = false;
-      },
-      SHOW_CART_POPUP(state) {
-        state.isCartPopupOpen = true;
-      },
       ADD_PRODUCT_TO_CART(state, product) {
         state.cart.push(product);
       },
@@ -157,5 +151,11 @@ export default {
         setTimeout( () => {
           state.alerts.shift();
         }, 3000)
+      },
+      SHOW_MOBILE_MENU(state) {
+        state.isMobileMenuOpen = true;
+      },
+      HIDE_MOBILE_MENU(state) {
+        state.isMobileMenuOpen = false;
       }
 }

@@ -14,6 +14,9 @@ export default {
       IS_MOBILE(state) {
         return state.isMobile;
       },
+      IS_MOBILE_MENU_OPEN(state) {
+        return state.isMobileMenuOpen;
+      },
       BESTSELLERS_PRODUCTS(state) {
         return state.bestSellerProducts;
       },

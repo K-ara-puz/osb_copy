@@ -66,12 +66,6 @@ export default {
           commit("SORT_PRODUCTS", state.sortValue)
         }
       },
-      OPEN_CART_POPUP({commit}) {
-        commit("SHOW_CART_POPUP");
-      },
-      CLOSE_CART_POPUP({commit}) {
-        commit("UNSHOW_CART_POPUP");
-      },
       ADD_PR_TO_CART({commit, state}, product) {
         if (state.cart.length > 0) {
           let coincidence = false;
@@ -101,5 +95,11 @@ export default {
       },
       PUSH_ALERT({commit}, {message, product}) {
         commit("ADD_ALERT", {message, product});
+      },
+      OPEN_MOBILE_MENU({commit}) {
+        commit("SHOW_MOBILE_MENU");
+      },
+      CLOSE_MOBILE_MENU({commit}) {
+        commit("HIDE_MOBILE_MENU");
       }
 }

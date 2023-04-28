@@ -46,16 +46,8 @@ import { Navigation, Pagination, A11y, EffectCube } from "swiper";
 
 export default {
   setup() {
-    // all setup is for swiper
-    const onSwiper = (Swiper) => {
-      console.log(Swiper);
-    };
-    const onSlideChange = () => {
-      console.log("slide change");
-    };    
+    // all setup is for swiper  
     return {
-      onSwiper,
-      onSlideChange,
       modules: [Navigation, Pagination, A11y, EffectCube],
     };
   },

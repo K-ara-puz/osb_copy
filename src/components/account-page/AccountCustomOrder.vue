@@ -57,7 +57,9 @@
     </div>
     <button class="custom-order__arrow"
       @click="this.toggleBodyVisible($event.target)"
-    ></button>
+    >
+      <span></span>
+    </button>
     <div class="custom-order__full-body order-full-body"
       v-show="this.isBodyOpened"
     >

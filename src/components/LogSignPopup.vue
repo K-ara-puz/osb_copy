@@ -1,11 +1,11 @@
 <template>
-  <div class="log-popup" @click="this.$root.closeAnyPopup($event, '.log-popup__wrapper')">
+  <div class="log-popup" @click="this.$root.popupsController.closeAnyPopup($event, '.log-popup__wrapper')">
     <div class="log-popup__wrapper">
       <div class="log-popup__front">
         <div class="log-popup__top-bar">
           <div class="log-popup__top-bar__title">Вход</div>
           <button
-            @click="this.$root.isLogPopupOpen = false"
+            @click="this.closePopup()"
             class="log-popup__top-bar__close"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -97,7 +97,7 @@
         <div class="log-popup__back__top-bar">
           <div class="log-popup__back__top-bar__title">Регистрация</div>
           <button
-            @click="this.$root.isLogPopupOpen = false"
+            @click="this.closePopup()"
             class="log-popup__back__top-bar__close"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -213,6 +213,9 @@ export default {
         el.setAttribute("type", type);
       });
     },
+    closePopup() {
+      this.$root.popupsController.unshowLogPopup();
+    }
   },
 };
 </script>

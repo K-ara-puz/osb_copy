@@ -1,33 +1,14 @@
 .account-orders {
   padding: 5px;
   color: var(--text-gray);
+  display: flex;
+  flex-direction: column;
   ::-webkit-scrollbar {
     background-color: var(--bg-scrollbar);
     width: 4px;
   }
   ::-webkit-scrollbar-thumb {
     background-color: var(--bg-scrollbar-thumb);
-  }
-  &__nav {
-    margin-bottom: 40px;
-    @media (max-width: $smBreakpoint) {
-        margin-left: 10px;
-        margin-bottom: 20px;
-    }
-    &__back {
-      color: var(--text-gray);
-      font-size: 20px;
-      &::before {
-        content: "";
-        display: inline-flex;
-        width: 15px;
-        height: 15px;
-        margin-right: 5px;
-        border-bottom: 1px solid var(--text-gray);
-        border-left: 1px solid var(--text-gray);
-        transform: rotate(45deg);
-      }
-    }
   }
   &__list {
     display: flex;
@@ -45,6 +26,15 @@
           display: inline-flex;
           margin-right: 10px;
       }
+    }
+  }
+  &_empty {
+    text-align: center;
+    border: 1px solid var(--bg-red);
+    margin: 0 auto;
+    padding: 10px 20px;
+    &__title {
+      color: var(--text-gray);
     }
   }
 }

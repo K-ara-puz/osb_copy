@@ -21,10 +21,10 @@ const store = createStore({
       minProductPrice: 0,
       maxProductPrice: 5000,
       isMobile: false,
+      isMobileMenuOpen: false,
       bestSellerProducts: [],
       productsOnSale: [],
       carouselImgItems: [],
-      isCartPopupOpen: false,
       cart: [],
       alerts: [],
     };

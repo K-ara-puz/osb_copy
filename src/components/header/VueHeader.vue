@@ -2,7 +2,11 @@
   <header class="header _anim-scroll _anim-no-hide">
     <div class="header__wrapper">
       <div class="header__column">
-        <button v-if="!this.IS_MOBILE" class="header__search-icon" @click="isSearchInputShow = true">
+        <button
+          v-if="!this.IS_MOBILE"
+          class="header__search-icon"
+          @click="isSearchInputShow = true"
+        >
           <div class="header__ic__wrapp">
             <svg
               class="header__ic"
@@ -20,7 +24,7 @@
         </button>
         <CustomSearchInput
           v-show="this.isSearchInputShow && !this.IS_MOBILE"
-          @search-item="this.searchProducts"
+          @search-item="this.searchProducts()"
           @blur-it="this.closeInput()"
           id="searchInputId"
           :clear-after-search="true"
@@ -61,11 +65,11 @@
           </div>
         </div>
       </div>
-      <div  class="header__column header-column-last">
+      <div class="header__column header-column-last">
         <div class="header-column-last__wrapper">
           <button
-           @click="this.openCartPopup()"
-           data-da=".header__column:first-child, 768, 1"
+            @click="this.openCartPopup()"
+            data-da=".header__column:first-child, 768, 1"
           >
             <div class="header__ic__wrapp cart-icon">
               <div class="header__ic_cart-pr-count">
@@ -107,14 +111,14 @@
       </div>
       <div
         v-if="this.IS_MOBILE"
-        @click="this.showMobileMenu"
+        @click="this.showMobileMenu()"
         class="header__column menu-burger"
       >
         <button>
           <div class="header__ic__wrapp">
             <div
               class="header__burger-div"
-              :class="{ 'header__burger-div_opened': this.isMobileMenuOpen }"
+              :class="{ 'header__burger-div_opened': this.IS_MOBILE_MENU_OPEN }"
             >
               <div class="header__burger-div__center-line"></div>
             </div>
@@ -125,7 +129,7 @@
     <transition name="mobile-menu-anim">
       <nav
         class="header__mobile-menu mobile-menu-header"
-        v-if="this.isMobileMenuOpen"
+        v-if="this.IS_MOBILE_MENU_OPEN"
       >
         <div class="mobile-menu-header__container mobile-menu__body">
           <CustomSearchInput
@@ -135,35 +139,23 @@
           >
           </CustomSearchInput>
           <div class="mobile-menu-header__link">
-            <router-link to="/">
-              <a>Главная</a>
-            </router-link>
+            <a @click="this.routeFromHeader('main')">Главная</a>
           </div>
           <div class="mobile-menu-header__link">
-            <router-link to="/catalog">
-              <a>Каталог</a>
-            </router-link>
+            <a @click="this.routeFromHeader('catalog')">Каталог</a>
           </div>
           <div class="mobile-menu-header__link">
-            <router-link to="/account">
-              <a>Личный кабинет</a>
-            </router-link>
+            <a @click="this.routeFromHeader('account')">Личный кабинет</a>
           </div>
-          <div @click="this.OPEN_CART_POPUP()" class="mobile-menu-header__link">
-            <router-link to="/">
-              <a>Корзина</a>
-            </router-link>
+          <div @click="this.openCartPopup()" class="mobile-menu-header__link">
+            <a>Корзина</a>
           </div>
           <div class="mobile-menu-header__link">
-            <router-link to="/about">
-              <a>Наш мир</a>
-            </router-link>
+            <a @click="this.routeFromHeader('world')">Наш мир</a>
             <span></span>
           </div>
           <div class="mobile-menu-header__link">
-            <router-link to="/sale">
-              <a>Акции</a>
-            </router-link>
+            <a @click="this.routeFromHeader('sales')">Акции</a>
             <span></span>
           </div>
           <div
@@ -172,22 +164,22 @@
             <div class="contacts-panel-mobile-menu__wrapper">
               <a>
                 <div class="header__ic__wrapp">
-                  <img src="../../assets/icons/dark-theme/telega.webp"/>
+                  <img src="../../assets/icons/dark-theme/telega.webp" />
                 </div>
               </a>
               <a>
                 <div class="header__ic__wrapp">
-                  <img src="../../assets/icons/dark-theme/gmail.webp"/>
+                  <img src="../../assets/icons/dark-theme/gmail.webp" />
                 </div>
               </a>
               <a>
                 <div class="header__ic__wrapp">
-                  <img src="../../assets/icons/dark-theme/insta.webp"/>
+                  <img src="../../assets/icons/dark-theme/insta.webp" />
                 </div>
               </a>
               <a>
                 <div class="header__ic__wrapp">
-                  <img src="../../assets/icons/dark-theme/youtube.webp"/>
+                  <img src="../../assets/icons/dark-theme/youtube.webp" />
                 </div>
               </a>
             </div>
@@ -208,14 +200,14 @@ export default {
   data() {
     return {
       isSearchInputShow: false,
-      isMobileMenuOpen: false,
+      isBurgerActive: false,
     };
   },
   mounted() {
     this.headerDisplayController();
   },
   computed: {
-    ...mapGetters(["IS_MOBILE", "CART"]),
+    ...mapGetters(["IS_MOBILE", "IS_MOBILE_MENU_OPEN", "CART"]),
     cartProductCount() {
       let count = 0;
       this.CART.forEach((el) => {
@@ -229,7 +221,8 @@ export default {
       "SEARCH_PRODUCT",
       "SEARCH_FROM_OUTPUT",
       "CHECK_DEVICE",
-      "OPEN_CART_POPUP",
+      "OPEN_MOBILE_MENU",
+      "CLOSE_MOBILE_MENU",
     ]),
     searchProducts(value) {
       this.SEARCH_FROM_OUTPUT(value)
@@ -244,17 +237,21 @@ export default {
       this.isSearchInputShow = false;
     },
     showMobileMenu() {
-      this.isMobileMenuOpen = !this.isMobileMenuOpen;
       const body = document.querySelector("body");
-      body.classList.toggle("_scroll-wrapp-hide");
+      this.isBurgerActive = !this.isBurgerActive;
+      if (this.isBurgerActive === true || this.IS_MOBILE_MENU_OPEN === false) {
+        this.OPEN_MOBILE_MENU();
+        body.classList.add("_scroll-wrapp-hide");
+      } else {
+        this.CLOSE_MOBILE_MENU();
+        body.classList.remove("_scroll-wrapp-hide");
+      }
     },
     openCartPopup() {
-      this.OPEN_CART_POPUP();
-      this.$root.isAnyPopupOpen = true;
+      this.$root.popupsController.showCartPopup();
     },
     openLogPopup() {
-      this.$root.isLogPopupOpen = true;
-      this.$root.isAnyPopupOpen = true;
+      this.$root.popupsController.showLogPopup();
     },
     headerDisplayController() {
       // Hide Header on on scroll down
@@ -299,12 +296,33 @@ export default {
         lastScrollTop = st;
       }
     },
-  },
-  watch: {
-    $route() {
-      this.isMobileMenuOpen = false;
+    showWrappScroll() {
       const body = document.querySelector("body");
       body.classList.remove("_scroll-wrapp-hide");
+    },
+    hideWrappScroll() {
+      const body = document.querySelector("body");
+      body.classList.add("_scroll-wrapp-hide");
+    },
+    routeFromHeader(route) {
+      switch (route) {
+        case "main":
+          this.$router.push("/");
+          break;
+        case "catalog":
+          this.$router.push("/catalog");
+          break;
+        case "account":
+          this.$router.push("/account");
+          break;
+        case "world":
+          this.$router.push("/about");
+          break;
+        case "sales":
+          this.$router.push("/sale");
+          break;
+      }
+      this.showMobileMenu();
     },
   },
 };

@@ -18,20 +18,13 @@ export default {
   components: {
     MainWrapper,
     PreloaderAnimation,
-    CustomAlert
-},
-  data() {
-    return {
-      isLogPopupOpen: false,
-      isAnyPopupOpen: false,
-    };
+    CustomAlert,
   },
   mounted() {
-    this.LOAD_PRODUCTS()
-    .then(() => {
+    this.LOAD_PRODUCTS().then(() => {
       this.LOAD_PRODUCTS_ON_SALE();
       let vm = this;
-      this.$nextTick( () => {
+      this.$nextTick(() => {
         document.querySelector(".pre-anim").classList.add("_hide");
         vm.itemsShowAnimation();
       });
@@ -45,42 +38,26 @@ export default {
     window.removeEventListener("scroll", this.emptyFuncToRemoveListener());
   },
   methods: {
-    ...mapActions(["LOAD_PRODUCTS", "LOAD_PRODUCTS_ON_SALE", "CLOSE_CART_POPUP"]),
+    ...mapActions([
+      "LOAD_PRODUCTS",
+      "LOAD_PRODUCTS_ON_SALE",
+    ]),
     itemsShowAnimation() {
       itemsScrollAnim();
     },
-    closeAnyPopup(e, parent) {
-      const popup = document.querySelector(parent);
-      if (popup) {
-        if (!popup.contains(e.target) && !popup.contains(e.target.parentElement)) {
-          if (parent.includes("log")) this.isLogPopupOpen = false;
-          if (parent.includes("cart")) this.CLOSE_CART_POPUP();
-        }
-      }
-      this.isAnyPopupOpen = false;
-    },
-    emptyFuncToRemoveListener() {
-      
-    }
+    emptyFuncToRemoveListener() {},
   },
   watch: {
-    "$route"(newV, oldV) {
+    $route(newV, oldV) {
       let vm = this;
-        if (oldV.fullPath === newV.fullPath) {
-          return
-        } else {
-          this.$nextTick( () => {
-              vm.itemsShowAnimation();
-          });
-        }
-    },
-    isAnyPopupOpen() {
-      if (this.isAnyPopupOpen === true) {
-        document.querySelector("body").classList.add("_scroll-wrapp-hide");
-      } else if (this.isAnyPopupOpen === false) {
-        document.querySelector("body").classList.remove("_scroll-wrapp-hide");
+      if (oldV.fullPath === newV.fullPath) {
+        return;
+      } else {
+        this.$nextTick(() => {
+          vm.itemsShowAnimation();
+        });
       }
-    }
+    },
   },
 };
 </script>

@@ -3,12 +3,12 @@
     <div class="account__wrapper">
       <div class="account__user">
         <div class="account__user__photo"></div>
-        <div class="account__user__name">
-          <span>Вікторія Оксенюк</span>
+        <div class="account__user__name" v-if="this.users.length > 0">
+          <span>{{ users[0].name }}</span>
         </div>
       </div>
       <div class="account__main">
-        <router-view :users="this.users" @close-orders="this.backToProfile()">
+        <router-view :users="this.users">
         </router-view>
       </div>
     </div>
@@ -38,9 +38,6 @@ export default {
             return error;
           });
     },
-    backToProfile() {
-      this.$router.push('/account')
-    }
   }
 };
 </script>

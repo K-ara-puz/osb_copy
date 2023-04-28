@@ -2,14 +2,14 @@
   <transition name="cart-popup">
     <div
       class="cart-popup"
-      @click.capture="this.$root.closeAnyPopup($event, '.cart-popup__container')"
+      @click.capture="this.closeFromOutside($event)"
     >
       <div class="cart-popup__wrapper">
         <div class="cart-popup__container">
           <div class="cart-popup__top-bar">
             <div class="cart-popup__top-bar__name">Ваша корзина</div>
             <div class="cart-popup__top-bar__close">
-              <button @click="this.CLOSE_CART_POPUP()">
+              <button @click="this.closePopup()">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                   <path
                     d="M23.707.293a1 1 0 0 0-1.414 0L12 10.586 1.707.293a1 1 0 0 0-1.414 0 1 1 0 0 0 0 1.414L10.586 12 .293 22.293a1 1 0 0 0 0 1.414 1 1 0 0 0 1.414 0L12 13.414l10.293 10.293a1 1 0 0 0 1.414 0 1 1 0 0 0 0-1.414L13.414 12 23.707 1.707a1 1 0 0 0 0-1.414Z"
@@ -168,7 +168,7 @@ export default {
     setTimeout( () => {
       let window = document.querySelector(".cart-popup__wrapper");
       window.classList.add("_opened");
-    }, 100)
+    }, 100);
   },
   unmounted() {
     let window = document.querySelector(".cart-popup__wrapper");
@@ -176,16 +176,21 @@ export default {
   },
   methods: {
     ...mapActions([
-      "CLOSE_CART_POPUP",
       "REMOVE_PR_FROM_CART",
       "CHANGE_PR_CART_QTY",
     ]),
     changeProductCount(product, whatToDo) {
       this.CHANGE_PR_CART_QTY({ product, whatToDo });
     },
+    closePopup() {
+      this.$root.popupsController.unshowCartPopup();
+    },
+    closeFromOutside(e) {
+      this.$root.popupsController.closeAnyPopup(e, '.cart-popup__container')
+    }
   },
   computed: {
-    ...mapGetters(["CART", "CURRENCY", "CART_POPUP"]),
+    ...mapGetters(["CART", "CURRENCY"]),
     allProductsCount() {
       let count = 0;
       this.CART.forEach((el) => {
