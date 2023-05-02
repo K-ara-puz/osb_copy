@@ -1,7 +1,9 @@
 export function itemsScrollAnim() {
     const animItems = document.querySelectorAll('._anim-scroll');
+    // console.log(document.querySelector(".account").toString())
     if (animItems.length > 0) {
         animOnScroll(animItems);
+        console.log(animItems)
     }
 }
 function animOnScroll(animItems) {
@@ -9,7 +11,7 @@ function animOnScroll(animItems) {
         const animItem = animItems[index];
         const animItemHeight = animItem.offsetHeight;
         const animItemOffset = offset(animItem).top;
-        const animStart = 4;
+        const animStart = 5;
 
         let animItemPoint = window.innerHeight - animItemHeight / animStart;
         if (animItemHeight > window.innerHeight) {

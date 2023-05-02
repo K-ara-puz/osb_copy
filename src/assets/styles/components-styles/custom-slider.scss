@@ -3,6 +3,7 @@
     width: 100%;
     padding: 0 10px;
     margin-bottom: 10px;
+    background-color: forestgreen;
     &__header {
       color: #fff;
       text-align: center;
@@ -56,6 +57,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: violet;
       @include adaptive-value("height", 800, 250, 0);
       &-slide {
         height: 100%;
@@ -63,6 +65,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        background-color: cadetblue;
       }
       &-button-prev,
       &-button-next {
@@ -77,7 +80,6 @@
         @include adaptive-value("height", 800, 380, 0);
         &-slide {
           background: no-repeat 50% / contain url('../../assets/icons/dark-theme/best_bg_2.webp') !important;
-          background-size: 25% !important;
         }
       }
     }

@@ -39,6 +39,9 @@
       }
     }
   }
+  &__bestsellers {
+    background-color: firebrick;
+  }
   &__our-world {
     padding: 5px;
     margin: rem(10) 0;
@@ -155,6 +158,9 @@
   }
   &__sales {
     margin: rem(50) 0 0;
+    .best-seller__container {
+      height: 80%;
+    }
   }
   &__carousel {
     width: 100%;

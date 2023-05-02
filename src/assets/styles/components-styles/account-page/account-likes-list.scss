@@ -1,4 +1,69 @@
-h1 {
-    color: green;
-    font-size: 100px;
+.account-likes {
+    &__main {
+        &__nav {
+            background-color: rgba(15, 12, 29, 0.459);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            @media (max-width: $smBreakpoint) {
+                padding: 10px 5px;
+            }
+            &__handle {
+                display: flex;
+                gap: 10px;
+                button {
+                    height: 20px;
+                    width: 100px;
+                    background-color: darkmagenta;
+                }    
+            }
+            &__trash {
+                width: 25px;
+                height: 25px;
+                svg {
+                    stroke-width: 0.1;
+                    stroke: var(--bg-red);
+                    fill: var(--bg-red);
+                }
+            }
+        }
+        &__body {
+            // background-color: darkcyan;
+            max-height: 300px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            display: grid;
+            grid-template-columns: 24% 24% 24% 24%;
+            column-gap: 10px;
+            row-gap: 10px;
+            justify-content: center;
+            grid-auto-rows: 250px;
+            @media (max-width: $mdBreakpoint) {
+                grid-template-columns: 30% 30% 30%;
+                grid-auto-rows: 200px;
+            }
+            @media (max-width: $smBreakpoint) {
+                grid-template-columns: 33% 33% 33%;
+                column-gap: 1px;
+            }
+            &__card {
+                // background-color: cornflowerblue;
+                padding: 5px;
+                font-size: 12px;
+
+                // height: 100%;
+                // font-size: 10px;
+                .top-bar-best-seller__price-wrapp {
+                    font-size: 8px !important;
+                }
+                @media (max-width: $smBreakpoint) {
+                    .catalog-product__ic {
+                        width: 18px !important;
+                    }
+                }
+            }
+        }
+    }
 }

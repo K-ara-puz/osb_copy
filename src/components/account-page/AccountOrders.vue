@@ -1,9 +1,9 @@
 <template>
-  <div class="account-orders" v-if="this.users.length > 0">
-    <AccountCustomNav></AccountCustomNav>
-    <div class="account-orders__list" v-if="this.users[0].orders.length > 0">
+  <div class="account-orders" v-if="Object.keys(this.activeUser).length > 0">
+    <AccountCustomNav :prev-btn-title="this.pageName"></AccountCustomNav>
+    <div class="account-orders__list" v-if="this.activeUser.orders.length > 0">
       <div
-        v-for="(order, index) in this.users[0].orders"
+        v-for="(order, index) in this.activeUser.orders"
         :key="index"
         class="account-orders__list__order"
       >
@@ -24,10 +24,10 @@ import AccountCustomNav from "./AccountCustomNav.vue";
 
 export default {
   props: {
-    users: {
-      type: Array,
+    activeUser: {
+      type: Object,
       default() {
-        return [];
+        return {};
       },
     },
   },

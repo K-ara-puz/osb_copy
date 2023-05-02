@@ -31,5 +31,8 @@ export default {
       },
       ALERTS(state) {
         return state.alerts;
+      },
+      ACTIVE_USER(state) {
+        return state.activeUser;
       }
 }

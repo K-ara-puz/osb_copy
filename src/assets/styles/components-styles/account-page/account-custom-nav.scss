@@ -1,21 +1,23 @@
 .ac-custom-nav {
-    margin-bottom: 40px;
-    @media (max-width: $smBreakpoint) {
-      margin-left: 10px;
-      margin-bottom: 20px;
-    &__back-btn {
-      color: var(--text-gray);
-      font-size: 20px;
-      &::before {
-        content: "";
-        display: inline-flex;
-        width: 15px;
-        height: 15px;
-        margin-right: 5px;
-        border-bottom: 1px solid var(--text-gray);
-        border-left: 1px solid var(--text-gray);
-        transform: rotate(45deg);
-      }
+  margin-bottom: 40px;
+  color: red;
+  @media (max-width: $smBreakpoint) {
+    margin-left: 10px;
+    margin-bottom: 20px;
+  }
+  &__back-btn {
+    color: var(--text-gray);
+    font-size: 20px;
+    &::before {
+      content: "";
+      color: #fff;
+      display: inline-flex;
+      width: 15px;
+      height: 15px;
+      margin-right: 5px;
+      border-bottom: 1px solid var(--text-gray);
+      border-left: 1px solid var(--text-gray);
+      transform: rotate(45deg);
     }
   }
 }

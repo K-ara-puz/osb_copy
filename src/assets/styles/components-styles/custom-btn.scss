@@ -10,6 +10,7 @@
       background-color: rgb(18, 98, 202);
       cursor: pointer;
       height: 100%;
+      transition: all 1s;
       &__title {
         margin: 0 20px;
         word-wrap: break-word;
@@ -18,7 +19,9 @@
         font-size: rem(13);
       }
       &:hover {
-        background-color: rgb(49, 131, 238);
+        border-radius: 20px;
+        transition: all 1s;
+        // background-color: var(--bg-purple);
       }
       &__disabled {
         pointer-events: none;

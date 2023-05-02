@@ -27,6 +27,7 @@ const store = createStore({
       carouselImgItems: [],
       cart: [],
       alerts: [],
+      activeUser: {},
     };
   },
   mutations: mutations,

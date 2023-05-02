@@ -157,5 +157,8 @@ export default {
       },
       HIDE_MOBILE_MENU(state) {
         state.isMobileMenuOpen = false;
+      },
+      GET_ACTIVE_USER(state, users) {
+        state.activeUser = users[0];
       }
 }

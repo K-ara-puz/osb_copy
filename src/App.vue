@@ -21,17 +21,21 @@ export default {
     CustomAlert,
   },
   mounted() {
+    let vm = this;
+    vm.itemsShowAnimation();
+    this.getActiveUser();
     this.LOAD_PRODUCTS().then(() => {
       this.LOAD_PRODUCTS_ON_SALE();
-      let vm = this;
-      this.$nextTick(() => {
-        document.querySelector(".pre-anim").classList.add("_hide");
-        vm.itemsShowAnimation();
-      });
       window.addEventListener("scroll", () => {
         this.itemsShowAnimation();
       });
     });
+    window.addEventListener("load", () => {
+      // vm.$nextTick( () => {
+      //   vm.itemsShowAnimation();
+      // })
+      document.querySelector(".pre-anim").classList.add("_hide");
+    })
   },
   unmounted() {
     window.removeEventListener("load", this.emptyFuncToRemoveListener());
@@ -41,11 +45,15 @@ export default {
     ...mapActions([
       "LOAD_PRODUCTS",
       "LOAD_PRODUCTS_ON_SALE",
+      "ACTIVE_USER_HANDLE",
     ]),
     itemsShowAnimation() {
       itemsScrollAnim();
     },
     emptyFuncToRemoveListener() {},
+    getActiveUser() {
+      this.ACTIVE_USER_HANDLE();
+    }
   },
   watch: {
     $route(newV, oldV) {
