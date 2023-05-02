@@ -91,13 +91,17 @@
         top: 55px;
         position: absolute;
         display: inline-flex;
-        width: 20px;
-        height: 20px;
+        align-items: center;
+        width: 30px;
+        height: 30px;
         margin-right: 10px;
+        transition: transform 0.3s;
         &._active {
-            transform: rotate(135deg);
+            transform: rotate(180deg);
+            transition: transform 0.3s;
         }
-        span {
+        &::before {
+            content: "";
             border-bottom: 1px solid var(--text-gray);
             border-left: 1px solid var(--text-gray);
             transform: rotate(-45deg);

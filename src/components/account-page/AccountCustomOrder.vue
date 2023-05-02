@@ -58,7 +58,6 @@
     <button class="custom-order__arrow"
       @click="this.toggleBodyVisible($event.target)"
     >
-      <span></span>
     </button>
     <div class="custom-order__full-body order-full-body"
       v-show="this.isBodyOpened"
@@ -116,7 +115,8 @@ export default {
     toggleBodyVisible(target) {
       this.isBodyOpened = !this.isBodyOpened;
       target.classList.toggle("_active");
-      this.toggleInfoPlace(target.previousElementSibling);
+      let rootNode = target.previousElementSibling;
+      this.toggleInfoPlace(rootNode);
     },
     toggleInfoPlace(rootNode) {
       let placeFrom = rootNode;
