@@ -1,5 +1,5 @@
 <template>
-  <div class="account-likes" v-if="this.prItems.length > 0">
+  <div class="account-likes">
     <AccountCustomNav :prev-btn-title="this.pageName"></AccountCustomNav>
     <section class="account-likes__main">
       <div class="account-likes__main__nav">
@@ -29,12 +29,12 @@
           </svg>
         </button>
       </div>
-      <div class="account-likes__main__body">
+      <div class="account-likes__main__body" v-if="this.prItems.length > 0">
         <BestSellersItemCart
           v-for="item in this.prItems"
           :key="item.id"
           :product-data="item"
-          class="account-likes__main__body__card _anim-scroll"
+          class="account-likes__main__body__card"
         ></BestSellersItemCart>
       </div>
     </section>
@@ -65,9 +65,9 @@ export default {
       pageName: "Список желаний",
     };
   },
-  // updated() {
-  //   console.log("teeeeeeeest")
-  // },
+  updated() {
+    this.$root.itemsShowAnimation();
+  },
   computed: {
     ...mapGetters(["PRODUCTS"]),
     prItems() {
@@ -76,21 +76,11 @@ export default {
         this.activeUser.likesList.forEach( el => {
           res.push(this.PRODUCTS[el.id])
         })
-        console.log("BBBBBBBBBBBBBBBBBB")
-        this.$root.itemsShowAnimation();
         return res
       }
       return []
     }
   },
-  watch: {
-    prItems() {
-      if (this.prItems.length > 0) {
-        console.log("LLLLLLLLLLLLLLLLL")
-        this.$root.itemsShowAnimation();
-      }
-    }
-  }
 };
 </script>
 

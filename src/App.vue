@@ -22,7 +22,6 @@ export default {
   },
   mounted() {
     let vm = this;
-    vm.itemsShowAnimation();
     this.getActiveUser();
     this.LOAD_PRODUCTS().then(() => {
       this.LOAD_PRODUCTS_ON_SALE();
@@ -31,10 +30,8 @@ export default {
       });
     });
     window.addEventListener("load", () => {
-      // vm.$nextTick( () => {
-      //   vm.itemsShowAnimation();
-      // })
       document.querySelector(".pre-anim").classList.add("_hide");
+      vm.itemsShowAnimation();
     })
   },
   unmounted() {

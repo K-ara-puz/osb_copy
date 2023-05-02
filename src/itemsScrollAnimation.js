@@ -1,9 +1,7 @@
 export function itemsScrollAnim() {
     const animItems = document.querySelectorAll('._anim-scroll');
-    // console.log(document.querySelector(".account").toString())
     if (animItems.length > 0) {
         animOnScroll(animItems);
-        console.log(animItems)
     }
 }
 function animOnScroll(animItems) {
