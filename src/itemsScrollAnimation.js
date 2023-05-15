@@ -2,6 +2,7 @@ export function itemsScrollAnim() {
     const animItems = document.querySelectorAll('._anim-scroll');
     if (animItems.length > 0) {
         animOnScroll(animItems);
+        console.log(animItems)
     }
 }
 function animOnScroll(animItems) {

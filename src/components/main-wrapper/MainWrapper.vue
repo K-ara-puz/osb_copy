@@ -40,6 +40,9 @@ export default {
     });
     this.LOAD_PRODUCTS();
   },
+  // updated() {
+  //   this.$root.itemsShowAnimation();
+  // },
   unmounted() {
     window.removeEventListener(
       "resize",

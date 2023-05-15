@@ -21,18 +21,19 @@ export default {
     CustomAlert,
   },
   mounted() {
-    let vm = this;
+    // let vm = this;
     this.getActiveUser();
     this.LOAD_PRODUCTS().then(() => {
       this.LOAD_PRODUCTS_ON_SALE();
-      window.addEventListener("scroll", () => {
-        this.itemsShowAnimation();
-      });
+    });
+    window.addEventListener("scroll", () => {
+      this.itemsShowAnimation();
     });
     window.addEventListener("load", () => {
+      console.log("looooooad");
       document.querySelector(".pre-anim").classList.add("_hide");
-      vm.itemsShowAnimation();
-    })
+      this.itemsShowAnimation();
+    });
   },
   unmounted() {
     window.removeEventListener("load", this.emptyFuncToRemoveListener());
@@ -50,7 +51,7 @@ export default {
     emptyFuncToRemoveListener() {},
     getActiveUser() {
       this.ACTIVE_USER_HANDLE();
-    }
+    },
   },
   watch: {
     $route(newV, oldV) {
