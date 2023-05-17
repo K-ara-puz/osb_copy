@@ -5,18 +5,32 @@
       <div class="account-likes__main__nav">
         <div class="account-likes__main__nav__handle">
           <CustomBtn
+            v-if="this.isSelectBtnActive === false"
             :title="'Выбрать'"
             :purple="true"
             class="account-likes__main__nav__handle__select"
+            @click="this.selectItems()"
           >
           </CustomBtn>
           <CustomBtn
+            v-if="this.isSelectBtnActive === true"
+            :title="'Отмена'"
+            :gray="true"
+            class="account-likes__main__nav__handle__select"
+            @click="this.unselectItems()"
+          >
+          </CustomBtn>
+          <CustomBtn
+            @click="this.selectAll()"
             :title="'Выбрать все'"
             class="account-likes__main__nav__handle__select-all"
           >
           </CustomBtn>
         </div>
-        <button class="account-likes__main__nav__trash">
+        <button
+          @click="deleteItemsFromLikesList()"
+          class="account-likes__main__nav__trash"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.462 38.462">
             <g data-name="Layer 20">
               <path
@@ -34,6 +48,11 @@
           v-for="item in this.prItems"
           :key="item.id"
           :product-data="item"
+          ref="bestSellerCart"
+          :is-active-select="this.isSelectBtnActive"
+          :forced-select="this.isAllSelected"
+          @pr-selected="this.togglePrSelect"
+          @pr-unselected="this.togglePrSelect"
           class="account-likes__main__body__card"
         ></BestSellersItemCart>
       </div>
@@ -45,7 +64,7 @@
 import BestSellersItemCart from "../BestSellersItemCart.vue";
 import AccountCustomNav from "./AccountCustomNav.vue";
 import CustomBtn from "../CustomBtn.vue";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     AccountCustomNav,
@@ -63,6 +82,9 @@ export default {
   data() {
     return {
       pageName: "Список желаний",
+      selectedItems: [],
+      isSelectBtnActive: false,
+      isAllSelected: false,
     };
   },
   updated() {
@@ -79,6 +101,40 @@ export default {
         return res
       }
       return []
+    },
+  },
+  methods: {
+    ...mapActions(["EDIT_ACTIVE_USER_LIKES_LIST"]),
+    selectItems() {
+      this.isSelectBtnActive = true;
+      this.selectedItems = [];
+    },
+    unselectItems() {
+      this.isSelectBtnActive = false;
+      this.isAllSelected = false;
+      this.selectedItems = [];
+    },
+    togglePrSelect(product) {
+      if (this.selectedItems.includes(product)) {
+        let index = this.selectedItems.indexOf(product);
+        this.selectedItems.splice(index, 1)
+      } else {
+        this.selectedItems.push(product);
+      }
+    },
+    selectAll() {
+      this.selectedItems = [];
+      this.isSelectBtnActive = true;
+      this.isAllSelected = true;
+      this.$refs.bestSellerCart.forEach( ref => {
+        ref.selectValue = true;
+      })
+      this.prItems.forEach( el => {
+        this.selectedItems.push(el);
+      })
+    },
+    deleteItemsFromLikesList() {
+      this.EDIT_ACTIVE_USER_LIKES_LIST(this.selectedItems)
     }
   },
 };

@@ -160,5 +160,37 @@ export default {
       },
       GET_ACTIVE_USER(state, users) {
         state.activeUser = users[0];
+      },
+      CHANGE_ACTIVE_USER_LIKES_LIST(state, products) {
+        products.forEach( pr => {
+          state.activeUser.likesList.forEach( el => {
+            if (el.id === pr.id) {
+              let i = state.activeUser.likesList.indexOf(el);
+              state.activeUser.likesList.splice(i, 1)
+            }
+          });
+        })
+      },
+      ADD_PRODUCT_TO_ACTIVE_USER_LIKES_LIST(state, productId) {
+        let obj = {
+          id: productId,
+        }
+        let isMatch = false;
+        state.activeUser.likesList.forEach( el => {
+          if (el.id === obj.id) {
+            isMatch = true;
+          }
+        })
+        if (isMatch === false) {
+          state.activeUser.likesList.unshift(obj);
+        }
+      },
+      DELETE_PRODUCT_FROM_ACTIVE_USER_LIKES_LIST(state, productId) {
+        state.activeUser.likesList.forEach( el => {
+          if (el.id === productId) {
+            let i = state.activeUser.likesList.indexOf(el)
+            state.activeUser.likesList.splice(i, 1);
+          }
+        })
       }
 }

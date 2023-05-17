@@ -21,7 +21,6 @@ export default {
     CustomAlert,
   },
   mounted() {
-    // let vm = this;
     this.getActiveUser();
     this.LOAD_PRODUCTS().then(() => {
       this.LOAD_PRODUCTS_ON_SALE();
@@ -30,7 +29,6 @@ export default {
       this.itemsShowAnimation();
     });
     window.addEventListener("load", () => {
-      console.log("looooooad");
       document.querySelector(".pre-anim").classList.add("_hide");
       this.itemsShowAnimation();
     });

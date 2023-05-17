@@ -25,6 +25,26 @@
         background-color: var(--bg-card);
         position: relative;
         top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &__notify {
+          &::after {
+            transition: opacity 0.2s;
+            opacity: 1;
+            content: "";
+            position: absolute;
+            display: flex;
+            width: 80%;
+            height: 0.5px;
+            background-color: var(--bg-red);  
+            transform: translate(2px) rotate(-35deg);
+          }
+          &_active::after {
+            opacity: 0;
+            transition: opacity 0.2s;
+          }
+        }
       }
       span {
         max-width: 100px;

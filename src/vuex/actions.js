@@ -103,7 +103,7 @@ export default {
     commit("HIDE_MOBILE_MENU");
   },
   ACTIVE_USER_HANDLE({ commit }) {
-    axios("https://jsonserver-base.herokuapp.com/users", {
+    axios("http://localhost:3000/users", {
       method: "GET",
     })
     .then((users) => {
@@ -113,4 +113,14 @@ export default {
       return error;
     });
   },
+  EDIT_ACTIVE_USER_LIKES_LIST({commit}, products) {
+    commit("CHANGE_ACTIVE_USER_LIKES_LIST", products)
+  },
+  LIKE_LIST_HANDLER({commit}, obj) {
+    if (obj.action === 'delete') {
+      commit("DELETE_PRODUCT_FROM_ACTIVE_USER_LIKES_LIST", obj.id);
+    } else {
+      commit("ADD_PRODUCT_TO_ACTIVE_USER_LIKES_LIST", obj.id);
+    }
+  }
 };

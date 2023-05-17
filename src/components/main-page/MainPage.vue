@@ -92,10 +92,6 @@ export default {
   mounted() {
     this.ellipsisDescriptions();
     useDynamicAdapt();
-    // let vm = this;
-    // this.$nextTick( () => {
-    //   vm.$root.itemsShowAnimation();
-    // })
   },
   computed: {
     ...mapGetters(["BESTSELLERS_PRODUCTS", "PRODUCTS_ON_SALE"]),

@@ -28,6 +28,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    gray: {
+      type: Boolean,
+      default: false,
+    },
     prependIcon: {
       type: String,
       default: "",
@@ -44,6 +48,7 @@ export default {
         "custom-btn__btn__error": this.error,
         "custom-btn__btn__success": this.success,
         "custom-btn__btn__purple": this.purple,
+        "custom-btn__btn__gray": this.gray,
       };
     },
   },
