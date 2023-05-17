@@ -45,8 +45,8 @@
       </div>
       <div class="account-likes__main__body" v-if="this.prItems.length > 0">
         <BestSellersItemCart
-          v-for="item in this.prItems"
-          :key="item.id"
+          v-for="(item, index) in this.prItems"
+          :key="index"
           :product-data="item"
           ref="bestSellerCart"
           :is-active-select="this.isSelectBtnActive"
