@@ -1,8 +1,8 @@
 .ac-custom-nav {
-  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
   @media (max-width: $smBreakpoint) {
     margin-left: 10px;
-    margin-bottom: 20px;
   }
   &__back-btn {
     color: var(--text-gray);

@@ -4,6 +4,8 @@ import store from '../vuex/store'
 const state = {
   _isCartPopupOpen: false,
   _isLogPopupOpen: false,
+  _isPassChangePopupOpen: false,
+  _iswarningPopupOpen: false,
   _isAnyPopupOpen: false,
 };
 const popupsController = reactive({
@@ -24,6 +26,22 @@ const popupsController = reactive({
     this.data._isLogPopupOpen = false;
     this.data._isAnyPopupOpen = false;
   },
+  showPassChangePopup: function () {
+    this.data._isPassChangePopupOpen = true;
+    this.data._isAnyPopupOpen = true;
+  },
+  unshowPassChangePopup: function () {
+    this.data._isPassChangePopupOpen = false;
+    this.data._isAnyPopupOpen = false;
+  },
+  showWarningPopup: function () {
+    this.data._isWarningPopupOpen = true;
+    this.data._isAnyPopupOpen = true;
+  },
+  unshowWarningPopup: function () {
+    this.data._isWarningPopupOpen = false;
+    this.data._isAnyPopupOpen = false;
+  },
   closeAnyPopup: function (e, parent) {
     const popup = document.querySelector(parent);
     if (popup) {
@@ -36,6 +54,12 @@ const popupsController = reactive({
         }
         if (parent.includes("cart")) {
           this.unshowCartPopup();
+        }
+        if (parent.includes("pass")) {
+          this.unshowPassChangePopup();
+        }
+        if (parent.includes("warning")) {
+          this.unshowWarningPopup();
         }
       }
     }

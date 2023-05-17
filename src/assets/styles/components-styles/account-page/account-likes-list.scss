@@ -1,5 +1,6 @@
 .account-likes {
     &__main {
+        margin-top: 30px;
         &__nav {
             background-color: rgba(15, 12, 29, 0.459);
             margin-bottom: 10px;
@@ -12,12 +13,7 @@
             }
             &__handle {
                 display: flex;
-                gap: 10px;
-                button {
-                    height: 20px;
-                    width: 100px;
-                    background-color: darkmagenta;
-                }    
+                gap: 10px;   
             }
             &__trash {
                 width: 25px;
@@ -30,7 +26,6 @@
             }
         }
         &__body {
-            // background-color: darkcyan;
             max-height: 300px;
             overflow-y: scroll;
             overflow-x: hidden;
@@ -49,12 +44,8 @@
                 column-gap: 1px;
             }
             &__card {
-                // background-color: cornflowerblue;
                 padding: 5px;
                 font-size: 12px;
-
-                // height: 100%;
-                // font-size: 10px;
                 .top-bar-best-seller__price-wrapp {
                     font-size: 8px !important;
                 }

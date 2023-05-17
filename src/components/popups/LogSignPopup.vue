@@ -220,5 +220,5 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "../assets/styles/log-sign-popup.scss";
+@import "../../assets/styles/components-styles/popups/log-sign-popup.scss";
 </style>

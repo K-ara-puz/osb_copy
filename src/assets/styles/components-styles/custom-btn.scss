@@ -47,5 +47,16 @@
       &__gray {
         background-color: var(--bg-gray-300);
       }
+      &__gray-rounded {
+        background-color: var(--bg-card);
+        border-radius: 20px;
+        color: var(--text-gray);
+        letter-spacing: 0.8px;
+        transition: all 0.2s;
+        &:hover {
+          transition: all 0.2s;
+          background-color: var(--bg-gray-500);
+        }
+      }
     }
   }

@@ -17,8 +17,8 @@
 import { mapActions, mapGetters } from "vuex";
 import VueHeader from "../header/VueHeader.vue";
 import { useDynamicAdapt } from "../../dynamicAdapt.js";
-import CartPopup from "../CartPopup.vue";
-import LogSignPopup from "../LogSignPopup.vue";
+import CartPopup from "../popups/CartPopup.vue";
+import LogSignPopup from "../popups/LogSignPopup.vue";
 import VueFooter from "../footer/VueFooter.vue";
 import VueAnchor from "../VueAnchor.vue";
 

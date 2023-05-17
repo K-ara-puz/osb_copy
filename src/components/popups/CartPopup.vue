@@ -41,7 +41,7 @@
                       <div class="slide-cart-popup__img">
                         <img
                           :src="
-                            require('../assets/products-images/small/' +
+                            require('../../assets/products-images/small/' +
                               item.image +
                               '.webp')
                           "
@@ -144,8 +144,8 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import CustomBtn from "./CustomBtn.vue";
-import SwiperSlider from "./sliders/SwiperSlider.vue";
+import CustomBtn from "../CustomBtn.vue";
+import SwiperSlider from "../sliders/SwiperSlider.vue";
 
 export default {
   data() {
@@ -211,5 +211,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/styles/cart-popup.scss";
+@import "../../assets/styles/components-styles/popups/cart-popup.scss";
 </style>
