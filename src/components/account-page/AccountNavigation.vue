@@ -74,7 +74,7 @@
       <span>Язык</span>
     </div>
     <div class="account__nav__item">
-      <button class="account__nav__item__btn">
+      <button @click="this.route('feedbacks')" class="account__nav__item__btn">
         <svg class="svg-icon" viewBox="0 0 1050 1050">
           <path
             d="M797.764 1013.818H236.346c-83.864 0-151.955-68.222-151.955-151.955V201.727c0-83.864 68.222-151.954 151.955-151.954h393.82c11.042 0 20.112 8.938 20.112 20.111a20.028 20.028 0 0 1-20.111 20.112H236.346c-61.65 0-111.863 50.213-111.863 111.863v660.136c0 61.65 50.213 111.863 111.863 111.863h561.418c61.65 0 111.863-50.214 111.863-111.863v-554.32c0-11.041 8.938-20.111 20.111-20.111 11.042 0 20.112 8.938 20.112 20.111v554.188c0 83.733-68.222 151.955-152.086 151.955z"
@@ -120,6 +120,9 @@ export default {
           break;
         case "settings":
           this.$router.push("/account/settings");
+          break;
+        case "feedbacks":
+          this.$router.push("/account/feedbacks");
           break;
       }
     },
