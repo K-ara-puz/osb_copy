@@ -15,9 +15,10 @@
         justify-content: space-between;
     }
     a {
-        font-size: rem(12);
+        font-weight: 500;
+        font-size: rem(13);
         word-break: break-all;
-        color: #191b2e;
+        color: #21233b;
         @media (max-width: $smBreakpoint) {
             font-size: rem(10);
         }

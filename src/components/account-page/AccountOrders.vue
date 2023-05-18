@@ -10,17 +10,14 @@
         <AccountCustomOrder :order="order"></AccountCustomOrder>
       </div>
     </div>
-    <div class="account-orders_empty" v-else>
-      <div class="account-orders_empty__title">
-        {{ "у вас пока нет заказов" }}
-      </div>
-    </div>
+    <CustomNothingFoundedComponent v-else :title="'У вас пока нет заказов'"></CustomNothingFoundedComponent>
   </div>
 </template>
 
 <script>
 import AccountCustomOrder from "./AccountCustomOrder.vue";
 import AccountCustomNav from "./AccountCustomNav.vue";
+import CustomNothingFoundedComponent from "../CustomNothingFoundedComponent.vue";
 
 export default {
   props: {
@@ -39,7 +36,8 @@ export default {
   components: {
     AccountCustomOrder,
     AccountCustomNav,
-  },
+    CustomNothingFoundedComponent
+},
 };
 </script>
 

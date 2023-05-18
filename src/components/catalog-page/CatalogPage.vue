@@ -85,9 +85,7 @@
           >
           </CatalogProductCard>
         </div>
-        <div v-else class="catalog__main__empty-block">
-          NOTHING FOUNDED
-        </div>
+        <CustomNothingFoundedComponent v-else :title="'Товаров в каталоге нет'"></CustomNothingFoundedComponent>
       </div>
     </div>
     <div class="catalog__pagination-panel" id="test">
@@ -116,6 +114,7 @@ import RangeSlider from "./RangeSlider.vue";
 import CustomBtn from "../CustomBtn.vue";
 import SquareCarousel from "../sliders/SquareCarousel";
 import { useDynamicAdapt } from "../../dynamicAdapt";
+import CustomNothingFoundedComponent from "../CustomNothingFoundedComponent.vue";
 export default {
   components: {
     CustomSearchInput,
@@ -126,7 +125,8 @@ export default {
     CustomBtn,
     CustomSlider,
     SquareCarousel,
-  },
+    CustomNothingFoundedComponent
+},
   data() {
     return {
       selectCategoryOptions1: [

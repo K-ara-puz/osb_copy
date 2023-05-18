@@ -35,14 +35,21 @@
   ::-webkit-scrollbar-thumb {
     background-color: var(--bg-scrollbar-thumb);
   }
+  .user-icon {
+    stroke-width: 0.8 !important;
+  }
   &__ic {
     fill: var(--bg-icon);
+    stroke: var(--bg-icon);
     display: inline-flex;
-    width: auto;
+    width: 35px;
     height: 35px;
+    stroke-width: 0.5px !important;
     position: relative;
     &:hover {
-      color: red;
+      fill: var(--bg-purple);
+      stroke: var(--bg-purple);
+      transition: all 0.3s;
     }
     &__wrapp {
       padding: 2px;
@@ -218,7 +225,7 @@
   left: 0;
   transition: all 1s ease-out;
   &__container {
-    padding: 90px 0 60px;
+    padding: 90px 0 0px;
     display: flex;
     gap: 90px;
     flex-direction: column;
@@ -236,7 +243,7 @@
       text-align: center;
       border-bottom: none;
       &::placeholder {
-        color: var(--bg-gray-500);
+        color: var(--bg-gray-300);
         font-size: rem(20);
       }
     }
@@ -273,10 +280,11 @@
   }
 }
 .contacts-panel-mobile-menu {
-  flex: 0 0 rem(50);
+  flex: 0 0 rem(30);
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: rem(90);
   &__wrapper {
     display: flex;
     width: 80%;

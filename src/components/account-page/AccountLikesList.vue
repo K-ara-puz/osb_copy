@@ -56,6 +56,7 @@
           class="account-likes__main__body__card"
         ></BestSellersItemCart>
       </div>
+      <CustomNothingFoundedComponent v-else :title="'Ваш список пока пуст'"></CustomNothingFoundedComponent>
     </section>
   </div>
 </template>
@@ -65,12 +66,14 @@ import BestSellersItemCart from "../BestSellersItemCart.vue";
 import AccountCustomNav from "./AccountCustomNav.vue";
 import CustomBtn from "../CustomBtn.vue";
 import { mapActions, mapGetters } from "vuex";
+import CustomNothingFoundedComponent from "../CustomNothingFoundedComponent.vue";
 export default {
   components: {
     AccountCustomNav,
     BestSellersItemCart,
     CustomBtn,
-  },
+    CustomNothingFoundedComponent
+},
   props: {
     activeUser: {
       type: Object,
