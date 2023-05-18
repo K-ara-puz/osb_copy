@@ -105,6 +105,14 @@ import AccountCustomNav from "./AccountCustomNav.vue";
 import PassChangePopup from "../popups/PassChangePopup.vue";
 import WarningPopup from "../popups/WarningPopup.vue";
 export default {
+  props: {
+    activeUser: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
   data() {
     return {
       pageName: "Настройки профиля",

@@ -1,30 +1,35 @@
-import axios from "axios";
-
+// import axios from "axios";
+import data from '../../db.json';
 export default {
   LOAD_PRODUCTS({ commit }) {
-    return axios("http://localhost:3000/products", {
-      method: "GET",
-    })
-      .then((products) => {
-        commit("SET_PRODUCTS_TO_STATE", products.data);
-        commit("SET_BESTSELLERS_PRODUCTS_TO_STATE");
-        return products;
-      })
-      .catch((error) => {
-        return error;
-      });
+    // return axios("http://localhost:3000/products", {
+    //   method: "GET",
+    // })
+    //   .then((products) => {
+    //     commit("SET_PRODUCTS_TO_STATE", products.data);
+    //     commit("SET_BESTSELLERS_PRODUCTS_TO_STATE");
+    //     return products;
+    //   })
+    //   .catch((error) => {
+    //     return error;
+    //   });
+    commit("SET_PRODUCTS_TO_STATE", data.products);
+    commit("SET_BESTSELLERS_PRODUCTS_TO_STATE");
+    return data.products
   },
   LOAD_CAROUSEL_IMG_PRODUCTS({ commit }) {
-    return axios("http://localhost:3000/carouselImgItems", {
-      method: "GET",
-    })
-      .then((products) => {
-        commit("SET_CAROUSEL_IMG_PRODUCTS_TO_STATE", products.data);
-        return products;
-      })
-      .catch((error) => {
-        return error;
-      });
+    // return axios("http://localhost:3000/carouselImgItems", {
+    //   method: "GET",
+    // })
+    //   .then((products) => {
+    //     commit("SET_CAROUSEL_IMG_PRODUCTS_TO_STATE", products.data);
+    //     return products;
+    //   })
+    //   .catch((error) => {
+    //     return error;
+    //   });
+    commit("SET_CAROUSEL_IMG_PRODUCTS_TO_STATE", data.carouselImgItems);
+    return data.carouselImgItems
   },
   LOAD_PRODUCTS_ON_SALE({ commit }) {
     commit("SET_PRODUCTS_ON_SALE");
@@ -103,15 +108,17 @@ export default {
     commit("HIDE_MOBILE_MENU");
   },
   ACTIVE_USER_HANDLE({ commit }) {
-    axios("http://localhost:3000/users", {
-      method: "GET",
-    })
-    .then((users) => {
-      commit("GET_ACTIVE_USER", users.data);
-    })
-    .catch((error) => {
-      return error;
-    });
+    // axios("http://localhost:3000/users", {
+    //   method: "GET",
+    // })
+    // .then((users) => {
+    //   commit("GET_ACTIVE_USER", users.data);
+    // })
+    // .catch((error) => {
+    //   return error;
+    // });
+    commit("GET_ACTIVE_USER", data.users);
+    return data.users
   },
   EDIT_ACTIVE_USER_LIKES_LIST({commit}, products) {
     commit("CHANGE_ACTIVE_USER_LIKES_LIST", products)

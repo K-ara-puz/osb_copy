@@ -482,12 +482,26 @@
     "users": [
         {
             "id": 1,
-            "name": "Виктория Оксенюк",
-            "email": "mis.viktoriya@hotmail.com",
-            "password": "12345678",
-            "phoneNumber": "+380933220055",
-            "adress": "Украина, Одесса",
-            "familiar": "woman",
+            "profileFields": [
+                {
+                    "name": "Виктория Оксенюк"
+                },
+                {
+                    "email": "mis.viktoriya@hotmail.com"
+                },
+                {
+                    "password": "12345678"
+                },
+                {
+                    "phoneNumber": "+380933220055"
+                },
+                {
+                    "adress": "Украина, Одесса"
+                },
+                {
+                    "familiar": "woman"
+                }
+            ],
             "cart": [
                 {
                     "id": 5
@@ -713,12 +727,26 @@
         },
         {
             "id": 2,
-            "name": "Владимир Коротаев",
-            "email": "volodya@gmail.com",
-            "password": "87654321",
-            "phoneNumber": "+380678673395",
-            "adress": "Украина, Киев",
-            "familiar": "man",
+            "profileFields": [
+                {
+                    "name": "Владимир Коротаев"
+                },
+                {
+                    "email": "volodya@gmail.com"
+                },
+                {
+                    "password": "87654321"
+                },
+                {
+                    "phoneNumber": "+380678673395"
+                },
+                {
+                    "adress": "Украина, Киев"
+                },
+                {
+                    "familiar": "man"
+                }
+            ],
             "cart": [],
             "orders": [
                 {

@@ -4,7 +4,7 @@
       <div class="account__user">
         <div class="account__user__photo"></div>
         <div class="account__user__name" v-if="this.ACTIVE_USER">
-          <span>{{ this.ACTIVE_USER.name }}</span>
+          <span>{{ this.ACTIVE_USER.profileFields[0].name }}</span>
         </div>
       </div>
       <div class="account__main">
