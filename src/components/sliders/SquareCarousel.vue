@@ -21,6 +21,7 @@
       </div>
     </div>
     <PaginationButtons
+      v-if="this.isPagBtns === true"
       class="carousel-square__btns"
       :disabled-min="this.squareCarouselSlidePosition < 1"
       :disabled-max="this.squareCarouselSlidePosition >= 7"
@@ -28,6 +29,17 @@
       @to-next-page="carouselNextSlide()"
     >
     </PaginationButtons>
+    <div v-if="this.isPagination === true" class="carousel-square__pagination">
+      <div
+        v-for="(dot, index) in this.CAROUSEL_IMG_PRODUCTS.length"
+        :key="index"
+        class="carousel-square__pagination__dot"
+        :class="{'_active' : this.squareCarouselSlidePosition === index}"
+        @click="this.moveActiveIdFromPagination(index)"
+      >
+        <span class="carousel-square__pagination__dot__span"></span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -37,6 +49,20 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     PaginationButtons,
+  },
+  props: {
+    isPagBtns: {
+      type: Boolean,
+      default() {
+        return true
+      }
+    },
+    isPagination: {
+      type: Boolean,
+      default() {
+        return false
+      }
+    }
   },
   data() {
     return {
@@ -91,6 +117,7 @@ export default {
     },
     setCenterSlideAnimation(index) {
       let id = index;
+      this.squareCarouselSlidePosition = index;
       if (index >= 8) {
         id = 0;
       }
@@ -189,6 +216,48 @@ export default {
       }
       this.setCenterSlideAnimation(this.squareCarouselSlidePosition);
     },
+    carouselMoveToSlide(id) {
+      let carousel = document.querySelector(".carousel-square");
+      const allSlides = document.querySelectorAll(".cs-item");
+      allSlides.forEach((el) => {
+        if (el.classList.value.includes("cs-item_center-anim")) {
+          el.classList.remove("cs-item_center-anim");
+        }
+      });
+      this.squareCarouselSlidePosition = id;
+      switch (this.squareCarouselSlidePosition) {
+        case 0:
+          carousel.style.transform = "rotate3d(0,1,0,0deg)";
+          break;
+        case 1:
+          carousel.style.transform = "rotate3d(0,1,0,-45deg)";
+          break;
+        case 2:
+          carousel.style.transform = "rotate3d(0,1,0,-90deg)";
+          break;
+        case 3:
+          carousel.style.transform = "rotate3d(0,1,0,-135deg)";
+          break;
+        case 4:
+          carousel.style.transform = "rotate3d(0,1,0,-180deg)";
+          break;
+        case 5:
+          carousel.style.transform = "rotate3d(0,1,0,-225deg)";
+          break;
+        case 6:
+          carousel.style.transform = "rotate3d(0,1,0,-270deg)";
+          break;
+        case 7:
+          carousel.style.transform = "rotate3d(0,1,0,-315deg)";
+          break;
+        case 8:
+          break;
+      }
+      this.setCenterSlideAnimation(this.squareCarouselSlidePosition);
+    },
+    moveActiveIdFromPagination(id) {
+      this.carouselMoveToSlide(id);
+    }
   },
 };
 </script>

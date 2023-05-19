@@ -1,6 +1,7 @@
 .ac-custom-nav {
   display: flex;
   align-items: center;
+  padding: rem(10) 0;
   @media (max-width: $smBreakpoint) {
     margin-left: 10px;
   }

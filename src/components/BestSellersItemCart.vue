@@ -1,5 +1,5 @@
 <template>
-    <div class="best-seller _anim-scroll _anim-no-hide" :class="{'best-seller_with-sale' : this.productData.isOnSale}">
+    <div :class="{ '_anim-scroll' : this.isAnimation === true, 'best-seller_with-sale' : this.productData.isOnSale}" class="best-seller _anim-no-hide">
     <div class="best-seller__container">
       <div
         class="best-seller__checkbox"
@@ -69,6 +69,12 @@ import ProductLikesService from './ProductLikesService.vue';
             default() {
                 return {};
             },
+        },
+        isAnimation: {
+          type: Boolean,
+          default() {
+            return false
+          }
         },
         isActiveSelect: {
             type: Boolean,

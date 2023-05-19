@@ -51,6 +51,7 @@
           ref="bestSellerCart"
           :is-active-select="this.isSelectBtnActive"
           :forced-select="this.isAllSelected"
+          :is-animation="false"
           @pr-selected="this.togglePrSelect"
           @pr-unselected="this.togglePrSelect"
           class="account-likes__main__body__card"

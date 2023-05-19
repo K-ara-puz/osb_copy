@@ -10,7 +10,7 @@
     --bg-purple-shadow: rgba(11, 5, 48);
     --purple-gradient: linear-gradient(#000000, 80%, rgb(63, 32, 236));
     --purple-gradient-reverse: linear-gradient(rgba(63, 32, 236, 0.8), 10%, #000000);
-    --purple-horizontal-gradient: linear-gradient(90deg,#000000, 80%, rgb(63, 32, 236));
+    --purple-horizontal-gradient: linear-gradient(90deg,#000000, 80%, rgb(8, 0, 51));
     --bg-card: rgb(1, 4, 17);
     --bg-card-bestseller: rgb(1, 4, 17, 0.8);
     --bg-pag-btns: rgba(2, 8, 27);

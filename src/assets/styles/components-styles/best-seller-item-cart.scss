@@ -7,6 +7,11 @@
   align-items: center;
   justify-content: center;
   color: var(--text-gray);
+  &._anim-scroll {
+    .best-seller__container {
+      scale: 0;
+    }
+  }
   &._active-anim {
     .best-seller__container {
       scale: 1;
@@ -15,7 +20,7 @@
   }
   &__container {
     width: 100%;
-    scale: 0;
+    scale: 1;
     position: relative;
     display: flex;
     flex-direction: column;

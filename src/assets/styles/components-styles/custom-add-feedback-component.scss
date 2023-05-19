@@ -1,0 +1,36 @@
+.add-fb {
+    margin: rem(30) 0;
+    &__container {
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &._right-gradient {
+        .add-fb__container {
+            background: var(--purple-horizontal-gradient);
+        }
+    }
+    &._left-gradient {
+        .add-fb__container {
+            transform: scale(-1, 1);
+            background: var(--purple-horizontal-gradient);
+        }
+    }
+    &__btn {
+        transform: scale(-1, 1);
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        gap: 20px;
+        &__title {
+            color: var(--text-gray);
+            font-size: rem(20);
+        }
+        &__icon {
+            fill: var(--bg-icon);
+            stroke: var(--bg-icon);
+            width: 30px;
+        }
+    }
+}
