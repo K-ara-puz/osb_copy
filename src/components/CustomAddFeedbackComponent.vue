@@ -27,7 +27,6 @@ export default {
   },
   computed: {
     componentClasses() {
-      console.log(this.gradientPosition);
       return {
         "_left-gradient": this.gradientPosition === "left",
         "_right-gradient": this.gradientPosition === "right",

@@ -12,7 +12,6 @@
         <div class="sale-page__category__items-dashboard sale-page__dashboard">
           <SwiperSlider
             :products="category.products"
-            ref="swiperRef"
             :speed="1000"
             :space-between="30"
             :slots-count="category.products.length"

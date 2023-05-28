@@ -29,17 +29,17 @@
         </div>
         <div class="about-page__main-articles__article">
           <div
-            class="main__our-world__descriptions__section__image _anim-scroll _anim-no-hide"
+            class="about-page__main-articles__article__image _anim-scroll _anim-no-hide"
           >
             <img :src="require('../../assets/main-jpg/OUR2' + '.webp')" />
           </div>
           <div
-            class="main__our-world__descriptions__section__text _anim-scroll _anim-no-hide"
+            class="about-page__main-articles__article__text _anim-scroll _anim-no-hide"
           >
-            <div class="main__our-world__descriptions__section__text__title">
+            <div class="about-page__main-articles__article__text__title">
               Заголовок статьи
             </div>
-            <div class="main__our-world__descriptions__section__text__text">
+            <div class="about-page__main-articles__article__text__text">
               Давно выяснено, что при оценке дизайна и композиции читаемый текст
               мешает сосредоточиться. Lorem Ipsum используют потому, что тот
               обеспечивает более или менее стандартное заполнение шаблона, а
@@ -90,6 +90,20 @@ export default {
     SquareCarousel,
     CustomAddFeedbackComponent
     },
+    mounted() {
+      this.ellipsisDescriptions();
+    },
+    methods: {
+      ellipsisDescriptions() {
+      let arr = document.querySelectorAll(".about-page__main-articles__article__text__text");
+        arr.forEach((el) => {
+          let availableText = "";
+          availableText = el.textContent.slice(0, 300);
+          el.textContent = availableText + "...";
+        });
+      
+    },
+    }
 };
 </script>
 <style lang="scss">

@@ -185,13 +185,13 @@
     justify-content: center;
     background-color: var(--bg-gray-blue);
     padding: rem(10) 0;
-    &__ic {
-      width: 25px;
-      height: 25px;
+  }
+  &__ic {
+      width: rem(25);
+      height: rem(25);
       @media (max-width: $smBreakpoint) {
-        width: 20px;
-        height: 20px;
-      }
+        width: rem(20);
+        height: rem(20);
     }
   }
   &__container {

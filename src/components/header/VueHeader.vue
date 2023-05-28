@@ -21,7 +21,7 @@
         </button>
         <CustomSearchInput
           v-show="this.isSearchInputShow && !this.IS_MOBILE"
-          @search-item="this.searchProducts()"
+          @search-item="this.searchProducts"
           @blur-it="this.closeInput()"
           id="searchInputId"
           :clear-after-search="true"
