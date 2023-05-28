@@ -1,0 +1,45 @@
+.sale-page {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 30px;
+  &__container {
+    margin: 0 auto;
+    max-width: $content-container;
+  }
+  &__category {
+    color: var(--text-gray);
+    position: relative;
+    &:nth-child(odd) .sale-page__category__title {
+      transform: scale(-1, 1);
+      &__text {
+        transform: scale(-1, 1);
+      }
+    }
+    &__title {
+      height: 50px;
+      color: var(--text-gray);
+      position: relative;
+      background: var(--purple-horizontal-gradient);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      &__text {
+        position: absolute;
+      }
+    }
+    .sale-page__dashboard {
+      &__swiper {
+        .swiper-pagination-bullet {
+            background-color: var(--bg-purple);
+        }
+        &__item {
+          @include adaptive-value("height", 600, 300, 0);
+          max-height: 400px;
+          margin-bottom: 20px;
+          @include adaptive-value("margin-bottom", 20, 40, 0);
+        }
+      }
+    }
+  }
+}

@@ -76,6 +76,8 @@
             "quantity": 2,
             "cartQty": 1,
             "price": "325.00",
+            "isOnSale": true,
+            "newPrice": "300.00",
             "bestseller": "true",
             "image": "bag_jungle_1",
             "images": [
@@ -206,6 +208,8 @@
             "quantity": 4,
             "cartQty": 1,
             "price": "115.00",
+            "isOnSale": true,
+            "newPrice": "100.00",
             "bestseller": "true",
             "image": "socks_konotop_1",
             "images": [
@@ -416,6 +420,8 @@
             "quantity": 2,
             "cartQty": 1,
             "price": "380.00",
+            "isOnSale": true,
+            "newPrice": "320.00",
             "bestseller": "true",
             "image": "cap_black_1",
             "images": [
