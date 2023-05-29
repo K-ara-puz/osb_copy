@@ -138,7 +138,7 @@ export default {
       })
     },
     deleteItemsFromLikesList() {
-      this.EDIT_ACTIVE_USER_LIKES_LIST(this.selectedItems)
+      this.EDIT_ACTIVE_USER_LIKES_LIST(this.selectedItems).then(this.unselectItems)
     }
   },
 };

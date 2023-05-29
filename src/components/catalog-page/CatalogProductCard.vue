@@ -61,7 +61,7 @@
                 />
               </svg>
             </button>
-            <button>
+            <button @click="this.addProductToCart(), this.$root.popupsController.showCartPopup()">
               <svg
                 class="catalog-product__ic"
                 xmlns="http://www.w3.org/2000/svg"

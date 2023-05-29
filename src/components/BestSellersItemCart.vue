@@ -7,13 +7,14 @@
     class="best-seller _anim-no-hide"
   >
     <div class="best-seller__container">
-      <div class="best-seller__checkbox" v-if="this.isActiveSelect === true">
-        <input
-          v-model="this.selectValue"
-          type="checkbox"
-          @change="this.checkHandler($event.target)"
-        />
-        <div class="best-seller__checkbox__mask"></div>
+      <div @click.capture="this.changeCheckboxValue($event.target)" class="best-seller__checkbox" v-if="this.isActiveSelect === true">
+        <div class="best-seller__checkbox__container">
+          <input
+            v-model="this.selectValue"
+            type="checkbox"
+          />
+          <div class="best-seller__checkbox__mask"></div>
+        </div>
       </div>
       <div class="best-seller__top-bar top-bar-best-seller">
         <div
@@ -81,7 +82,7 @@
                 />
               </svg>
             </button>
-            <button>
+            <button @click="this.addProductToCart(), this.$root.popupsController.showCartPopup()">
               <svg
                 class="bottom-bar-best-seller__ic"
                 xmlns="http://www.w3.org/2000/svg"
@@ -168,6 +169,11 @@ export default {
         this.selectValue = false;
       }
     },
+    changeCheckboxValue(e) {
+      let input = e.parentElement.querySelector("input");
+      input.checked = !input.checked;
+      this.checkHandler(input)
+    }
   },
   watch: {
     forcedSelect() {

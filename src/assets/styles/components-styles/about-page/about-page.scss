@@ -56,18 +56,22 @@
             transform: scale(-1, 1) translateX(50%);
           }
         }
-        &:nth-child(odd) &__image {
-          transform: translateX(-150%);
-          &._active-anim {
-            transform: translateX(0%);
-            transition: all 1s ease 0.2s;
+        &:nth-child(odd) {
+          .about-page__main-articles__article__image {
+            transform: translateX(-150%);
+            &._active-anim {
+              transform: translateX(0%);
+              transition: all 1s ease 0.2s;
+            } 
           }
         }
-        &:nth-child(even) &__image {
-          transform: translateX(150%);
-          &._active-anim {
-            transform: translateX(0%);
-            transition: all 1s ease 0.2s;
+        &:nth-child(even) {
+          .about-page__main-articles__article__image {
+            transform: translateX(150%);
+            &._active-anim {
+              transform: translateX(0%);
+              transition: all 1s ease 0.2s;
+            }  
           }
         }
         &__image {
