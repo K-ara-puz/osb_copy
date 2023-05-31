@@ -1,13 +1,15 @@
 <template>
-  <div class="log-popup" @click="this.$root.popupsController.closeAnyPopup($event, '.log-popup__wrapper')">
+  <div
+    class="log-popup"
+    @click="
+      this.$root.popupsController.closeAnyPopup($event, '.log-popup__wrapper')
+    "
+  >
     <div class="log-popup__wrapper">
       <div class="log-popup__front">
         <div class="log-popup__top-bar">
           <div class="log-popup__top-bar__title">Вход</div>
-          <button
-            @click="this.closePopup()"
-            class="log-popup__top-bar__close"
-          >
+          <button @click="this.closePopup()" class="log-popup__top-bar__close">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 d="M23.707.293a1 1 0 0 0-1.414 0L12 10.586 1.707.293a1 1 0 0 0-1.414 0 1 1 0 0 0 0 1.414L10.586 12 .293 22.293a1 1 0 0 0 0 1.414 1 1 0 0 0 1.414 0L12 13.414l10.293 10.293a1 1 0 0 0 1.414 0 1 1 0 0 0 0-1.414L13.414 12 23.707 1.707a1 1 0 0 0 0-1.414Z"
@@ -17,21 +19,23 @@
         </div>
         <form>
           <div class="log-popup__center-bar">
-            <div class="log-popup__center-bar__login">
-              <input
-                :placeholder="'Эл.почта или телефон'"
-                type="text"
-                required
-                class="log-popup__center-bar__login__input"
-              />
+            <div class="log-popup__center-bar__inp">
+              <CustomInput
+                :inputType="'email'"
+                :inputLabel="'Email'"
+                :errors="this.vLog$.email.$errors"
+                :modelValue="this.vLog$.email.$model"
+                @update:modelValue="newValue => this.vLog$.email.$model = newValue"
+              ></CustomInput>
             </div>
             <div class="log-popup__center-bar__password">
-              <input
-                :placeholder="'Пароль'"
-                required
-                type="password"
-                class="log-popup__center-bar__password__input"
-              />
+              <CustomInput
+                :inputType="'password'"
+                :inputLabel="'Пароль'"
+                :errors="this.vLog$.password.$errors"
+                :modelValue="this.vLog$.password.$model"
+                @update:modelValue="newValue => this.vLog$.password.$model = newValue"
+              ></CustomInput>
               <button type="button" @click="this.changeLogPasswordVisibility()">
                 <svg xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -110,20 +114,22 @@
         <form>
           <div class="log-popup__back__center-bar">
             <div class="log-popup__back__center-bar__login">
-              <input
-                :placeholder="'Эл.почта или телефон'"
-                type="text"
-                required
-                class="log-popup__back__center-bar__login__input"
-              />
+              <CustomInput
+                :inputType="'email'"
+                :inputLabel="'Email'"
+                :errors="this.vReg$.email.$errors"
+                :modelValue="this.vReg$.email.$model"
+                @update:modelValue="newValue => this.vReg$.email.$model = newValue"
+              ></CustomInput>
             </div>
             <div class="log-popup__back__center-bar__password">
-              <input
-                :placeholder="'Пароль'"
-                type="password"
-                required
-                class="log-popup__back__center-bar__password__input"
-              />
+              <CustomInput
+                :inputType="'password'"
+                :inputLabel="'Пароль'"
+                :errors="this.vReg$.password.$errors"
+                :modelValue="this.vReg$.password.$model"
+                @update:modelValue="newValue => this.vReg$.password.$model = newValue"
+              ></CustomInput>
               <button type="button" @click="this.changeRegPasswordVisibility()">
                 <svg xmlns="http://www.w3.org/2000/svg">
                   <path
@@ -134,15 +140,16 @@
               </button>
             </div>
             <div class="log-popup__back__center-bar__password_repeat">
-              <input
-                :placeholder="'Подтвердите пароль'"
-                type="password"
-                required
-                class="log-popup__back__center-bar__password__input"
-              />
+              <CustomInput
+                :inputType="'password'"
+                :inputLabel="'Подтвердите пароль'"
+                :errors="this.vReg$.confirmPass.$errors"
+                :modelValue="this.vReg$.confirmPass.$model"
+                @update:modelValue="newValue => this.vReg$.confirmPass.$model = newValue"
+              ></CustomInput>
             </div>
             <div class="log-popup__back__center-bar__submit">
-              <button type="submit" >
+              <button type="submit" @click="this.register()">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   xml:space="preserve"
@@ -184,30 +191,88 @@
   </div>
 </template>
 <script>
+import { useVuelidate } from "@vuelidate/core";
+import { helpers, required, email, sameAs } from "@vuelidate/validators";
+import CustomInput from "../CustomInput.vue";
+import { reactive, computed } from "vue";
 export default {
+  setup() {
+    const stateForLog = reactive({
+      email: "",
+      password: "",
+    });
+    const stateForReg = reactive({
+      email: "",
+      password: "",
+      confirmPass: "",
+    })
+    const rulesForLog = computed(() => ({
+      email: {
+        required: helpers.withMessage("Поле обязательно для заполнения", required),
+        email: helpers.withMessage("Введите валидный адрес электронной почты", email),
+      },
+      password: {
+        required: helpers.withMessage("Поле обязательно для заполнения", required),
+      }
+    }));
+    const rulesForReg = computed(() => ({
+      email: {
+        required: helpers.withMessage("Поле обязательно для заполнения", required),
+        email: helpers.withMessage("Введите валидный адрес электронной почты", email),
+      },
+      password: {
+        required: helpers.withMessage("Поле обязательно для заполнения", required),
+      },
+      confirmPass: {
+        required: helpers.withMessage("Поле обязательно для заполнения", required),
+        sameAs: helpers.withMessage("Пароли должны совпадать", sameAs(stateForReg.password))
+      }
+    }));
+    const vLog$ = useVuelidate(rulesForLog, stateForLog);
+    const vReg$ = useVuelidate(rulesForReg, stateForReg);
+
+    return { stateForLog, vLog$, vReg$ };
+  },
   methods: {
     reversePopup() {
       let target = document.querySelector(".log-popup__wrapper");
       target.classList.toggle("log-popup__wrapper_reverse");
+      this.resetValidate();
     },
-    logIn() {
-      console.log("LOOOOOOOOOgin");
+    resetValidate() {
+      this.vLog$.$reset();
+      this.vReg$.$reset();
     },
-    register() {
-      console.log("REEEEEEEGISTER");
+    async logIn() {
+      const res = await this.vLog$.$validate();
+      if (res) {
+        alert("form submitted");
+        this.$root.popupsController.unshowLogPopup();
+      } else return
+    },
+    async register() {
+      const res = await this.vReg$.$validate();
+      if (res) {
+        alert("form submitted");
+        this.$root.popupsController.unshowLogPopup();
+      } else return
     },
     changeLogPasswordVisibility() {
       const password = document.querySelector(
-        ".log-popup__center-bar__password__input"
+        ".log-popup__center-bar__password input"
       );
       const type =
         password.getAttribute("type") === "password" ? "text" : "password";
       password.setAttribute("type", type);
     },
     changeRegPasswordVisibility() {
-      const passwords = document.querySelectorAll(
-        ".log-popup__back__center-bar__password__input"
+      let passwords = [];
+      const password = document.querySelector(
+        ".log-popup__back__center-bar__password input"
       );
+      const confirmPass = document.querySelector(".log-popup__back__center-bar__password_repeat input")
+      passwords.push(password);
+      passwords.push(confirmPass);
       passwords.forEach((el) => {
         let type = el.getAttribute("type") === "password" ? "text" : "password";
         el.setAttribute("type", type);
@@ -215,8 +280,9 @@ export default {
     },
     closePopup() {
       this.$root.popupsController.unshowLogPopup();
-    }
+    },
   },
+  components: { CustomInput },
 };
 </script>
 <style lang="scss">

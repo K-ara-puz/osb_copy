@@ -1,0 +1,77 @@
+.custom-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex: 0 1 50px;
+    text-align: center;
+    color: var(--bg-green);
+    position: relative;
+    input {
+        text-align: center;
+        padding-bottom: 10px;
+        color: var(--bg-green-log-pop);
+        width: 100%;
+        background-color: transparent;
+        border-bottom: 1px solid var(--bg-gray-500);
+        font-size: rem(16);
+        margin-bottom: 10px;
+            &::placeholder {
+                font-size: rem(13);
+                color: var(--bg-gray-300);
+            }
+        &._empty {
+            border-bottom: 1px solid var(--bg-gray-500);
+        }
+        &._error {
+            border-bottom: 1px solid var(--bg-red);
+        }
+        &._success {
+            border-bottom: 1px solid var(--bg-green-500);
+        }
+        &:not(&:focus) {
+            border-bottom: 1px solid var(--bg-gray-500);
+        }
+    }
+    &__error {
+        background-color: var(--bg-gray-blue);
+        padding: 15px 10px;
+        border-radius: 5px;
+        text-align: left;
+        color: var(--text-red);
+        font-size: rem(14);
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: flex;
+        width: 100%;
+        position: relative;
+        padding-right: 40px;
+        transition: all 1s ease;
+        &::before, &::after {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            content: "";
+            display: inline-flex;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 1px solid var(--bg-gray-300);
+        }
+        &::after {
+            content: "!";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-gray-300);
+        }
+        svg {
+            fill: var(--bg-gray-300);
+            stroke: var(--bg-red);
+            stroke-width: 0.1px;
+        }
+    }
+}
