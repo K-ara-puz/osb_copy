@@ -107,6 +107,7 @@
       max-width: 1300px;
     }
     &__main-block {
+      margin-bottom: 50px;
       grid-template-columns: 23% 23% 23% 23%;
       display: grid;
       gap: 30px;
@@ -145,7 +146,7 @@
   &__swiper-slider {
     width: 100%;
     position: relative;
-    margin: rem(5) auto;
+    margin: 0 auto;
     &__slide-item {
       opacity: 0;
       transition: all 1s linear;
@@ -188,50 +189,6 @@
       }
       div::before {
         margin-right: rem(5);
-      }
-    }
-    .swiper {
-      &-button-prev,
-      &-button-next {
-        display: flex;
-        background-color: var(--bg-pag-btns);
-        border-radius: 50%;
-        width: rem(50);
-        height: rem(50);
-        margin: 0;
-        @media (any-pointer: coarse) {
-          display: none;
-        }
-        @media (max-width: $smBreakpoint) {
-          width: rem(35);
-          height: rem(35);
-        }
-      }
-      &-button-prev {
-        left: 50%;
-        top: 100%;
-        transform: translateX(-110%) translateY(-100%);
-        &::after {
-          content: "";
-          width: 30%;
-          height: 30%;
-          transform: translateX(20%) rotate(-45deg);
-          border-top: 1px solid #fff;
-          border-left: 1px solid #fff;
-        }
-      }
-      &-button-next {
-        right: 50%;
-        top: 100%;
-        transform: translateX(110%) translateY(-100%);
-        &::after {
-          content: "";
-          width: 30%;
-          height: 30%;
-          transform: translateX(-20%) rotate(45deg) ;
-          border-top: 1px solid #fff;
-          border-right: 1px solid #fff;
-        }
       }
     }
   }

@@ -5,7 +5,7 @@ const state = {
   _isCartPopupOpen: false,
   _isLogPopupOpen: false,
   _isPassChangePopupOpen: false,
-  _iswarningPopupOpen: false,
+  _isWarningPopupOpen: false,
   _isAnyPopupOpen: false,
 };
 const popupsController = reactive({

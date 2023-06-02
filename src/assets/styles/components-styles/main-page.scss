@@ -245,9 +245,9 @@
             font-weight: 200;
             letter-spacing: 1px;
             word-spacing: 5px;
-            transform: translateX(-150%);
+            opacity: 0;
             &._active-anim {
-              transform: translateX(0);
+              opacity: 1;
               transition: 1s all linear;
             }
             @media (max-width: $mainNotifyBreakpoint) {
@@ -256,7 +256,6 @@
             }
         }
         &__article {
-          transform: translateX(-150%);
             width: 70%;
             max-width: 500px;
             line-height: 20px;
@@ -264,8 +263,9 @@
             font-style: italic;
             font-size: rem(14);
             letter-spacing: 0.8px;
+            opacity: 0;
             &._active-anim {
-              transform: translateX(0);
+              opacity: 1;
               transition: 1s all linear 0.5s;
             }
             @media (max-width: $mainNotifyBreakpoint) {
@@ -280,9 +280,9 @@
         width: 40%;
         height: 2px;
         background-color: var(--bg-gray-300);
-        transform: translateX(-150%);
+        opacity: 0;
         &._active-anim {
-          transform: translateX(0);
+          opacity: 1;
           transition: 1s all linear;
         }
     }
@@ -296,9 +296,9 @@
             font-weight: 300;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transform: translateX(350%);
+            opacity: 0;
             &._active-anim {
-              transform: translateX(0);
+              opacity: 1;
               transition: 1s all linear;
             }
             .custom-btn__btn {

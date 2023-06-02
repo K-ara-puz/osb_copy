@@ -1,15 +1,15 @@
 <template>
     <div
       class="warning-popup"
-      @click="
+      @click.capture="
         this.$root.popupsController.closeAnyPopup(
           $event,
           '.warning-popup__wrapper'
         )
       "
     >
-      <div class="warning-popup__wrapper">
-        <div class="warning-popup__top-bar">
+      <div class="warning-popup__wrapper" :class="{'_with-slider' : this.onlySlider}">
+        <div v-if="!this.onlySlider" class="warning-popup__top-bar">
           <button
             @click="this.closePopup()"
             class="warning-popup__top-bar__close"
@@ -21,7 +21,18 @@
             </svg>
           </button>
         </div>
-        <form>
+        <div v-else class="warning-popup__top-bar__close_if-only-slider">
+          <button
+            @click="this.closePopup()"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M23.707.293a1 1 0 0 0-1.414 0L12 10.586 1.707.293a1 1 0 0 0-1.414 0 1 1 0 0 0 0 1.414L10.586 12 .293 22.293a1 1 0 0 0 0 1.414 1 1 0 0 0 1.414 0L12 13.414l10.293 10.293a1 1 0 0 0 1.414 0 1 1 0 0 0 0-1.414L13.414 12 23.707 1.707a1 1 0 0 0 0-1.414Z"
+              />
+            </svg>
+          </button>
+        </div>
+        <form v-if="!this.onlySlider">
           <div class="warning-popup__center-bar">
             <div class="warning-popup__center-bar__title">{{ this.warningTitle }}</div>
             <div class="warning-popup__center-bar__submit">
@@ -42,8 +53,12 @@
             </div>
           </div>
         </form>
+        <div class="warning-popup__insert-comp">
+          <slot class="" name="insert-component"></slot>
+        </div>
       </div>
     </div>
+
   </template>
   <script>
   export default {
@@ -53,6 +68,12 @@
             default() {
                 return 'Вы уверены в своём решении?'
             }
+        },
+        onlySlider: {
+          type: Boolean,
+          default() {
+            return false
+          }
         }
     },
     methods: {

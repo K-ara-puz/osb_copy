@@ -1,400 +1,470 @@
 .pr-card {
-    margin: rem(30) auto;
-    color: var(--text-gray);
+  margin: rem(30) auto;
+  color: var(--text-gray);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__top-bar {
     width: 100%;
+    padding: 5px;
+  }
+  .top-bar-pr {
+    margin: 0 auto;
+    max-width: 1000px;
+    height: 550px;
+    max-height: 600px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    &__top-bar {
-        width: 100%;
-        padding: 5px;
+    justify-content: space-between;
+    padding: 5px;
+    gap: rem(20);
+    transform-style: preserve-3d;
+    perspective: 100px;
+    @media (max-width: $mdBreakpoint) {
+      height: 450px;
     }
-    .top-bar-pr {
-        margin: 0 auto;
-        max-width: 1000px;
-        height: 550px;
-        max-height: 600px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 5px;
-        gap: rem(20);
-        transform-style: preserve-3d;
-        perspective: 100px;
-        @media (max-width: $mdBreakpoint) {
-            height: 450px;
-        }
-        @media (max-width: $smBreakpoint) {
-            flex-direction: column;
-            max-height: 1000px;
-            height: auto;
-        }
-        &__swiper {
-            flex: 0 1 50%;
-            overflow: hidden;
-            height: 100%;
-            transition: all 0.3s ease 0s;
-            opacity: 0;
-            @media (max-width: $smBreakpoint) {
-                flex: 1 1 auto;
-                width: 90%;
-                height: 400px;
-            }
-            &._active-anim {
-                opacity: 1;
-                transition: all 1s ease 0.5s;
-            }
-        }
-        .swiper {
-            //really need
-            height: 100%;
-        }
-        .swiper-cube .swiper-cube-shadow:before {
-            background-color: var(--bg-purple);
-        }
-        &__image {
-            background-color: var(--bg-card);
-            padding: 5px;
-            flex: 0 1 50%;
-            height: 100%;
-            position: relative;
-            @media (max-width: $smBreakpoint) {
-                width: 100%;
-                flex: 0 0 400px;
-            }
-            &__sale::before {
-                @extend %product-sale-icon;
-            }
-            img {
-                width: 88%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                object-fit: cover;
-            }
-        }
-        .params-top-bar  {
-            flex: 1 1 50%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            transform: translateZ(10px);
-            @media (max-width: $smBreakpoint) {
-                width: 100%;
-                flex: 0 0 200px;
-            }
-            &._active-anim {
-                transform: translateZ(0px);
-                transition: all 1s ease 0s;
-            }
-            &__head {
-                display: flex;
-                flex-direction: column;
-                padding: 5px;
-                gap: rem(40);
-                @media (max-width: $smBreakpoint) {
-                    gap: rem(10);
-                }
-                &__name {
-                    background-color: var(--bg-card);
-                    width: 90%;
-                    align-self: flex-end;
-                    color: var(--text-gray);
-                    padding: rem(10);
-                    text-align: center;
-                    font-size: rem(14);
-                    span {
-                        margin-right: 10%;
-                    }
-                    @media (max-width: $smBreakpoint) {
-                        width: 100%;
-                        font-size: rem(12);
-                        span {
-                            margin: 0;
-                        }
-                    }
-                }
-                &__price {
-                    margin: rem(10) 0;
-                    width: 100%;
-                    position: relative;
-                    font-family: 'Montserrat', sans-serif;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    &__bg {
-                        background: no-repeat 50% / cover url("../../assets/icons/dark-theme/price_tag.webp");
-                        padding: 50px 15px 50px 0px;
-                        @include adaptive-value("width", 300, 200, 0);
-                        text-align: center;
-                        max-width: 360px;
-                        @media (max-width: $smBreakpoint) {
-                          background: none;
-                          padding: rem(5);
-                        }
-                    }
-                    &__price {
-                        display: inline-flex;
-                        @include adaptive-value("font-size", 30, 16, 0);
-                        font-weight: 300;
-                        align-items: center;
-                        margin: 0 auto;
-                        @media (max-width: $smBreakpoint) {
-                          font-size: 24px;
-                        }
-                        span {
-                            font-size: 12px;
-                        }
-                        &_new {
-                            text-align: center;
-                            font-weight: 300;
-                            margin: 0 auto;
-                            @media (max-width: $smBreakpoint) {
-                              margin-right: 5px;
-                            }
-                            span {
-                                font-size: 12px;
-                            }
-                        }
-                    }
-                }
-            }
-            &__center {
-                flex: 1 1 30px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                &__like {
-                    margin: rem(15) 0;
-                    width: 40px;
-                    height: 40px;
-                }
-                #icon-ic {
-                    color: var(--text-white);
-                    margin: rem(25) 0;
-                }
-            }
-            &__bottom {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: rem(20);
-                &__add-to-cart-btn {
-                    width: 70%;
-                    height: rem(35);
-                    font-size: rem(18);
-                }
-                &__order-btn {
-                    width: 100%;
-                    height: rem(30);
-                    font-size: rem(30);
-                    letter-spacing: 5px;
-                }
-            }
-        }
-    }
-}
-.pr-card_with-sale {
-    .params-top-bar__head__price {
-        &__price {
-            text-align: right;
-            display: inline-block;
-            font-family: 'Montserrat', sans-serif;
-            &__wrapp {
-                font-size: rem(10) !important;
-                display: inline-flex;
-                position: relative;
-                margin-right: 5px;
-                align-items: center;
-                &::after {
-                    content: "";
-                    position: absolute;
-                    display: inline-flex;
-                    width: 120%;
-                    left: -10%;
-                    height: 1px;
-                    background-color: var(--bg-red);
-                    transform: rotate(-20deg);
-                }
-                > span {
-                    display: none;
-                }
-            }
-        }
-    }
-}
-.pr-card__nav{
-    width: 100%;
-    padding: rem(60) 0;
-    opacity: 0;
     @media (max-width: $smBreakpoint) {
-        padding: rem(20) 5px rem(10);
+      flex-direction: column;
+      max-height: 1000px;
+      height: auto;
     }
-    &._active-anim {
+    &__swiper {
+      height: 100%;
+      transition: all 0.3s ease 0s;
+      opacity: 0;
+      position: relative;
+      width: 50%;
+      @media (max-width: $smBreakpoint) {
+        flex: 1 1 auto;
+        width: 90%;
+        height: 400px;
+      }
+      &._active-anim {
         opacity: 1;
-        transition: all 1s ease 0.3s;
+        transition: all 1s ease 0.5s;
+      }
     }
-    &__container {
-        margin: 0 auto;
-        max-width: 800px;
+    .swiper {
+      //really need
+      height: 100%;
+    }
+    .swiper-cube .swiper-cube-shadow:before {
+      background-color: var(--bg-purple);
+    }
+    &__image {
+      &__zoom {
+        background-color: var(--bg-card);
+        position: relative;
+        padding: 10px;
+        height: 100%;
+        flex: 0 1 50%;
+        height: 100%;
+        position: relative;
+        @media (max-width: $smBreakpoint) {
+          width: 100%;
+          flex: 0 0 400px;
+        }
+      }
+      &__sale::before {
+        margin: rem(8);
+        z-index: 1;
+        @extend %product-sale-icon;
+      }
+      &__container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        &::after {
+          content: url('../../assets/icons/dark-theme/zoom.svg');
+          position: absolute;
+          top: 5px;
+          right: 25px;
+          width: 40px;
+          height: 40px;
+          display: block;
+        }
+        img {
+          top: 0;
+          width: 85%;
+          height: 100%;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          object-fit: cover;
+        }
+        #prZoomImage {
+          z-index: 1;
+          position: absolute;
+          left: 10%;
+          top: 0;
+          --zoom-x: 50%;
+          --zoom-y: 50%;
+          transform: scale(1.5);
+          opacity: 0;
+          pointer-events: none;
+          clip-path: circle(
+            100px at var(--zoom-x) var(--zoom-y)
+          );
+        }
+      }
+      &__for-zoom {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding: 10px;
+      }
+    }
+    .params-top-bar {
+      flex: 1 1 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transform: translateZ(10px);
+      @media (max-width: $smBreakpoint) {
+        width: 100%;
+        flex: 0 0 200px;
+      }
+      &._active-anim {
+        transform: translateZ(0px);
+        transition: all 1s ease 0s;
+      }
+      &__head {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        gap: rem(40);
+        @media (max-width: $smBreakpoint) {
+          gap: rem(10);
+        }
+        &__name {
+          background-color: var(--bg-card);
+          width: 90%;
+          align-self: flex-end;
+          color: var(--text-gray);
+          padding: rem(10);
+          text-align: center;
+          font-size: rem(14);
+          span {
+            margin-right: 10%;
+          }
+          @media (max-width: $smBreakpoint) {
+            width: 100%;
+            font-size: rem(12);
+            span {
+              margin: 0;
+            }
+          }
+        }
+        &__price {
+          margin: rem(10) 0;
+          width: 100%;
+          position: relative;
+          font-family: "Montserrat", sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &__bg {
+            background: no-repeat 50% / cover
+              url("../../assets/icons/dark-theme/price_tag.webp");
+            padding: 50px 15px 50px 0px;
+            @include adaptive-value("width", 300, 200, 0);
+            text-align: center;
+            max-width: 360px;
+            @media (max-width: $smBreakpoint) {
+              background: none;
+              padding: rem(5);
+            }
+          }
+          &__price {
+            display: inline-flex;
+            @include adaptive-value("font-size", 30, 16, 0);
+            font-weight: 300;
+            align-items: center;
+            margin: 0 auto;
+            @media (max-width: $smBreakpoint) {
+              font-size: 24px;
+            }
+            span {
+              font-size: 12px;
+            }
+            &_new {
+              text-align: center;
+              font-weight: 300;
+              margin: 0 auto;
+              @media (max-width: $smBreakpoint) {
+                margin-right: 5px;
+              }
+              span {
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+      &__center {
+        flex: 1 1 30px;
         display: flex;
         align-items: center;
         justify-content: center;
+        &__like {
+          margin: rem(15) 0;
+          width: 40px;
+          height: 40px;
+        }
+        #icon-ic {
+          color: var(--text-white);
+          margin: rem(25) 0;
+        }
+      }
+      &__bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: rem(20);
+        &__add-to-cart-btn {
+          width: 70%;
+          height: rem(35);
+          font-size: rem(18);
+        }
+        &__order-btn {
+          width: 100%;
+          height: rem(30);
+          font-size: rem(30);
+          letter-spacing: 5px;
+        }
+      }
     }
-    button {
-        color: var(--bg-white);
-        font-size: rem(16);
-        padding: 10px;
-        flex: 0 0 30%;
-        border-bottom: 1px solid var(--bg-purple);
-        @include adaptive-value("font-size", 18, 12, 0);
-        &:nth-child(2) {
-            margin: 0 rem(20);
-        }
-        &:hover {
-            color: var(--bg-purple);
-        }
-        &._active-page {
-                border-bottom: 1px solid var(--bg-green) !important;
-        }
+  }
+  &__full-slider {
+    padding: 10px;
+    width: 70vw;
+    max-width: 1200px;
+    height: 90vh;
+    margin: 0 auto;
+    @media (max-width: $lgBreakpoint) {
+      width: 75vw;
+      height: 85vh;
     }
+    .swiper {
+      height: 100%;
+    }
+    &__image {
+      cursor: url('/src/assets/icons/dark-theme/zoom-cursor.svg'), auto;
+      padding: 10px;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      &__img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: contain;
+      }
+    }
+  }
+}
+.pr-card_with-sale {
+  .params-top-bar__head__price {
+    &__price {
+      text-align: right;
+      display: inline-block;
+      font-family: "Montserrat", sans-serif;
+      &__wrapp {
+        font-size: rem(10) !important;
+        display: inline-flex;
+        position: relative;
+        margin-right: 5px;
+        align-items: center;
+        &::after {
+          content: "";
+          position: absolute;
+          display: inline-flex;
+          width: 120%;
+          left: -10%;
+          height: 1px;
+          background-color: var(--bg-red);
+          transform: rotate(-20deg);
+        }
+        > span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+.pr-card__nav {
+  width: 100%;
+  padding: rem(60) 0;
+  opacity: 0;
+  @media (max-width: $smBreakpoint) {
+    padding: rem(20) 5px rem(10);
+  }
+  &._active-anim {
+    opacity: 1;
+    transition: all 1s ease 0.3s;
+  }
+  &__container {
+    margin: 0 auto;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  button {
+    color: var(--bg-white);
+    font-size: rem(16);
+    padding: 10px;
+    flex: 0 0 30%;
+    border-bottom: 1px solid var(--bg-purple);
+    @include adaptive-value("font-size", 18, 12, 0);
+    &:nth-child(2) {
+      margin: 0 rem(20);
+    }
+    &:hover {
+      color: var(--bg-purple);
+    }
+    &._active-page {
+      border-bottom: 1px solid var(--bg-green) !important;
+    }
+  }
 }
 .pr-card__descriptions {
-    width: 100%;
-    padding: rem(30) 0;
+  width: 100%;
+  padding: rem(30) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: rem(80);
+  &__section {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1300px;
+    height: 300px;
+    max-height: 600px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: rem(80);
-    &__section {
-        margin: 0 auto;
-        width: 90%;
-        max-width: 1300px;
-        height: 300px;
-        max-height: 600px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 5%;
-        @media (max-width: $smBreakpoint) {
-            flex-direction: column;
-            gap: 10px;
-            height: auto;
-        }
-        &:nth-child(even) {
-            flex-direction: row-reverse;
-            @media (max-width: $smBreakpoint) {
-                flex-direction: column;
-            }
-        }
-        &:nth-child(odd) &__image {
-            transform: translateX(-150%);
-            &._active-anim {
-                transform: translateX(0%);
-                transition: all 1s ease 0.2s;
-            }
-        }
-        &:nth-child(even) &__image {
-            transform: translateX(150%);
-            &._active-anim {
-                transform: translateX(0%);
-                transition: all 1s ease 0.2s;
-            }
-        }
-        &__image {
-            flex: 0 0 55%;
-            position: relative;
-            height: 100%;
-            width: 100%;
-            min-height: 200px;
-            img {
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                left: 0;
-                object-fit: cover;
-            }
-        }
-
-        &__text {
-            flex: 0 1 40%;
-            height: 100%;
-            align-self: flex-start;
-            display: flex;
-            flex-direction: column;
-            color: var(--text-gray);
-            overflow: hidden;
-            opacity: 0;
-            &._active-anim {
-                opacity: 1;
-                transition: all 1s ease 0.5s;
-            }
-            &__title {
-                @include adaptive-value("font-size", 40, 20, 0);
-                font-style: italic;
-                text-transform: uppercase;
-                margin-bottom: rem(10);
-                font-weight: 200;
-            }
-            &__text {
-                line-height: 1.7;
-                @include adaptive-value("font-size", 16, 12, 0);
-                width: 90%;
-                height: 60%;
-                white-space: normal;
-                @media (max-width: $lgBreakpoint) {
-                    width: 100%;
-                }
-            }
-        }
+    justify-content: space-between;
+    gap: 5%;
+    @media (max-width: $smBreakpoint) {
+      flex-direction: column;
+      gap: 10px;
+      height: auto;
     }
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+      @media (max-width: $smBreakpoint) {
+        flex-direction: column;
+      }
+    }
+    &:nth-child(odd) &__image {
+      transform: translateX(-150%);
+      &._active-anim {
+        transform: translateX(0%);
+        transition: all 1s ease 0.2s;
+      }
+    }
+    &:nth-child(even) &__image {
+      transform: translateX(150%);
+      &._active-anim {
+        transform: translateX(0%);
+        transition: all 1s ease 0.2s;
+      }
+    }
+    &__image {
+      flex: 0 0 55%;
+      position: relative;
+      height: 100%;
+      width: 100%;
+      min-height: 200px;
+      img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+      }
+    }
+
+    &__text {
+      flex: 0 1 40%;
+      height: 100%;
+      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+      color: var(--text-gray);
+      overflow: hidden;
+      opacity: 0;
+      &._active-anim {
+        opacity: 1;
+        transition: all 1s ease 0.5s;
+      }
+      &__title {
+        @include adaptive-value("font-size", 40, 20, 0);
+        font-style: italic;
+        text-transform: uppercase;
+        margin-bottom: rem(10);
+        font-weight: 200;
+      }
+      &__text {
+        line-height: 1.7;
+        @include adaptive-value("font-size", 16, 12, 0);
+        width: 90%;
+        height: 60%;
+        white-space: normal;
+        @media (max-width: $lgBreakpoint) {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 .pr-card__characteristics {
-    width: 100%;
-    margin: 40px 0;
-    opacity: 0;
-    &._active-anim {
-        opacity: 1;
-        transition: all 1s ease 0.2s;
+  width: 100%;
+  margin: 40px 0;
+  opacity: 0;
+  &._active-anim {
+    opacity: 1;
+    transition: all 1s ease 0.2s;
+  }
+  &__container {
+    width: 70%;
+    margin: 0 auto;
+    max-width: 1000px;
+    @media (max-width: $smBreakpoint) {
+      width: 95%;
     }
-    &__container {
-        width: 70%;
-        margin: 0 auto;
-        max-width: 1000px;
-        @media (max-width: $smBreakpoint) {
-            width: 95%;
-        }
+  }
+  &__header {
+    @include adaptive-value("font-size", 40, 20, 0);
+    font-weight: 200;
+    border-bottom: 1px solid var(--border-gray);
+    text-align: center;
+    padding: rem(8) 0;
+  }
+  &__body {
+    background-color: var(--bg-card);
+    padding: 8px;
+    @include adaptive-value("font-size", 22, 14, 0);
+    line-height: 2;
+    &__line {
+      width: 100%;
+      p {
+        margin: 10px 5px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      &__title {
+        white-space: nowrap;
+      }
+      &__text {
+        text-align: right;
+        font-family: "Montserrat", sans-serif;
+      }
     }
-    &__header {
-        @include adaptive-value("font-size", 40, 20, 0);
-        font-weight: 200;
-        border-bottom: 1px solid var(--border-gray);
-        text-align: center;
-        padding: rem(8) 0;
-    }
-    &__body {
-        background-color: var(--bg-card);
-        padding: 8px;
-        @include adaptive-value("font-size", 22, 14, 0);
-        line-height: 2;
-        &__line {
-            width: 100%;
-            p {
-                margin: 10px 5px;
-                display: flex;
-                justify-content: space-between;
-                gap: 10px;
-            }
-            &__title {
-                white-space: nowrap;
-            }
-            &__text {
-                text-align: right;
-                font-family: 'Montserrat', sans-serif;
-            }
-        }
-    }
+  }
 }

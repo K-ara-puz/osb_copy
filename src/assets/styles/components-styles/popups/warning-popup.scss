@@ -16,12 +16,16 @@
         background-color: var(--bg-log-popup-2);
         border-radius: 25px;
         border: 1px solid var(--border-log-popup);
-        width: 400px;
+        height: auto;
         margin: 10px;
         position: relative;
         transition: 1s;
         display: flex;
         flex-direction: column;
+        padding: 10px;
+        .warning-popup__insert-comp {
+            position: relative;
+        }
     }
     form {
         display: flex;
@@ -40,6 +44,17 @@
             width: 20px;
             svg {
                 stroke-width: 0.1;
+            }
+            &_if-only-slider button {
+                width: 20px;
+                height: 20px;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 10;
+                svg {
+                    stroke-width: 0.1;
+                }
             }
         }
     }

@@ -23,6 +23,7 @@
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
 @import 'swiper/css/effect-cube';
+@import 'swiper/css/zoom';
 
 @function rem($px) {
     $result: math.div($px, 16) + em;
@@ -37,4 +38,7 @@
     line-height: 1.2;
     width: 12px;
     height: 80px;
+    position: absolute;
+    left: 5px;
+    top: 5px;
 }

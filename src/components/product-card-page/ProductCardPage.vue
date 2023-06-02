@@ -6,36 +6,49 @@
           <div class="top-bar-pr__swiper _anim-scroll _anim-no-hide">
             <SwiperSlider
               ref="swiperRef"
+              @activeIndexChange="this.startProductImageZoom()"
               :speed="1000"
               :slides-per-view="1"
               :space-between="30"
               :slots-count="this.currentProduct.images.length"
               effect="cube"
-              :pagination="{ clickable: true }"
+              :elements-for-custom-pagination="this.currentProduct.images"
+              :is-photo-pagination="true"
             >
               <template
                 v-for="(image, index) of this.currentProduct.images"
                 :key="index"
                 v-slot:[index]
               >
-                <div class="top-bar-pr__image">
+                <div @click="this.openFullHDSlider()" class="top-bar-pr__image__zoom">
                   <div
                     class="top-bar-pr__image__sale"
                     v-if="this.currentProduct.isOnSale"
-                  >
-                  </div>
-                  <img
+                  ></div>
+                  <div class="top-bar-pr__image__container">
+                    <img
                     :src="
                       require('../../assets/products-images/small/' +
                         image +
                         '.webp')
                     "
                   />
+                  <img
+                      id="prZoomImage"
+                      :src="
+                        require('../../assets/products-images/small/' +
+                          image +
+                          '.webp')
+                      "
+                    />
+                  </div>
                 </div>
               </template>
             </SwiperSlider>
           </div>
-          <div class="top-bar-pr__params params-top-bar _anim-scroll _anim-no-hide">
+          <div
+            class="top-bar-pr__params params-top-bar _anim-scroll _anim-no-hide"
+          >
             <div class="params-top-bar__head">
               <div class="params-top-bar__head__name">
                 <span> {{ this.currentProduct.name }} </span>
@@ -44,19 +57,25 @@
                 <div class="params-top-bar__head__price__bg">
                   <div class="params-top-bar__head__price__price">
                     <div class="params-top-bar__head__price__price__wrapp">
-                      {{this.currentProduct.price}}<span>{{this.CURRENCY}}</span>
+                      {{ this.currentProduct.price
+                      }}<span>{{ this.CURRENCY }}</span>
                     </div>
                     <div
                       v-if="this.currentProduct.newPrice"
                       class="params-top-bar__head__price__price_new"
-                    >{{this.currentProduct.newPrice}}<span>{{this.CURRENCY}}</span>
+                    >
+                      {{ this.currentProduct.newPrice
+                      }}<span>{{ this.CURRENCY }}</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="params-top-bar__center">
-              <ProductLikesService class="params-top-bar__center__like" :current-product="this.currentProduct"></ProductLikesService>
+              <ProductLikesService
+                class="params-top-bar__center__like"
+                :current-product="this.currentProduct"
+              ></ProductLikesService>
             </div>
             <div class="params-top-bar__bottom">
               <CustomBtn
@@ -107,7 +126,9 @@
           :key="index"
           class="pr-card__descriptions__section"
         >
-          <div class="pr-card__descriptions__section__image _anim-scroll _anim-no-hide">
+          <div
+            class="pr-card__descriptions__section__image _anim-scroll _anim-no-hide"
+          >
             <img
               :src="
                 require('../../assets/products-images/small/' +
@@ -116,7 +137,9 @@
               "
             />
           </div>
-          <div class="pr-card__descriptions__section__text _anim-scroll _anim-no-hide">
+          <div
+            class="pr-card__descriptions__section__text _anim-scroll _anim-no-hide"
+          >
             <div class="pr-card__descriptions__section__text__title">
               {{ item[1] }}
             </div>
@@ -153,6 +176,38 @@
       </div>
       <VueFeedbacks :current-product="this.currentProduct"></VueFeedbacks>
     </div>
+    <WarningPopup v-if="this.$root.popupsController.data._isWarningPopupOpen === true" :only-slider="true">
+      <template #insert-component>
+        <div class="pr-card__full-slider">
+          <SwiperSlider
+            :speed="1000"
+            :slides-per-view="1"
+            :space-between="10"
+            :zoom="true"
+            :slots-count="this.currentProduct.images.length"
+            :elements-for-custom-pagination="this.currentProduct.images"
+            :is-photo-pagination="true"
+          >
+            <template
+              v-for="(image, index) of this.currentProduct.images"
+              :key="index"
+              v-slot:[index]
+            >
+                 <div class="pr-card__full-slider__image swiper-zoom-container">
+                  <img
+                  class="pr-card__full-slider__image__img"
+                  :src="
+                    require('../../assets/products-images/small/' +
+                      image +
+                      '.webp')
+                  "
+                />
+                 </div>
+            </template>
+          </SwiperSlider>
+        </div>
+      </template>
+    </WarningPopup>
   </div>
 </template>
 
@@ -162,18 +217,21 @@ import CustomBtn from "../CustomBtn.vue";
 import SwiperSlider from "../sliders/SwiperSlider.vue";
 import VueFeedbacks from "../VueFeedbacks.vue";
 import ProductLikesService from "../ProductLikesService.vue";
+import WarningPopup from "../popups/WarningPopup.vue";
 
 export default {
   components: {
     CustomBtn,
     SwiperSlider,
     VueFeedbacks,
-    ProductLikesService
-},
+    ProductLikesService,
+    WarningPopup,
+  },
   data() {
     return {
       currentProduct: null,
       activeNavPage: 0,
+      isPagination: true,
     };
   },
   mounted() {
@@ -189,6 +247,9 @@ export default {
           el[2] = availableText + "...";
         });
       }
+    },
+    openFullHDSlider() {
+      this.$root.popupsController.showWarningPopup();
     },
     addProductToCart() {
       this.ADD_PR_TO_CART(this.currentProduct);
@@ -227,6 +288,32 @@ export default {
         window.scrollTo({ top: res, behavior: "smooth" });
       }
     },
+    startProductImageZoom() {
+      let activeSlideIndex = this.$refs.swiperRef.swiperRef.activeIndex;
+      let activeSlideDiv = this.$refs.swiperRef.swiperRef.slides[activeSlideIndex];
+      let zoom = activeSlideDiv.querySelector(".top-bar-pr__image__zoom");
+      let imgZoom = zoom.querySelector("#prZoomImage");
+      let pagination = document.querySelector(".custom-pagination");
+      zoom.addEventListener("mousemove", (e) => {
+        pagination.style.opacity = 0;
+        imgZoom.style.opacity = 1;
+        let positionPx = e.x - zoom.getBoundingClientRect().left;
+        let positionX = (positionPx / zoom.offsetWidth) * 100;
+        let positionPy = e.y - zoom.getBoundingClientRect().top;
+        let positionY = (positionPy / zoom.offsetHeight) * 100;
+        imgZoom.style.setProperty("--zoom-x", positionX + "%");
+        imgZoom.style.setProperty("--zoom-y", positionY + "%");
+
+        let transformX = (positionX - 50) / 3.5;
+        let transformY = (positionY - 50) / 3.5;
+        imgZoom.style.transform = `scale(1.5)
+          translateX(${transformX}%) translateY(${transformY}%)`;
+      });
+      zoom.addEventListener("mouseout", () => {
+        imgZoom.style.opacity = 0;
+        pagination.style.opacity = 1;
+      });
+    },
   },
   computed: {
     ...mapGetters(["PRODUCTS", "CURRENCY", "ACTIVE_USER"]),
@@ -258,6 +345,7 @@ export default {
       if (this.currentProduct) {
         setTimeout(() => {
           this.$root.itemsShowAnimation();
+          this.startProductImageZoom();
         }, 500);
         if (this.currentProduct.descriptions) {
           this.ellipsisDescriptions();

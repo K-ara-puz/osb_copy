@@ -1,8 +1,5 @@
 <template>
-  <Swiper
-    :modules="modules"
-    @swiper="this.getRef"
-  >
+  <Swiper :modules="modules" @swiper="this.getRef">
     <SwiperSlide class="swiper-slider__slot">
       <slot name="0"></slot>
     </SwiperSlide>
@@ -36,50 +33,64 @@
     <SwiperSlide v-if="this.slotsCount > 10" class="swiper-slider__slot">
       <slot name="10"></slot>
     </SwiperSlide>
+    <CustomPagination @moved-by-pag="this.moveToId" v-if="this.swiperRef && this.isPhotoPagination === true" :is-photo-pagination="this.isPhotoPagination" :active-slide-position="this.swiperRef.activeIndex" :elements="this.elementsForCustomPagination"></CustomPagination>
   </Swiper>
 </template>
 
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation, Pagination, A11y, EffectCube } from "swiper";
-// import BestSellersItemCart from "./BestSellersItemCart.vue";
+import { Navigation, Pagination, A11y, EffectCube, Zoom } from "swiper";
+import CustomPagination from "./CustomPagination.vue";
 
 export default {
   setup() {
-    // all setup is for swiper  
+    // all setup is for swiper
     return {
-      modules: [Navigation, Pagination, A11y, EffectCube],
+      modules: [Navigation, Pagination, A11y, EffectCube, Zoom],
     };
   },
   data() {
     return {
-        swiperRef: null,
-    }
+      swiperRef: null,
+    };
   },
   props: {
     products: {
-        type: Array,
-        default() {
-            return [];
-        }
+      type: Array,
+      default() {
+        return [];
+      },
     },
     slotsCount: {
       type: Number,
-      default: 6
+      default: 6,
+    },
+    elementsForCustomPagination: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+    isPhotoPagination: {
+      type: Boolean,
+      default() {
+        return false
+      }
     }
   },
   components: {
-    // BestSellersItemCart,
     Swiper,
     SwiperSlide,
-  },
-  mounted() {
-  },
+    CustomPagination
+},
   methods: {
     getRef(swiperInstance) {
-        this.swiperRef = swiperInstance;
+      this.swiperRef = swiperInstance;
     },
-  }
+    moveToId(index) {
+      this.swiperRef.slideTo(index)
+    }
+  },
 };
 </script>
 
