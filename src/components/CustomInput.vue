@@ -30,7 +30,6 @@ export default {
     },
     modelValue: {},
   },
-  emits: ["update:modelValue"],
   computed: {
     isInputEmpty() {
         if (this.modelValue === "") {
@@ -47,6 +46,3 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-@import "../assets/styles/components-styles/custom-input.scss";
-</style>

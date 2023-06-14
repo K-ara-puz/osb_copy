@@ -8,6 +8,25 @@
   &__top-bar {
     width: 100%;
     padding: 5px;
+    position: relative;
+    &__db-click-anim {
+      max-width: 30px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 1;
+      opacity: 0;
+      transition: all 0.5s;
+      animation: db-cl-start-anim 4s;
+      @keyframes db-cl-start-anim {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    }
   }
   .top-bar-pr {
     margin: 0 auto;
@@ -51,9 +70,15 @@
     }
     .swiper-cube .swiper-cube-shadow:before {
       background-color: var(--bg-purple);
+      height: 100%;
+    }
+    .swiper-cube-shadow {
+      transition: all 1s;
     }
     &__image {
+      position: relative;
       &__zoom {
+        z-index: 1;
         background-color: var(--bg-card);
         position: relative;
         padding: 10px;
@@ -75,16 +100,48 @@
         width: 100%;
         height: 100%;
         position: relative;
-        &::after {
-          content: url('../../assets/icons/dark-theme/zoom.svg');
-          position: absolute;
-          top: 5px;
-          right: 25px;
+        &:hover .pr-card__top-bar__db-click-anim {
+          animation: db-click-anim 4s;
+          @keyframes db-click-anim {
+            0% {
+              opacity: 1;
+            }
+            100% {
+              opacity: 0;
+            }
+          }
+        }
+        &__loop {
           width: 40px;
           height: 40px;
-          display: block;
+          position: absolute;
+          top: 8px;
+          right: 40px;
+          z-index: 10;
+          background-color: var(--border-log-popup);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.5s;
+          &:active .pr-card__top-bar__db-click-anim {
+            opacity: 0;
+          }
+          &:hover {
+            transition: all 0.5s;
+            background-color: var(--bg-green);
+          }
+          &._active {
+            background-color: rgba(255, 0, 0, 0.5);
+          }
+          svg {
+            fill: none;
+            stroke: var(--bg-purple);
+            stroke-width: 0.1 !important;
+            width: 60%;
+          }
         }
-        img {
+        img:not(:first-child) {
           top: 0;
           width: 85%;
           height: 100%;
@@ -94,7 +151,7 @@
           object-fit: cover;
         }
         #prZoomImage {
-          z-index: 1;
+          z-index: 100;
           position: absolute;
           left: 10%;
           top: 0;
@@ -103,9 +160,7 @@
           transform: scale(1.5);
           opacity: 0;
           pointer-events: none;
-          clip-path: circle(
-            100px at var(--zoom-x) var(--zoom-y)
-          );
+          clip-path: circle(100px at var(--zoom-x) var(--zoom-y));
         }
       }
       &__for-zoom {
@@ -243,18 +298,29 @@
     height: 90vh;
     margin: 0 auto;
     @media (max-width: $lgBreakpoint) {
-      width: 75vw;
-      height: 85vh;
+      width: 85vw;
+      height: 80vh;
     }
     .swiper {
       height: 100%;
     }
     &__image {
-      cursor: url('/src/assets/icons/dark-theme/zoom-cursor.svg'), auto;
+      cursor: url("/src/assets/icons/dark-theme/zoom-cursor.svg"), auto;
       padding: 10px;
       position: relative;
       width: 100%;
       height: 100%;
+      &__db-click-anim {
+        position: absolute;
+        animation: db-click-anim 3s;
+        width: 40px;
+        @include adaptive-value('width', 40, 30, 0);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        opacity: 0;
+      }
       &__img {
         width: 100%;
         height: 100%;

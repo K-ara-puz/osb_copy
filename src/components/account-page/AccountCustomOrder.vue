@@ -136,6 +136,3 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-@import "../../assets/styles/components-styles/account-page/account-custom-order.scss";
-</style>

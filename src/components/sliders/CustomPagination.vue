@@ -46,6 +46,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-@import "../../assets/styles/components-styles/popups/custom-pagination.scss";
-</style>

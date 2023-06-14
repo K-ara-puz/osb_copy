@@ -69,10 +69,6 @@ export default {
         return true;
       } else return false;
     },
-  }
+  },
 };
 </script>
-
-<style lang="scss">
-@import "../../assets/styles/main-wrapper.scss";
-</style>

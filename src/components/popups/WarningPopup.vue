@@ -36,7 +36,7 @@
           <div class="warning-popup__center-bar">
             <div class="warning-popup__center-bar__title">{{ this.warningTitle }}</div>
             <div class="warning-popup__center-bar__submit">
-              <button type="submit">
+              <button type="submit" @click="this.closePopup">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   xml:space="preserve"
@@ -83,7 +83,3 @@
     },
   };
   </script>
-  <style lang="scss">
-  @import "../../assets/styles/components-styles/popups/warning-popup.scss";
-  </style>
-  

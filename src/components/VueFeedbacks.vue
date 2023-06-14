@@ -5,12 +5,14 @@
   >
     <div class="feedbacks__container">
       <button
+        v-if="this.swiperData"
         class="feedbacks__prev-btn"
         @click="swiperPrevSlide()"
+        :disabled="this.swiperData.isBeginning"
       ></button>
       <SwiperSlider
-        ref="swiperRef"
         @swiper="this.getRef"
+        ref="swiperFeedbacksRef"
         :speed="1000"
         :space-between="30"
         :slots-count="this.cuttedFeedbacks.length"
@@ -40,8 +42,10 @@
         </template>
       </SwiperSlider>
       <button
+        v-if="this.swiperData"
         class="feedbacks__next-btn"
         @click="swiperNextSlide()"
+        :disabled="this.swiperData.isEnd"
       ></button>
     </div>
   </div>
@@ -85,7 +89,7 @@ export default {
     };
   },
   mounted() {
-    this.ellipsisFeedbacks()
+    this.ellipsisFeedbacks();
   },
   methods: {
     ellipsisFeedbacks() {
@@ -160,6 +164,3 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-@import '../assets/styles/components-styles/vue-feedbacks.scss';
-</style>

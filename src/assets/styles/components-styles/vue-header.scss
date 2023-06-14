@@ -3,7 +3,7 @@
   background-color: var(--body-color);
   height: 100px;
   width: 100%;
-  position: fixed;
+  // position: fixed;
   display: flex;
   justify-content: center;
   text-align: center;
@@ -19,14 +19,6 @@
   @media (max-width: $mdBreakpoint) {
     height: 80px;
     transform: translateY(-70px);
-  }
-  &.nav-up {
-      top: -110px;
-      transition: all 0.5s;
-  }
-  &.nav-down {
-      top: 0px;
-      transition: all 0.5s;
   }
   ::-webkit-scrollbar {
     background-color: var(--bg-scrollbar);
@@ -173,6 +165,10 @@
     flex: 1 1 auto;
     a {
       margin: 0 12px;
+      &:hover {
+        color: var(--bg-purple);
+        transition: all 0.5s;
+      }
       @media (max-width: $lgBreakpoint) {
         margin: 0 5px;
       }
@@ -231,20 +227,35 @@
     flex-direction: column;
     flex: 1 1 auto;
   }
-  &__search {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 5px 0;
-    width: 100%;
-    border-bottom: 1px solid var(--border-gray);
-    input {
-      padding-bottom: 5px;
-      text-align: center;
-      border-bottom: none;
-      &::placeholder {
-        color: var(--bg-gray-300);
-        font-size: rem(20);
+  .mobile-menu__body {
+    &__search {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      padding: rem(5) rem(20);
+      gap: 10px;
+      border-bottom: 1px solid var(--border-gray);
+      &__input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 25px;
+        width: 100%;
+        padding: 5px;
+        gap: 10px;
+      }
+      input {  
+        padding-bottom: 5px;
+        text-align: left;
+        border-bottom: none;
+        max-width: 100%;
+        &::placeholder {
+          color: var(--bg-gray-300);
+          font-size: rem(20);
+        }
+      }
+      .search__wrapper {
+        width: 100%;
       }
     }
   }
@@ -284,7 +295,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: rem(90);
+  margin-top: rem(50);
   &__wrapper {
     display: flex;
     width: 80%;

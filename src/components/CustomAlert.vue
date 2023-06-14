@@ -44,6 +44,4 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-@import "../assets/styles/custom-alert.scss";
-</style>
+

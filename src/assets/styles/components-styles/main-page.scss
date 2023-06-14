@@ -6,6 +6,7 @@
   align-items: center;
   margin: 0 auto;
   color: var(--text-white);
+  overflow: hidden;
   &__top-img {
     background: center / cover no-repeat
       url("../../assets/main-jpg/main_back.webp");
@@ -158,6 +159,9 @@
     .best-seller__container {
       height: 80%;
     }
+    .swiper-pagination {
+      margin-bottom: 50px;
+    }
   }
   &__carousel {
     width: 100%;
@@ -308,82 +312,28 @@
     }
   }
   &__call-order {
-    background: center -50px/ contain no-repeat
+    background: center bottom / contain no-repeat
     url("../../assets/main-jpg/before-footer-bg.webp");
     background-size: 100%;
     width: 100%;
     max-width: 1500px;
     height: calc(100vw / 2);
+    // height: auto;
     max-height: 800px;
     display: flex;
     align-items: center;
     opacity: 0;
+    padding: rem(50) 0;
     &._active-anim {
       opacity: 1;
       transition: 2s all linear;
     }
-    @media (max-width: $mainNotifyBreakpoint) {
-      height: calc(100vw / 1.1);
+    @media (max-width: $mdBreakpoint) {
+      // height: calc(100vw / 1.1);
+      height: auto;
+      // margin-top: 20px;
       background-size: 210%;
-      background-position: center -35px;
-    }
-    &__container {
-        width: 100%;
-        max-width: 1500px;
-        display: flex;
-        justify-content: flex-end;
-        @include adaptive-value("padding-right", 300, 50, 0);
-        @media (max-width: $smBreakpoint) {
-          padding-right: 0;
-          justify-content: center;
-        }
-    }
-    &__form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        max-width: 300px;
-        @include adaptive-value("gap", 30, 15, 0);
-        &__title {
-            white-space: nowrap;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 200;
-            @include adaptive-value("font-size", 30, 20, 0);
-            margin-bottom: 10px;
-        }
-        &__name, &__phone {
-            color: var(--text-white);
-            @include adaptive-value("font-size", 16, 14, 0);
-            background-color: transparent;
-            width: 90%;
-            height: 30px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-gray);
-            &::placeholder {
-                color: var(--bg-gray-500);
-                @include adaptive-value("font-size", 18, 14, 0);
-            }
-        }
-        &__submit {
-            margin-top: 10px;
-            width: 120%;
-            &._active-anim {
-              .custom-btn__btn {
-                background-color: var(--bg-purple);
-                transition: 1.5s ease-out;  
-              }
-            }
-            .custom-btn__btn {
-                height: 45px;
-                text-transform: uppercase;
-                font-size: rem(30);
-                font-weight: 200;
-                letter-spacing: 2px;
-                background-color: var(--bg-green);
-            }
-        }
+      // background-position: center -35px;
     }
   }
 }

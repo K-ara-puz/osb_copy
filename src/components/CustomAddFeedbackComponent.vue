@@ -39,6 +39,3 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-@import "../assets/styles/components-styles/custom-add-feedback-component.scss";
-</style>

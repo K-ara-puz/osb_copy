@@ -1,0 +1,61 @@
+.call-order {
+    width: 100%;
+    max-width: 1500px;
+    display: flex;
+    justify-content: flex-end;
+    @include adaptive-value("padding-right", 300, 50, 0);
+    @media (max-width: $smBreakpoint) {
+      padding-right: 0;
+      justify-content: center;
+    }
+    // background-color: darkcyan;
+    &__form {
+        margin-top: 50px;
+        font-family: "Montserrat", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 300px;
+        @include adaptive-value("gap", 30, 15, 0);
+        &__title {
+            white-space: nowrap;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 200;
+            @include adaptive-value("font-size", 30, 20, 0);
+            margin-bottom: 10px;
+        }
+        &__name, &__phone {
+            color: var(--text-white);
+            @include adaptive-value("font-size", 16, 14, 0);
+            background-color: transparent;
+            width: 90%;
+            height: 30px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-gray);
+            &::placeholder {
+                color: var(--bg-gray-500);
+                @include adaptive-value("font-size", 18, 14, 0);
+            }
+        }
+        &__submit {
+            margin-top: 10px;
+            width: 120%;
+            &._active-anim {
+              .custom-btn__btn {
+                background-color: var(--bg-purple);
+                transition: 1.5s ease-out;  
+              }
+            }
+            .custom-btn__btn {
+                height: 45px;
+                text-transform: uppercase;
+                font-size: rem(30);
+                font-weight: 200;
+                letter-spacing: 2px;
+                background-color: var(--bg-green);
+            }
+        }
+    }
+}

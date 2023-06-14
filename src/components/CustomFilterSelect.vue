@@ -77,7 +77,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-    @import '../assets/styles/components-styles/custom-filter-select.scss';
-</style>

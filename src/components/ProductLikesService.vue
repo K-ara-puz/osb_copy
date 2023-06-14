@@ -60,7 +60,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-@import '../assets/styles/product-likes-service.scss';
-</style>

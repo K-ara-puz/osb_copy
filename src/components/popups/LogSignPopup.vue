@@ -25,7 +25,7 @@
                 :inputLabel="'Email'"
                 :errors="this.vLog$.email.$errors"
                 :modelValue="this.vLog$.email.$model"
-                @update:modelValue="newValue => this.vLog$.email.$model = newValue"
+                @update:modelValue="this.updateLogEmailValue"
               ></CustomInput>
             </div>
             <div class="log-popup__center-bar__password">
@@ -231,9 +231,12 @@ export default {
     const vLog$ = useVuelidate(rulesForLog, stateForLog);
     const vReg$ = useVuelidate(rulesForReg, stateForReg);
 
-    return { stateForLog, vLog$, vReg$ };
+    return { vLog$, vReg$ };
   },
   methods: {
+    updateLogEmailValue(newValue) {
+      this.vLog$.email.$model = newValue;
+    },
     reversePopup() {
       let target = document.querySelector(".log-popup__wrapper");
       target.classList.toggle("log-popup__wrapper_reverse");
@@ -285,6 +288,3 @@ export default {
   components: { CustomInput },
 };
 </script>
-<style lang="scss">
-@import "../../assets/styles/components-styles/popups/log-sign-popup.scss";
-</style>

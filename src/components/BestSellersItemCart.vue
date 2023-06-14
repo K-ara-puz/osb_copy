@@ -192,7 +192,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "../assets/styles/components-styles/best-seller-item-cart.scss";
-</style>

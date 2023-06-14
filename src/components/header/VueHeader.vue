@@ -122,12 +122,16 @@
         v-if="this.IS_MOBILE_MENU_OPEN"
       >
         <div class="mobile-menu-header__container mobile-menu__body">
-          <CustomSearchInput
-            @search-item="this.searchProducts($event), this.showMobileMenu()"
-            class="mobile-menu-header__search"
-            :clear-after-search="true"
-          >
-          </CustomSearchInput>
+          <div class="mobile-menu__body__search">
+            <CustomSearchInput
+              @search-item="this.searchProducts($event), this.showMobileMenu()"
+              class="mobile-menu__body__search__input"
+              :clear-after-search="true"
+              :is-cancel-icon="true"
+              :is-search-icon="true"
+            >
+            </CustomSearchInput>
+          </div>
           <div class="mobile-menu-header__link">
             <a @click="this.routeFromHeader('main')">Главная</a>
           </div>
@@ -194,7 +198,7 @@ export default {
     };
   },
   mounted() {
-    this.headerDisplayController();
+    // this.headerDisplayController();
   },
   computed: {
     ...mapGetters(["IS_MOBILE", "IS_MOBILE_MENU_OPEN", "CART"]),
@@ -245,46 +249,44 @@ export default {
     },
     headerDisplayController() {
       // Hide Header on on scroll down
-      var didScroll;
-      var lastScrollTop = 0;
-      var delta = 2;
-      var navbarHeight = document.querySelector("header").offsetHeight;
-      window.onscroll = function () {
-        didScroll = true;
-      };
-
-      setInterval(function () {
-        if (didScroll) {
-          hasScrolled();
-          didScroll = false;
-        }
-      }, 250);
-
-      function hasScrolled() {
-        var st = window.scrollY;
-        // Make sure they scroll more than delta
-        if (Math.abs(lastScrollTop - st) <= delta) return;
-        // If they scrolled down and are past the navbar, add class .nav-up.
-        // This is necessary so you never see what is "behind" the navbar.
-        if (st > lastScrollTop && st > navbarHeight) {
-          // Scroll Down
-          document.querySelector("header").classList.remove("nav-down");
-          document.querySelector("header").classList.add("nav-up");
-        } else {
-          // Scroll Up
-          let temp = document.querySelector("body").clientHeight;
-          if (st + window.innerHeight < temp) {
-            document.querySelector("header").classList.remove("nav-up");
-            document.querySelector("header").classList.add("nav-down");
-          }
-          if (window.pageYOffset < 10) {
-            document.querySelector("header").classList.remove("nav-up");
-            document.querySelector("header").classList.add("nav-down");
-            document.querySelector("header").classList.add("_active-anim");
-          }
-        }
-        lastScrollTop = st;
-      }
+      // var didScroll;
+      // var lastScrollTop = 0;
+      // var delta = 2;
+      // var navbarHeight = document.querySelector("header").offsetHeight;
+      // window.onscroll = function () {
+      //   didScroll = true;
+      // };
+      // setInterval(function () {
+      //   if (didScroll) {
+      //     hasScrolled();
+      //     didScroll = false;
+      //   }
+      // }, 250);
+      // function hasScrolled() {
+      //   var st = window.scrollY;
+      //   // Make sure they scroll more than delta
+      //   if (Math.abs(lastScrollTop - st) <= delta) return;
+      //   // If they scrolled down and are past the navbar, add class .nav-up.
+      //   // This is necessary so you never see what is "behind" the navbar.
+      //   if (st > lastScrollTop && st > navbarHeight) {
+      //     // Scroll Down
+      //     document.querySelector("header").classList.remove("nav-down");
+      //     document.querySelector("header").classList.add("nav-up");
+      //   } else {
+      //     // Scroll Up
+      //     let temp = document.querySelector("body").clientHeight;
+      //     if (st + window.innerHeight < temp) {
+      //       document.querySelector("header").classList.remove("nav-up");
+      //       document.querySelector("header").classList.add("nav-down");
+      //     }
+      //     if (window.pageYOffset < 10) {
+      //       document.querySelector("header").classList.remove("nav-up");
+      //       document.querySelector("header").classList.add("nav-down");
+      //       document.querySelector("header").classList.add("_active-anim");
+      //     }
+      //   }
+      //   lastScrollTop = st;
+      // }
     },
     showWrappScroll() {
       const body = document.querySelector("body");
@@ -317,7 +319,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "../../assets/styles/components-styles/vue-header.scss";
-</style>

@@ -195,11 +195,11 @@
     padding: rem(10) 0;
   }
   &__ic {
-      width: rem(25);
-      height: rem(25);
+      width: rem(25) !important;
+      height: rem(25) !important;
       @media (max-width: $smBreakpoint) {
-        width: rem(20);
-        height: rem(20);
+        width: rem(20) !important;
+        height: rem(20) !important;
     }
   }
   &__container {

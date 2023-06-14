@@ -43,6 +43,9 @@ $carouselTransformOrigin: 50% 50% (-$carouselRadius);
           transition: all 1.5s ease-out;
         }
       }
+      @media (max-width: $smBreakpoint) {
+        margin: rem(0) auto 0;
+      }
     }
     .cs-item {
       user-select: none;

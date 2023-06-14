@@ -15,7 +15,7 @@
             :speed="1000"
             :space-between="30"
             :slots-count="category.products.length"
-            pagination
+            :pagination="{'clickable' : true}"
             class="sale-page__dashboard__swiper"
             :breakpoints="this.swiperBreakpoints"
           >
@@ -95,6 +95,3 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-@import "../../assets/styles/components-styles/sale-page/sale-page.scss";
-</style>

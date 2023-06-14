@@ -1,6 +1,5 @@
 <template>
   <footer class="footer">
-    <div class="footer__vprod">Vprod</div>
     <div class="footer__wrapper">
       <div class="footer__left-bar">
         <div class="footer__left-bar__telegram">
@@ -41,6 +40,4 @@
     </div>
   </footer>
 </template>
-<style lang="scss">
-@import "../../assets/styles/components-styles/vue-footer.scss";
-</style>
+

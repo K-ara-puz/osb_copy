@@ -107,5 +107,4 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "../../assets/styles/components-styles/about-page/about-page.scss";
 </style>

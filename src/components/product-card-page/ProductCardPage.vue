@@ -5,8 +5,7 @@
         <div class="pr-card__top-bar__pr top-bar-pr">
           <div class="top-bar-pr__swiper _anim-scroll _anim-no-hide">
             <SwiperSlider
-              ref="swiperRef"
-              @activeIndexChange="this.startProductImageZoom()"
+              ref="swiperProductCard"
               :speed="1000"
               :slides-per-view="1"
               :space-between="30"
@@ -14,26 +13,54 @@
               effect="cube"
               :elements-for-custom-pagination="this.currentProduct.images"
               :is-photo-pagination="true"
+              @activeIndexChange="this.resetZoom()"
             >
               <template
                 v-for="(image, index) of this.currentProduct.images"
                 :key="index"
                 v-slot:[index]
               >
-                <div @click="this.openFullHDSlider()" class="top-bar-pr__image__zoom">
+                <div
+                  class="top-bar-pr__image__zoom"
+                >
                   <div
                     class="top-bar-pr__image__sale"
                     v-if="this.currentProduct.isOnSale"
                   ></div>
                   <div class="top-bar-pr__image__container">
+                    <img @click="this.openFullHDSlider()" class="pr-card__top-bar__db-click-anim" src="../../assets/icons/dark-theme/double_click_2.gif"/>
+                    <button
+                      v-if="!this.IS_MOBILE"
+                      class="top-bar-pr__image__container__loop"
+                      title="'Open loop'"
+                      @click="this.controlImgZoomDisplay()"
+                    >
+                      <svg
+                        fill="none"
+                        stroke="#fff"
+                        viewBox="0 0 100 100"
+                      >
+                        <circle
+                          cx="42.995"
+                          cy="43.013"
+                          r="39.436"
+                          style="stroke-width: 3"
+                        />
+                        <path
+                          d="m98.206 98.224-27.33-27.33M19.334 43.013h47.323M42.995 19.352v47.323"
+                          style="stroke-width: 3"
+                        />
+                      </svg>
+                    </button>
                     <img
-                    :src="
-                      require('../../assets/products-images/small/' +
-                        image +
-                        '.webp')
-                    "
-                  />
-                  <img
+                      @click="this.openFullHDSlider()"
+                      :src="
+                        require('../../assets/products-images/small/' +
+                          image +
+                          '.webp')
+                      "
+                    />
+                    <img
                       id="prZoomImage"
                       :src="
                         require('../../assets/products-images/small/' +
@@ -174,12 +201,20 @@
           </div>
         </div>
       </div>
-      <VueFeedbacks :current-product="this.currentProduct"></VueFeedbacks>
+      <VueFeedbacks
+        class="pr-card__feedbacks"
+        :current-product="this.currentProduct"
+      ></VueFeedbacks>
     </div>
-    <WarningPopup v-if="this.$root.popupsController.data._isWarningPopupOpen === true" :only-slider="true">
+    <WarningPopup
+      v-if="this.$root.popupsController.data._isWarningPopupOpen === true"
+      :only-slider="true"
+    >
       <template #insert-component>
         <div class="pr-card__full-slider">
           <SwiperSlider
+            ref="swiperFullSlider"
+            :initialSlide="this.$refs.swiperProductCard.swiperRef.activeIndex"
             :speed="1000"
             :slides-per-view="1"
             :space-between="10"
@@ -193,7 +228,9 @@
               :key="index"
               v-slot:[index]
             >
-                 <div class="pr-card__full-slider__image swiper-zoom-container">
+              <div class="pr-card__full-slider__image ">
+                  <img class="pr-card__full-slider__image__db-click-anim" src="../../assets/icons/dark-theme/double_click_2.gif"/>
+                <div class="swiper-zoom-container">
                   <img
                   class="pr-card__full-slider__image__img"
                   :src="
@@ -202,7 +239,9 @@
                       '.webp')
                   "
                 />
-                 </div>
+
+                </div>
+              </div>
             </template>
           </SwiperSlider>
         </div>
@@ -232,6 +271,7 @@ export default {
       currentProduct: null,
       activeNavPage: 0,
       isPagination: true,
+      slidesZoomControlPoints: [],
     };
   },
   mounted() {
@@ -288,35 +328,86 @@ export default {
         window.scrollTo({ top: res, behavior: "smooth" });
       }
     },
-    startProductImageZoom() {
-      let activeSlideIndex = this.$refs.swiperRef.swiperRef.activeIndex;
-      let activeSlideDiv = this.$refs.swiperRef.swiperRef.slides[activeSlideIndex];
-      let zoom = activeSlideDiv.querySelector(".top-bar-pr__image__zoom");
-      let imgZoom = zoom.querySelector("#prZoomImage");
-      let pagination = document.querySelector(".custom-pagination");
-      zoom.addEventListener("mousemove", (e) => {
-        pagination.style.opacity = 0;
-        imgZoom.style.opacity = 1;
-        let positionPx = e.x - zoom.getBoundingClientRect().left;
-        let positionX = (positionPx / zoom.offsetWidth) * 100;
-        let positionPy = e.y - zoom.getBoundingClientRect().top;
-        let positionY = (positionPy / zoom.offsetHeight) * 100;
-        imgZoom.style.setProperty("--zoom-x", positionX + "%");
-        imgZoom.style.setProperty("--zoom-y", positionY + "%");
+    addZoomData() {
+      for (let i = 0; i < this.currentProduct.images.length; i++) {
+        let slide = {
+          isZoomActive: false,
+          slideData: {}
+        }
+      let activeSlideDiv =
+        this.$refs.swiperProductCard.swiperRef.slides[i];
+      let activeSlideData = {};
+      activeSlideData.zoom = activeSlideDiv.querySelector(".top-bar-pr__image__zoom");
+      activeSlideData.imgZoom = activeSlideDiv.querySelector("#prZoomImage");
+      activeSlideData.zoomBtn = activeSlideDiv.querySelector('.top-bar-pr__image__container__loop');
+
+      slide.slideData = activeSlideData;
+        this.slidesZoomControlPoints.push(slide);
+      }
+    },
+    controlImgZoomDisplay() {
+      let activeSlideIndex = this.$refs.swiperProductCard.swiperRef.activeIndex;
+      this.slidesZoomControlPoints[activeSlideIndex].isImgZoomActive = !this.slidesZoomControlPoints[activeSlideIndex].isImgZoomActive;
+      console.log(this.slidesZoomControlPoints[activeSlideIndex].isImgZoomActive)
+      if (this.slidesZoomControlPoints[activeSlideIndex].isImgZoomActive === true) {
+        this.startProductImageZoom(activeSlideIndex);
+      } else {
+        this.stopProductImageZoom(activeSlideIndex);
+      }
+    },
+    startProductImageZoom(activeSlideIndex) {
+      let vm = this;
+      this.slidesZoomControlPoints[activeSlideIndex].slideData.zoom.addEventListener("mousemove", vm.showImgZoom)
+      this.slidesZoomControlPoints[activeSlideIndex].slideData.zoom.addEventListener("mouseout", vm.hideImgZoom);
+      this.slidesZoomControlPoints[activeSlideIndex].slideData.zoomBtn.classList.add('_active');
+      let swiperShadow = document.querySelector('.pr-card-page .swiper-cube-shadow');
+      swiperShadow.style.opacity = 0;
+    },
+    showImgZoom(e) {
+      let activeSlideIndex = this.$refs.swiperProductCard.swiperRef.activeIndex;
+        this.slidesZoomControlPoints[activeSlideIndex].slideData.imgZoom.style.opacity = 1;
+        let positionPx = e.x - this.slidesZoomControlPoints[activeSlideIndex].slideData.zoom.getBoundingClientRect().left;
+        let positionX = (positionPx / this.slidesZoomControlPoints[activeSlideIndex].slideData.zoom.offsetWidth) * 100;
+        let positionPy = e.y - this.slidesZoomControlPoints[activeSlideIndex].slideData.zoom.getBoundingClientRect().top;
+        let positionY = (positionPy / this.slidesZoomControlPoints[activeSlideIndex].slideData.zoom.offsetHeight) * 100;
+        this.slidesZoomControlPoints[activeSlideIndex].slideData.imgZoom.style.setProperty("--zoom-x", positionX + "%");
+        this.slidesZoomControlPoints[activeSlideIndex].slideData.imgZoom.style.setProperty("--zoom-y", positionY + "%");
 
         let transformX = (positionX - 50) / 3.5;
         let transformY = (positionY - 50) / 3.5;
-        imgZoom.style.transform = `scale(1.5)
+        this.slidesZoomControlPoints[activeSlideIndex].slideData.imgZoom.style.transform = `scale(1.5)
           translateX(${transformX}%) translateY(${transformY}%)`;
-      });
-      zoom.addEventListener("mouseout", () => {
-        imgZoom.style.opacity = 0;
-        pagination.style.opacity = 1;
-      });
+        this.slidesZoomControlPoints[activeSlideIndex].slideData.zoomBtn.style.zIndex = 1;
+        let pagination = document.querySelector(".pr-card-page .custom-pagination");
+        pagination.style.opacity = 0;
     },
+    hideImgZoom() {
+      let activeSlideIndex = this.$refs.swiperProductCard.swiperRef.activeIndex;
+      this.slidesZoomControlPoints[activeSlideIndex].slideData.imgZoom.style.opacity = 0;
+      this.slidesZoomControlPoints[activeSlideIndex].slideData.zoomBtn.style.zIndex = 10;
+    },
+    stopProductImageZoom(activeSlideIndex) {
+      let vm = this;
+      this.slidesZoomControlPoints[activeSlideIndex].slideData.zoom.removeEventListener("mousemove", vm.showImgZoom);
+      this.slidesZoomControlPoints[activeSlideIndex].slideData.zoom.removeEventListener("mouseout", vm.hideImgZoom);
+
+      this.slidesZoomControlPoints[activeSlideIndex].slideData.imgZoom.style.opacity = 0;
+      let pagination = document.querySelector(".pr-card-page .custom-pagination");
+      pagination.style.opacity = 1;
+      this.slidesZoomControlPoints[activeSlideIndex].isImgZoomActive = false;
+      this.slidesZoomControlPoints[activeSlideIndex].slideData.zoomBtn.classList.remove('_active');
+      let swiperShadow = document.querySelector('.pr-card-page').querySelector('.swiper-cube .swiper-cube-shadow');
+      swiperShadow.style.opacity = 1;
+    },
+    resetZoom() {
+      if (this.IS_MOBILE) return
+      for (let i = 0; i < this.currentProduct.images.length; i++) {
+        this.stopProductImageZoom(i)
+      }
+    }
   },
   computed: {
-    ...mapGetters(["PRODUCTS", "CURRENCY", "ACTIVE_USER"]),
+    ...mapGetters(["PRODUCTS", "CURRENCY", "ACTIVE_USER", "IS_MOBILE"]),
     prCardClasses() {
       return {
         "pr-card_with-sale": this.currentProduct.isOnSale,
@@ -345,7 +436,7 @@ export default {
       if (this.currentProduct) {
         setTimeout(() => {
           this.$root.itemsShowAnimation();
-          this.startProductImageZoom();
+          this.addZoomData();
         }, 500);
         if (this.currentProduct.descriptions) {
           this.ellipsisDescriptions();
@@ -355,7 +446,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "../../assets/styles/components-styles/product-card-page.scss";
-</style>

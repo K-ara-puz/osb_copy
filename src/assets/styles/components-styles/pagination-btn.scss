@@ -10,6 +10,7 @@
     width: rem(50);
     height: rem(50);
     border-radius: 50%;
+    position: relative;
   }
   &__ic {
     color: var(--bg-icon);
@@ -17,6 +18,10 @@
     stroke: var(--bg-icon);
     width: 15px;
     height: 15px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
   &_disabled {
     background-color: transparent;

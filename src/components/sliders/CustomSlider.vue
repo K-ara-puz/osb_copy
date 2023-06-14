@@ -5,41 +5,51 @@
     </div>
     <div class="custom-slider__container">
       <button
-      class="custom-slider__prev-btn"
-      @click="this.swiperData.slidePrev()"
-    ></button>
-    <SwiperSlider
-      v-if="this.products.length"
-      ref="swiperRef"
-      :speed="1000"
-      :loop="true"
-      :slides-per-view="3"
-      :slots-count="this.products.length"
-      :breakpoints="this.swiperBreakpoints"
-      navigation
-      :products="this.products"
-      @swiper="this.getRef"
-      @realIndexChange="this.addSwiperSlideAnimation"
-      class="custom-slider__slider"
-    >
-      <template
-        v-for="(item, index) of this.products"
-        :key="index"
-        v-slot:[index]
+        class="custom-slider__prev-btn"
+        @click="this.$refs.swiperCustomRef.swiperRef.slidePrev()"
+      ></button>
+      <SwiperSlider
+        v-if="this.products.length"
+        ref="swiperCustomRef"
+        :speed="1000"
+        :loop="true"
+        :slides-per-view="3"
+        :slots-count="this.products.length"
+        :breakpoints="this.swiperBreakpoints"
+        navigation
+        :pagination="{'clickable' : true}"
+        :products="this.products"
+        @slideChange="this.addSwiperSlideAnimation"
+        class="custom-slider__slider"
       >
-        <BestSellersItemCart
-          :product-data="item"
-          class="custom-slider__slider__slide-item _anim-scroll _anim-no-hide"
+        <template
+          v-for="(item, index) of this.products"
+          :key="index"
+          v-slot:[index]
         >
-        </BestSellersItemCart>
-      </template>
-    </SwiperSlider>
-    <button
+          <BestSellersItemCart
+            :product-data="item"
+            class="custom-slider__slider__slide-item _anim-scroll _anim-no-hide"
+          >
+          </BestSellersItemCart>
+        </template>
+      </SwiperSlider>
+      <button
         class="custom-slider__next-btn"
-        @click="this.swiperData.slideNext()"
-    ></button>
+        @click="this.$refs.swiperCustomRef.swiperRef.slideNext()"
+      ></button>
+      <!-- <div v-if="this.isPagination === true" class="carousel-square__pagination">
+      <div
+        v-for="(dot, index) in this.products.length"
+        :key="index"
+        class="carousel-square__pagination__dot"
+        :class="{'_active' : this.$refs.swiperCustomRef.swiperRef.activeIndex === index}"
+        @click="this.moveActiveIdFromPagination(index)"
+      >
+        <span class="carousel-square__pagination__dot__span"></span>
+      </div> -->
+    <!-- </div> -->
     </div>
-    
   </div>
 </template>
 <script>
@@ -48,10 +58,10 @@ import SwiperSlider from "./SwiperSlider.vue";
 import BestSellersItemCart from "../BestSellersItemCart.vue";
 
 export default {
-    components: {
-        SwiperSlider,
-        BestSellersItemCart,
-    },
+  components: {
+    SwiperSlider,
+    BestSellersItemCart,
+  },
   props: {
     title: {
       type: String,
@@ -62,12 +72,15 @@ export default {
     },
     isBackground: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
+    isPagination: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
-      swiperData: null,
       swiperBreakpoints: {
         // when window width is >= 480px
         200: {
@@ -80,7 +93,7 @@ export default {
         },
         700: {
           spaceBetween: 40,
-        }
+        },
       },
     };
   },
@@ -88,14 +101,11 @@ export default {
     ...mapGetters(["PRODUCTS_ON_SALE"]),
     compClasses() {
       return {
-        'custom-slider _with-bg' : this.isBackground === true,
-      }
-    }
+        "custom-slider _with-bg": this.isBackground === true,
+      };
+    },
   },
   methods: {
-    getRef(swiperInstance) {
-      this.swiperData = swiperInstance;
-    },
     addSwiperSlideAnimation(swiperInstance) {
       let centerSlideIndex = Number(swiperInstance.activeIndex);
       ++centerSlideIndex;
@@ -103,11 +113,15 @@ export default {
         centerSlideIndex
       ].querySelector(".custom-slider__slider__slide-item");
       let centerSiblingElements = [];
-      centerSiblingElements.push(
-        swiperInstance.slides[centerSlideIndex].nextSibling.querySelector(
-          ".custom-slider__slider__slide-item"
-        )
-      );
+      if (swiperInstance.isEnd) {
+        return;
+      } else {
+        centerSiblingElements.push(
+          swiperInstance.slides[centerSlideIndex].nextSibling.querySelector(
+            ".custom-slider__slider__slide-item"
+          )
+        );
+      }
       centerSiblingElements.push(
         swiperInstance.slides[centerSlideIndex].previousSibling.querySelector(
           ".custom-slider__slider__slide-item"
@@ -130,9 +144,6 @@ export default {
         });
       }, timeout);
     },
-  }
+  },
 };
 </script>
-<style lang="scss">
-@import '../../assets/styles/components-styles/custom-slider.scss';
-</style>

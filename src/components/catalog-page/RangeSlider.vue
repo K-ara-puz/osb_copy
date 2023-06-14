@@ -106,7 +106,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-  @import '../../assets/styles/components-styles/range-slider.scss';
-</style>

@@ -12,6 +12,7 @@ import PreloaderAnimation from "./PreloaderAnimation.vue";
 import { itemsScrollAnim } from "./itemsScrollAnimation.js";
 import { mapActions } from "vuex";
 import CustomAlert from "./components/CustomAlert.vue";
+import './assets/styles/styles.scss';
 
 export default {
   name: "App",

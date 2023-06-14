@@ -1,4 +1,9 @@
- /*Обнуление*/
+@use 'sass:math';
+@function rem($px) {
+  $result: math.div($px, 16) + em;
+  @return $result;
+}
+/*Обнуление*/
  *{padding: 0;margin: 0;border: 0;}
  *,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
  :focus,:active{outline: none;}
@@ -19,16 +24,52 @@
 @import 'mixins.scss';
 @import 'scroll-animation.scss';
 
+@import "components-styles/vue-header.scss";
+@import "components-styles/catalog-page.scss";
+@import "components-styles/catalog-product-card.scss";
+@import "components-styles/product-card-page.scss";
+@import "components-styles/range-slider.scss";
+@import "components-styles/vue-footer.scss";
+@import "components-styles/main-page.scss";
+@import "components-styles/sale-page/sale-page.scss";
+@import "components-styles/account-page/account-page.scss";
+@import "components-styles/about-page/about-page.scss";
+@import "components-styles/best-seller-item-cart.scss";
+@import "components-styles/custom-btn.scss";
+@import "components-styles/custom-filter-select.scss";
+@import "components-styles/custom-search-input.scss";
+@import "components-styles/pagination-btn.scss";
+@import "components-styles/custom-input.scss";
+@import "components-styles/custom-slider.scss";
+@import "components-styles/square-carousel.scss";
+@import "components-styles/swiper-slider.scss";
+@import "components-styles/call-order-form-service.scss";
+@import "components-styles/vue-feedbacks.scss";
+@import "components-styles/custom-add-feedback-component.scss";
+@import "components-styles/account-page/account-custom-nav.scss";
+@import "components-styles/account-page/account-custom-order.scss";
+@import "components-styles/account-page/account-feedbacks.scss";
+@import "components-styles/account-page/account-likes-list.scss";
+@import "components-styles/account-page/account-navigation.scss";
+@import "components-styles/account-page/account-orders.scss";
+@import "components-styles/account-page/account-settings.scss";
+@import "main-wrapper.scss";
+@import "product-likes-service.scss";
+@import "components-styles/popups/pass-change-popup.scss";
+@import "components-styles/popups/warning-popup.scss";
+@import "components-styles/popups/cart-popup.scss";
+@import "components-styles/popups/log-sign-popup.scss";
+@import "components-styles/custom-pagination.scss";
+@import "custom-alert.scss";
+
+
+
 @import 'swiper/css';
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
 @import 'swiper/css/effect-cube';
 @import 'swiper/css/zoom';
 
-@function rem($px) {
-    $result: math.div($px, 16) + em;
-    @return $result;
-}
 
 %product-sale-icon {
     content: 'SALE';

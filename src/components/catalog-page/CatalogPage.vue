@@ -81,7 +81,7 @@
             :key="product.id"
             :productData="product"
             :is-grid="this.isGridView"
-            class="catalog__main__main-block__product _anim-scroll"
+            class="catalog__main__main-block__product _anim-scroll _anim-no-hide"
           >
           </CatalogProductCard>
         </div>
@@ -331,6 +331,3 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "../../assets/styles/components-styles/catalog-page.scss";
-</style>
