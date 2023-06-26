@@ -8,7 +8,7 @@
           :step="this.step"
           min="0"
           max="5000"
-          :value="this.minPrice"
+          :value="this.selectedMinValue"
           @click="updateMinValue($event.target.value)"
           @touchend.passive="updateMinValue($event.target.value)"
         />
@@ -18,7 +18,7 @@
           :step="this.step"
           min="0"
           max="5000"
-          :value="this.maxPrice"
+          :value="this.selectedMaxValue"
           @click="updateMaxValue($event.target.value)"
           @touchend.passive="updateMaxValue($event.target.value)"
         />
@@ -32,7 +32,7 @@
             tabindex="-1"
             type="number"
             class="count-range-slider__span__min"
-            v-model="this.minPrice"
+            :value="this.selectedMinValue"
             @change="updateMinValueFromInput($event)"
           />
         </div>
@@ -45,7 +45,7 @@
             tabindex="-1"
             type="number"
             class="count-range-slider__span__max"
-            v-model="this.maxPrice"
+            :value="this.selectedMaxValue"
             @change="updateMaxValueFromInput($event)"
           />
         </div>
@@ -56,9 +56,23 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
+  props: {
+    selectedMinValue: {
+      type: Number,
+      default() {
+        return 0;
+      },
+    },
+    selectedMaxValue: {
+      type: Number,
+      default() {
+        return 5000;
+      },
+    },
+  },
   data() {
     return {
       minPrice: 0,
@@ -68,7 +82,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["CURRENCY"])
+    ...mapGetters(["CURRENCY"]),
   },
   methods: {
     updateMinValue(value) {
@@ -77,15 +91,16 @@ export default {
       } else {
         this.minPrice = Number(this.maxPrice - this.priceGap);
       }
-      this.$emit('min-price-updated', this.minPrice)
+      this.$emit("min-price-updated", this.minPrice);
     },
     updateMinValueFromInput(e) {
       let value = e.target.value;
       if (value < 0) this.minPrice = 0;
+      this.minPrice = Number(value);
       if (value >= this.maxPrice - this.priceGap) {
         this.minPrice = Number(this.maxPrice - this.priceGap);
       }
-      this.$emit('min-price-updated', this.minPrice)
+      this.$emit("min-price-updated", this.minPrice);
     },
     updateMaxValue(value) {
       if (value - this.minPrice > this.priceGap) {
@@ -93,15 +108,16 @@ export default {
       } else {
         this.maxPrice = Number(this.minPrice + this.priceGap);
       }
-      this.$emit('max-price-updated', this.maxPrice)
+      this.$emit("max-price-updated", this.maxPrice);
     },
     updateMaxValueFromInput(e) {
       let value = e.target.value;
       if (value > 5000) this.maxPrice = 5000;
+      this.maxPrice = Number(value);
       if (value <= this.minPrice + this.priceGap) {
         this.maxPrice = Number(this.minPrice + this.priceGap);
       }
-      this.$emit('max-price-updated', this.maxPrice)
+      this.$emit("max-price-updated", this.maxPrice);
     },
   },
 };

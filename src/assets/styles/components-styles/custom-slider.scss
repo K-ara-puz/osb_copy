@@ -73,6 +73,10 @@
         display: none;
         &-bullet {
           background-color: var(--bg-purple);
+          opacity: 0.3;
+          &-active {
+            opacity: 1;
+          }
         }
         @media (max-width: $mdBreakpoint) or (any-pointer: coarse) {
           display: block;
@@ -89,7 +93,6 @@
           .best-seller__container {
             max-height: 250px;
           }
-          padding: 0;       
         }
         &-slide {
           background: no-repeat 50% / contain url('../../assets/icons/dark-theme/best_bg_2.webp') !important;

@@ -81,7 +81,7 @@
     font-family: 'Montserrat', sans-serif;
   }
   &__new-price {
-    font-size: rem(26);
+    font-size: rem(22);
     font-weight: 300;
     margin-right: 15px;
     @media (max-width: $smBreakpoint) {
@@ -90,7 +90,7 @@
     }
   }
   &__price {
-    font-size: rem(26);
+    font-size: rem(22);
     font-weight: 300;
     display: inline-flex;
     align-items: center;

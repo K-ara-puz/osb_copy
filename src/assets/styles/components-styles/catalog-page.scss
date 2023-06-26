@@ -8,6 +8,12 @@
   background-color: var(--body-color);
   color: var(--text-white);
   padding-bottom: 50px;
+  &__main-filters {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   &__top-bar {
     z-index: 10;
     display: flex;
@@ -96,6 +102,15 @@
       @media (max-width: $mdBreakpoint) {
         flex: 0 0 40%;
       }
+    }
+    &__range-slider {
+      margin-top: 10px;
+    }
+    &__btns {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 0 1 300px;
     }
   }
   &__main {

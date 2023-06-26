@@ -9,6 +9,7 @@ import AccountLikesList from "../components/account-page/AccountLikesList";
 import AccountNavigation from "../components/account-page/AccountNavigation.vue";
 import AccountSettings from "../components/account-page/AccountSettings";
 import AccountFeedbacks from "../components/account-page/AccountFeedbacks";
+import OrderPage from '../components/order-page/OrderPage';
 
 import { createRouter } from "vue-router";
 import { createWebHashHistory } from "vue-router";
@@ -25,6 +26,10 @@ const routes = [
   {
     path: "/about",
     component: AboutPage,
+  },
+  {
+    path: "/order",
+    component: OrderPage,
   },
   {
     path: "/sale",

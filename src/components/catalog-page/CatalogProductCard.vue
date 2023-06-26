@@ -47,6 +47,7 @@
             </button>
             <ProductLikesService
               :current-product="this.productData"
+              style="padding-top: 0.5px"
             ></ProductLikesService>
             <button @click="this.addProductToCart()">
               <svg

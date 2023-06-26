@@ -68,6 +68,7 @@
             <ProductLikesService
               class="bottom-bar-best-seller__ic"
               :current-product="this.productData"
+              style="padding-top: 0.5px"
             ></ProductLikesService>
             <button @click="this.addProductToCart()">
               <svg

@@ -20,11 +20,15 @@
  img{vertical-align: top;}
  h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
  /*--------------------*/
+ html {
+  scroll-behavior: smooth;
+ }
 @import 'vars.scss';
 @import 'mixins.scss';
 @import 'scroll-animation.scss';
 
 @import "components-styles/vue-header.scss";
+@import "components-styles/header-catalog.scss";
 @import "components-styles/catalog-page.scss";
 @import "components-styles/catalog-product-card.scss";
 @import "components-styles/product-card-page.scss";
@@ -61,14 +65,17 @@
 @import "components-styles/popups/log-sign-popup.scss";
 @import "components-styles/custom-pagination.scss";
 @import "custom-alert.scss";
-
+@import "preloader-anim.scss";
+@import "components-styles/order-page/order-page.scss";
 
 
 @import 'swiper/css';
 @import 'swiper/css/navigation';
 @import 'swiper/css/pagination';
 @import 'swiper/css/effect-cube';
+@import 'swiper/css/effect-cards';
 @import 'swiper/css/zoom';
+@import 'swiper/css/autoplay';
 
 
 %product-sale-icon {

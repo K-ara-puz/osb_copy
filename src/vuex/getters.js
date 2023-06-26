@@ -34,5 +34,11 @@ export default {
       },
       ACTIVE_USER(state) {
         return state.activeUser;
+      },
+      FILTERS(state) {
+        return state.filters;
+      },
+      SORT_VALUE(state) {
+        return state.sortValue;
       }
 }

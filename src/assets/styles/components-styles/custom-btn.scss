@@ -22,17 +22,23 @@
         border-radius: 20px;
         transition: all 1s;
       }
-      &__disabled {
-        pointer-events: none;
+    }
+    &__disabled {
+      pointer-events: none;
+      .custom-btn__btn {
         background-color: rgb(161, 161, 161);
       }
-      &__error {
+    }
+    &__error {
+      .custom-btn__btn {
         background-color: var(--bg-red);
         &:hover {
           background-color: rgb(206, 42, 42);
-        }
+        }     
       }
-      &__success {
+    }
+    &__success {
+      .custom-btn__btn {
         background-color: var(--bg-green-btn);
         transition: all 1s;
         &:hover {
@@ -41,13 +47,19 @@
           transition: all 1s;
         }
       }
-      &__purple {
-        background-color: var(--bg-purple);
+    }
+    &__purple {
+      .custom-btn__btn {
+        background-color: var(--bg-purple);        
       }
-      &__gray {
-        background-color: var(--bg-gray-300);
+    }
+    &__gray {
+      .custom-btn__btn {
+        background-color: var(--bg-gray-300);        
       }
-      &__gray-rounded {
+    }
+    &__gray-rounded {
+      .custom-btn__btn {
         background-color: var(--bg-card);
         border-radius: 20px;
         color: var(--text-gray);

@@ -4,7 +4,7 @@
     --bg-green: rgb(25, 207, 122);
     --bg-green-500: rgb(0, 48, 37);
     --bg-green-log-pop: rgba(25, 207, 122, 0.5);
-    --bg-green-btn: rgb(23, 167, 112);
+    --bg-green-btn: rgb(6, 118, 75);
     --bg-success-alert: rgb(10, 175, 79);
     --bg-red: rgb(128, 0, 0);
     --text-red: rgb(201, 0, 0);
@@ -17,6 +17,8 @@
     --bg-card-bestseller: rgb(1, 4, 17, 0.8);
     --bg-pag-btns: rgb(6, 16, 49);
     --bg-gray-blue: rgb(16, 17, 37, 0.5);
+    --bg-gray-900: rgb(7, 7, 7);
+    --bg-gray-800: rgb(15, 15, 15);
     --bg-gray-500: rgb(25, 25, 39);
     --bg-gray-300: rgb(78, 78, 88);
     --bg-blue-300: rgb(67, 140, 235);
@@ -24,12 +26,12 @@
     --text-white: #fff;
     --text-gray:  rgb(168, 168, 168);
     --border-gray: rgb(22, 22, 22);
-    --border-log-popup: rgba(57, 57, 104, 0.3);
+    --border-popups: rgba(57, 57, 104, 0.3);
     --bg-scrollbar-thumb: rgba(8, 8, 8, 0.788);
     --bg-scrollbar: rgb(0, 0, 0);
     --bg-cart-popup: rgba(0, 0, 0, 0.7);
-    --bg-log-popup: rgba(0, 0, 8, 0.8);
-    --bg-log-popup-2: rgba(0, 3, 17, 0.97);
+    --bg-log-popup: rgba(0, 0, 8, 0.96);
+    --bg-log-popup-2: rgba(0, 3, 17, 1);
     --border-select: rgba(73, 73, 73, 0.15);
 }
 body {

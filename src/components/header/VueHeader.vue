@@ -36,10 +36,22 @@
               <a>Главная</a>
             </router-link>
           </div>
-          <div v-if="!this.IS_MOBILE" class="nav-bar__link">
-            <router-link to="/catalog">
-              <a>Каталог</a>
+          <div
+            v-if="!this.IS_MOBILE"
+            @mouseenter="this.showHeaderCatalogMenu"
+            @mouseleave="this.hideHeaderCatalogMenu"
+            class="nav-bar__link header__nav-bar__link-catalog"
+          >
+            <router-link to="/catalog" custom v-slot="{ navigate }">
+              <a @click="navigate">Каталог</a>
             </router-link>
+            <transition name="header-catalog-anim">
+                <HeaderCatalog
+                  v-if="this.isHeaderCatalogVisible === true"
+                  @category-selected="this.goToCatalog"
+                >
+                </HeaderCatalog>
+              </transition>
           </div>
           <div class="">
             <router-link to="/">
@@ -187,21 +199,24 @@
 <script>
 import CustomSearchInput from "../CustomSearchInput.vue";
 import { mapActions, mapGetters } from "vuex";
+import HeaderCatalog from "./HeaderCatalog.vue";
 export default {
   components: {
     CustomSearchInput,
+    HeaderCatalog,
   },
   data() {
     return {
       isSearchInputShow: false,
       isBurgerActive: false,
+      isHeaderCatalogVisible: false,
     };
   },
   mounted() {
     // this.headerDisplayController();
   },
   computed: {
-    ...mapGetters(["IS_MOBILE", "IS_MOBILE_MENU_OPEN", "CART"]),
+    ...mapGetters(["IS_MOBILE", "IS_MOBILE_MENU_OPEN", "CART", "SORT_VALUE"]),
     cartProductCount() {
       let count = 0;
       this.CART.forEach((el) => {
@@ -217,7 +232,36 @@ export default {
       "CHECK_DEVICE",
       "OPEN_MOBILE_MENU",
       "CLOSE_MOBILE_MENU",
+      "SET_FILTERS",
+      "LOAD_FILTERED_PRODUCTS",
+      "LOAD_SORTED_PRODUCTS"
     ]),
+    showHeaderCatalogMenu() {
+      this.isHeaderCatalogVisible = true;
+    },
+    hideHeaderCatalogMenu() {
+      this.isHeaderCatalogVisible = false;
+    },
+    goToCatalog(category) {
+      this.isHeaderCatalogVisible = false;
+      let allFilters = {
+        category: category,
+        color: '',
+        size: '',
+        minProductPrice: 0,
+        maxProductPrice: 5000,
+      }
+      this.SET_FILTERS(allFilters)
+        .then(() => {
+          this.LOAD_FILTERED_PRODUCTS();
+          if (this.$route.path === '/catalog') {
+            this.LOAD_SORTED_PRODUCTS(this.SORT_VALUE);
+          } else {
+            this.$router.push("/catalog");
+            this.LOAD_SORTED_PRODUCTS('default');
+          }
+        })
+    },
     searchProducts(value) {
       this.SEARCH_FROM_OUTPUT(value)
         .then(() => {

@@ -3,7 +3,3 @@
     <span></span>
   </div>
 </template>
-
-<style lang="scss">
-@import './assets/styles/preloader-anim.scss';
-</style>

@@ -1,7 +1,7 @@
 export default {
     SET_PRODUCTS_TO_STATE(state, products) {
-        state.products = products;
-        state.filteredProducts = products;
+        state.products = structuredClone(products);
+        state.filteredProducts = structuredClone(products);
       },
       SET_BESTSELLERS_PRODUCTS_TO_STATE(state) {
         state.products.forEach( el => {
@@ -36,9 +36,7 @@ export default {
         state.searchProductValue = ''
       },
       UPDATE_FILTERS(state, allFilters) {
-        state.filters = allFilters.filters;
-        state.minProductPrice = allFilters.minPrice;
-        state.maxProductPrice = allFilters.maxPrice;
+        state.filters = allFilters;
       },
       FILTER_PRODUCTS_BY_SEARCH(state, searchValue) {
         if (searchValue !== undefined && searchValue !== null) state.searchProductValue = searchValue
@@ -63,6 +61,11 @@ export default {
             }
             return 0;
           })
+        } else if (state.sortValue === 'reset') {
+          state.filteredProducts = state.products;
+          state.sortValue = 'default';
+        } else if (state.sortValue === 'default' || state.sortValue === 'Сортировать по...') {
+          return
         } else {
           state.filteredProducts.sort(function(a,b) {
             if (Math.trunc(a.newPrice ? a.newPrice : a.price) < Math.trunc(b.newPrice ? b.newPrice : b.price)) {
@@ -77,8 +80,15 @@ export default {
       },
       FILTER_PRODUCTS_BY_FILTER(state) {
         // CREATE TEMPORARY FILTERS
-        let temporaryFilters = state.filters;
+        let temporaryFilters = {};
+
+        for (let [filter, value] of Object.entries(state.filters)) {
+          temporaryFilters[filter] = value;
+        }
         for (let key in temporaryFilters) {
+          if (key === 'minProductPrice' || key === 'maxProductPrice') {
+            delete temporaryFilters[key];
+          }
           if (temporaryFilters[key] === "Все") {
             delete temporaryFilters[key];
           }
@@ -86,7 +96,7 @@ export default {
             delete temporaryFilters[key];
           }
         }
-  
+
         state.filteredProducts = [];
   
         if (Object.keys(temporaryFilters).length > 0) {
@@ -103,24 +113,24 @@ export default {
             if (counter === Object.keys(temporaryFilters).length) {
               // SORT BY PRICE
               if (
-                Math.trunc(product.newPrice ? product.newPrice : product.price) >= state.minProductPrice &&
-                Math.trunc(product.newPrice ? product.newPrice : product.price) <= state.maxProductPrice
+                Math.trunc(product.newPrice ? product.newPrice : product.price) >= state.filters.minProductPrice &&
+                Math.trunc(product.newPrice ? product.newPrice : product.price) <= state.filters.maxProductPrice
               ) {
                 state.filteredProducts.push(product);
               }
             }
           });
-        } else if(state.minProductPrice || state.maxProductPrice) {
+        } else if(state.filters.minProductPrice || state.filters.maxProductPrice) {
           state.products.forEach( product => {
             if (
-              Math.trunc(product.newPrice ? product.newPrice : product.price) >= state.minProductPrice &&
-              Math.trunc(product.newPrice ? product.newPrice : product.price) <= state.maxProductPrice
+              Math.trunc(product.newPrice ? product.newPrice : product.price) >= state.filters.minProductPrice &&
+              Math.trunc(product.newPrice ? product.newPrice : product.price) <= state.filters.maxProductPrice
             ) {
               state.filteredProducts.push(product);
             }
           })
         } else {
-          state.filteredProducts = state.products;
+          state.filteredProducts = structuredClone(state.products);
         }
       },
       ADD_PRODUCT_TO_CART(state, product) {

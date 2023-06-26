@@ -1,6 +1,6 @@
 <template>
-  <div class="custom-btn">
-    <div class="custom-btn__btn" :class="this.btnClassName" @click="click()">
+  <div class="custom-btn" :class="this.btnClassName">
+    <div class="custom-btn__btn" @click="click()">
       <span class="custom-btn__btn__title">{{ this.title }}</span>
     </div>
   </div>
@@ -48,14 +48,14 @@ export default {
   computed: {
     btnClassName() {
       return {
-        "custom-btn__btn__disabled": this.disabled,
-        "custom-btn__btn__error": this.error,
-        "custom-btn__btn__success": this.success,
-        "custom-btn__btn__purple": this.purple,
-        "custom-btn__btn__gray": this.gray,
-        "custom-btn__btn__gray-rounded": this.grayRounded,
+        "custom-btn__disabled": this.disabled,
+        "custom-btn__error": this.error,
+        "custom-btn__success": this.success,
+        "custom-btn__purple": this.purple,
+        "custom-btn__gray": this.gray,
+        "custom-btn__gray-rounded": this.grayRounded,
       };
-    },
+    }
   },
   methods: {
     click() {

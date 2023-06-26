@@ -132,7 +132,7 @@
                 >
               </div>
               <div class="cart-popup__bottom-bar__right-side__order-btn">
-                <CustomBtn title="Оформить заказ" :success="true"> </CustomBtn>
+                <CustomBtn :disabled="this.isCartNotEmpty === false" @click="routeToOrderPage()" title="Оформить заказ" :success="this.isCartNotEmpty === true"> </CustomBtn>
               </div>
             </div>
           </div>
@@ -187,6 +187,10 @@ export default {
     },
     closeFromOutside(e) {
       this.$root.popupsController.closeAnyPopup(e, '.cart-popup__container')
+    },
+    routeToOrderPage() {
+      this.$router.push('/order');
+      this.closePopup();
     }
   },
   computed: {
@@ -206,6 +210,11 @@ export default {
       });
       return count;
     },
+    isCartNotEmpty() {
+      if (this.CART.length > 0) {
+        return true
+      } else return false
+    }
   },
 };
 </script>

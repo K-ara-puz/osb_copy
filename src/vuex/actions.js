@@ -67,9 +67,6 @@ export default {
     if (state.searchProductValue) {
       commit("FILTER_PRODUCTS_BY_SEARCH");
     }
-    if (state.sortValue) {
-      commit("SORT_PRODUCTS", state.sortValue);
-    }
   },
   ADD_PR_TO_CART({ commit, state }, product) {
     if (state.cart.length > 0) {

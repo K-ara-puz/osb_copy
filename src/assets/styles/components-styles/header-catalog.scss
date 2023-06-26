@@ -1,0 +1,79 @@
+.header-catalog {
+    z-index: -1;
+    background-color: var(--bg-log-popup-2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 40px;
+    &__wrapper {
+        margin: 0 auto;
+        padding: 10px 20px 0px;
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        overflow: hidden;
+    }
+    &__category {
+        width: 100%;
+        border: 1px solid transparent;
+        padding-bottom: 10px;
+        cursor: pointer;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        border-bottom: 1px solid var(--bg-gray-500);
+        &:last-child {
+            border: none;
+        }
+        &:hover {
+            transition: all 1s;
+            .header-catalog__category__icon::after {
+                content: "";
+                position: absolute;
+                display: inline;
+                width: 40px;
+                height: 40px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                border: 1px solid var(--text-white);
+            }
+        }
+        &__icon {
+            min-width: 30px;
+            max-width: 30px ;
+            height: 40px;
+            position: relative;
+            img {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                object-fit: contain;
+            }
+        }
+        &__text {
+            text-align: left;
+            width: 100%;
+            padding-right: 20px;
+            font-size: rem(14);
+        }
+    }
+}
+.header-catalog-anim-enter-from,
+.header-catalog-anim-leave-to {
+    transform: translateY(-100%) translateX(-50%);
+    transition: all 0.5s;
+    z-index: -1;
+    pointer-events: none;
+}
+.header-catalog-anim-enter-to,
+.header-catalog-anim-leave-from {
+    transform: translateY(0px) translateX(-50%);
+    transition: all 0.5s;
+    pointer-events: none;
+}

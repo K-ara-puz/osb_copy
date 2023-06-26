@@ -28,7 +28,7 @@
     &__wrapper {
         background-color: var(--bg-card);
         width: 80%;
-        max-width: 1200px;
+        max-width: 1000px;
         display: flex;
         flex-direction: column;
         margin: 0 auto;
@@ -90,7 +90,7 @@
                 display: grid;
             }
             .slide-cart-popup {
-                background-color: var(--bg-pag-btns);
+                background-color: var(--bg-gray-blue);
                 display: flex;
                 align-items: center;
                 flex-direction: column;
@@ -254,6 +254,7 @@
                     text-transform: uppercase;
                     word-spacing: 5px;
                     letter-spacing: 1px;
+                    width: 100%;
                     @media (max-width: $mdBreakpoint) {
                         flex: 0 0 200px;
                     }

@@ -19,14 +19,14 @@
 
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation, Pagination, A11y, EffectCube, Zoom } from "swiper";
+import { Navigation, Pagination, A11y, EffectCube, EffectCards, Zoom, Autoplay } from "swiper";
 import CustomPagination from "./CustomPagination.vue";
 
 export default {
   setup() {
     // all setup is for swiper
     return {
-      modules: [Navigation, Pagination, A11y, EffectCube, Zoom],
+      modules: [Navigation, Pagination, A11y, EffectCube, EffectCards, Zoom, Autoplay],
     };
   },
   data() {

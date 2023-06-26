@@ -348,7 +348,6 @@ export default {
     controlImgZoomDisplay() {
       let activeSlideIndex = this.$refs.swiperProductCard.swiperRef.activeIndex;
       this.slidesZoomControlPoints[activeSlideIndex].isImgZoomActive = !this.slidesZoomControlPoints[activeSlideIndex].isImgZoomActive;
-      console.log(this.slidesZoomControlPoints[activeSlideIndex].isImgZoomActive)
       if (this.slidesZoomControlPoints[activeSlideIndex].isImgZoomActive === true) {
         this.startProductImageZoom(activeSlideIndex);
       } else {

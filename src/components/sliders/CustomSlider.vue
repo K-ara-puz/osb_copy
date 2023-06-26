@@ -38,17 +38,6 @@
         class="custom-slider__next-btn"
         @click="this.$refs.swiperCustomRef.swiperRef.slideNext()"
       ></button>
-      <!-- <div v-if="this.isPagination === true" class="carousel-square__pagination">
-      <div
-        v-for="(dot, index) in this.products.length"
-        :key="index"
-        class="carousel-square__pagination__dot"
-        :class="{'_active' : this.$refs.swiperCustomRef.swiperRef.activeIndex === index}"
-        @click="this.moveActiveIdFromPagination(index)"
-      >
-        <span class="carousel-square__pagination__dot__span"></span>
-      </div> -->
-    <!-- </div> -->
     </div>
   </div>
 </template>
@@ -71,10 +60,6 @@ export default {
       type: Array,
     },
     isBackground: {
-      type: Boolean,
-      default: false,
-    },
-    isPagination: {
       type: Boolean,
       default: false,
     },

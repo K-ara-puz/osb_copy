@@ -3,7 +3,9 @@
     <input
       class="custom-input__input"
       :class="this.inputClasses"
-      :placeholder="this.inputLabel"
+      :placeholder="this.inputPlaceholder"
+      @focus="this.isFocus = true"
+      @blur="this.isFocus = false"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       autocomplete="off"
@@ -22,6 +24,10 @@ export default {
       type: String,
       default: "123",
     },
+    helperPlaceholder: {
+      type: String,
+      default: "",
+    },
     errors: {
       type: Array,
       default() {
@@ -29,6 +35,17 @@ export default {
       },
     },
     modelValue: {},
+    filledBg: {
+      type: Boolean,
+      default() {
+        return false
+      }
+    }
+  },
+  data() {
+    return {
+      isFocus: false
+    }
   },
   computed: {
     isInputEmpty() {
@@ -40,8 +57,15 @@ export default {
       return {
         '_empty' : this.isInputEmpty === true,
         '_error' : this.errors.length > 0,
-        '_success' : this.errors.length < 0 || this.errors.length === 0
+        '_success' : this.errors.length < 0 || this.errors.length === 0,
+        '_filled' : this.filledBg === true,
       }
+    },
+    inputPlaceholder() {
+      if (this.helperPlaceholder != "" && this.isFocus === true) {
+        return this.helperPlaceholder
+      }
+      return this.inputLabel
     }
   },
 };

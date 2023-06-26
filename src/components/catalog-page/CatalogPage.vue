@@ -1,81 +1,13 @@
 <template>
   <div class="catalog">
-    <div class="catalog__top-bar _anim-scroll _anim-no-hide">
-      <div class="catalog__top-bar__search-panel">
-        <CustomSearchInput
-          :isBorder="false"
-          :fontSize="26"
-          :isCancelIcon="true"
-          :isClear="this.isSearchClear"
-          @search-item="this.searchProducts"
-          @cleared-it="this.clearSearchValue"
-          :clearAfterSearch="true"
-        >
-        </CustomSearchInput>
-      </div>
-      <div class="catalog__top-bar__sort-panel">
-        <CustomFilterSelect
-          selectedValue="Сортировать по..."
-          class="catalog__filters-bar__select"
-          data-da=".catalog__filters-bar__column:first-child, 768, 3"
-          :is-border="false"
-          :selectOptions="this.sortOptions"
-          @select-filter="this.sortProducts"
-        >
-        </CustomFilterSelect>
-      </div>
-      <div class="catalog__top-bar__view-panel">
-        <button @click="lineView()">
-          <img src="../../assets/icons/dark-theme/view_line.webp" />
-        </button>
-        <button @click="gridView()">
-          <img src="../../assets/icons/dark-theme/view_grid.webp" />
-        </button>
-      </div>
-    </div>
-    <div class="catalog__filters-bar _anim-scroll _anim-no-hide">
-      <div class="catalog__filters-bar__container">
-        <div class="catalog__filters-bar__column">
-          <div class="catalog__filters-bar__select">
-            <CustomFilterSelect
-              selectedValue="Категории"
-              :selectOptions="this.selectCategoryOptions1"
-              @select-filter="this.setFilterCategory"
-            >
-            </CustomFilterSelect>
-          </div>
-          <div class="catalog__filters-bar__select">
-            <CustomFilterSelect
-              selectedValue="Размер"
-              :selectOptions="this.selectCategoryOptions2"
-              @select-filter="this.setFilterSize"
-            >
-            </CustomFilterSelect>
-          </div>
-          <div class="catalog__filters-bar__select">
-            <CustomFilterSelect
-              selectedValue="Цвет"
-              :selectOptions="this.selectCategoryOptions3"
-              @select-filter="this.setFilterColor"
-            >
-            </CustomFilterSelect>
-          </div>
-        </div>
-        <div class="catalog__filters-bar__column">
-          <RangeSlider
-            class="catalog__filters-bar__range-slider"
-            @min-price-updated="this.updateMinProductPriceForFilter"
-            @max-price-updated="this.updateMaxProductPriceForFilter"
-          >
-          </RangeSlider>
-          <CustomBtn title="Применить" :success="true" @click="applyFilters()">
-          </CustomBtn>
-        </div>
-      </div>
-    </div>
+    <CatalogFiltersPanel @line-view="this.lineView" @grid-view="this.gridView">
+    </CatalogFiltersPanel>
     <div class="catalog__main">
       <div class="catalog__main__container">
-        <div class="catalog__main__main-block" v-if="this.paginatedProducts.length > 0">
+        <div
+          class="catalog__main__main-block"
+          v-if="this.paginatedProducts.length > 0"
+        >
           <CatalogProductCard
             v-for="product in this.paginatedProducts"
             :key="product.id"
@@ -85,7 +17,10 @@
           >
           </CatalogProductCard>
         </div>
-        <CustomNothingFoundedComponent v-else :title="'Товаров в каталоге нет'"></CustomNothingFoundedComponent>
+        <CustomNothingFoundedComponent
+          v-else
+          :title="'Товаров в каталоге нет'"
+        ></CustomNothingFoundedComponent>
       </div>
     </div>
     <div class="catalog__pagination-panel" id="test">
@@ -98,72 +33,39 @@
       </PaginationButtons>
     </div>
     <div class="catalog__swiper-slider">
-      <CustomSlider class="main__sales" :is-background="true" :products="this.BESTSELLERS_PRODUCTS" :title="'БЕСТСЕЛЛЕРЫ'"></CustomSlider>
+      <CustomSlider
+        class="main__sales"
+        :is-background="true"
+        :products="this.BESTSELLERS_PRODUCTS"
+        :title="'БЕСТСЕЛЛЕРЫ'"
+      ></CustomSlider>
     </div>
     <SquareCarousel class="catalog__carousel"></SquareCarousel>
   </div>
 </template>
 <script>
-import CustomSearchInput from "../CustomSearchInput.vue";
-import CustomFilterSelect from "../CustomFilterSelect.vue";
 import CustomSlider from "../sliders/CustomSlider.vue";
 import { mapActions, mapGetters } from "vuex";
 import CatalogProductCard from "./CatalogProductCard.vue";
 import PaginationButtons from "../PaginationButtons.vue";
-import RangeSlider from "./RangeSlider.vue";
-import CustomBtn from "../CustomBtn.vue";
 import SquareCarousel from "../sliders/SquareCarousel";
 import { useDynamicAdapt } from "../../dynamicAdapt";
 import CustomNothingFoundedComponent from "../CustomNothingFoundedComponent.vue";
+import CatalogFiltersPanel from "./CatalogFiltersPanel.vue";
 export default {
   components: {
-    CustomSearchInput,
-    CustomFilterSelect,
     CatalogProductCard,
     PaginationButtons,
-    RangeSlider,
-    CustomBtn,
     CustomSlider,
     SquareCarousel,
-    CustomNothingFoundedComponent
-},
+    CustomNothingFoundedComponent,
+    CatalogFiltersPanel,
+  },
   data() {
     return {
-      selectCategoryOptions1: [
-        { name: "Все" },
-        { name: "Одежда" },
-        { name: "Аксессуары" },
-        { name: "Прочее" },
-      ],
-      selectCategoryOptions2: [
-        { name: "Все" },
-        { name: "S" },
-        { name: "M" },
-        { name: "L" },
-        { name: "XL" },
-        { name: "2XL" },
-      ],
-      selectCategoryOptions3: [
-        { name: "Все" },
-        { name: "Черный" },
-        { name: "Красный" },
-        { name: "Белый" },
-      ],
-      sortOptions: [
-        { name: "От дешевых к дорогим" },
-        { name: "От дорогих к дешевым" },
-      ],
       page: 1,
       elemCountOnPage: 0,
-      products: this.PRODUCTS,
-      filters: {
-        category: "",
-        size: "",
-        color: "",
-      },
-      minProductPriceForFilter: 0,
-      maxProductPriceForFilter: 5000,
-      isSearchClear: false,
+      products: structuredClone(this.PRODUCTS),
       isGridView: false,
       swiperElems: [],
       swiperData: {},
@@ -197,6 +99,7 @@ export default {
       }
     });
     this.products = this.PRODUCTS;
+    this.afterFilter();
   },
   updated() {
     this.$root.itemsShowAnimation();
@@ -208,65 +111,9 @@ export default {
     );
   },
   methods: {
-    ...mapActions([
-      "CHECK_IS_SEARCH",
-      "SET_FILTERS",
-      "LOAD_FILTERED_PRODUCTS",
-      "SEARCH_PRODUCT",
-      "CLEAR_SEARCH_PRODUCT",
-      "LOAD_SORTED_PRODUCTS",
-    ]),
-    searchProducts(value) {
-      this.SEARCH_PRODUCT(value).then(() => {
-        this.page = 1;
-      });
-    },
-    clearSearchValue() {
-      this.CLEAR_SEARCH_PRODUCT();
-    },
-    sortProducts(name) {
-      this.LOAD_SORTED_PRODUCTS(name).then(() => {
-        this.page = 1;
-      });
-    },
-    setFilterCategory(name) {
-      if (name === "Категории") {
-        name = "Все";
-      }
-      this.filters.category = name;
-    },
-    setFilterSize(name) {
-      if (name === "Размер") {
-        name = "Все";
-      }
-      this.filters.size = name;
-    },
-    setFilterColor(name) {
-      if (name === "Цвет") {
-        name = "Все";
-      }
-      this.filters.color = name;
-    },
-    applyFilters() {
-      let allFilters = {
-        filters: this.filters,
-        minPrice: this.minProductPriceForFilter,
-        maxPrice: this.maxProductPriceForFilter,
-      };
-      this.SET_FILTERS(allFilters)
-        .then(() => {
-          this.LOAD_FILTERED_PRODUCTS();
-        })
-        .then(() => {
-          this.page = 1;
-          this.isSearchClear = true;
-        });
-    },
-    updateMinProductPriceForFilter(value) {
-      this.minProductPriceForFilter = value;
-    },
-    updateMaxProductPriceForFilter(value) {
-      this.maxProductPriceForFilter = value;
+    ...mapActions(["CHECK_IS_SEARCH", "LOAD_SORTED_PRODUCTS"]),
+    afterFilter() {
+      this.page = 1;
     },
     lineView() {
       let div = document.querySelector(".catalog__main__main-block");
@@ -317,17 +164,24 @@ export default {
       return false;
     },
     isLastNextPage() {
-      if (this.paginatedProducts.length % this.elemCountOnPage === 0) {
-        return false;
+      if (this.products) {
+        if (this.paginatedProducts.length >= this.products.length) {
+          return true;
+        } else {
+          if (this.paginatedProducts.length % this.elemCountOnPage === 0) {
+            return false;
+          }
+        }
       }
+
       return true;
     },
   },
   watch: {
     FILTERED_PRODUCTS() {
       this.products = this.FILTERED_PRODUCTS;
+      this.afterFilter();
     },
   },
 };
 </script>
-

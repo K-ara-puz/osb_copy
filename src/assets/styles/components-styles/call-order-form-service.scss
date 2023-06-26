@@ -8,9 +8,8 @@
       padding-right: 0;
       justify-content: center;
     }
-    // background-color: darkcyan;
     &__form {
-        margin-top: 50px;
+        margin: rem(50) 0;
         font-family: "Montserrat", sans-serif;
         display: flex;
         flex-direction: column;
