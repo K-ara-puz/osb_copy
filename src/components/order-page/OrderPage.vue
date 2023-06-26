@@ -289,7 +289,6 @@ import CustomInput from "../CustomInput.vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, email } from "@vuelidate/validators";
 import { computed, reactive } from "vue";
-import axios from "axios";
 
 export default {
   setup() {
@@ -552,17 +551,7 @@ export default {
       `;
       return resString;
     },
-    sendOrder(orderData) {
-      axios
-        .post(
-          `https://api.telegram.org/bot1516078387:AAFWpK7aN9bDXc4EMgfht13BKZq0Kopsvnc/sendMessage?chat_id=570413765&text=${orderData}&parse_mode=html`
-        )
-        .then(() => {
-          this.isOrderSendSuccess = true;
-        })
-        .catch(() => {
-          this.isOrderSendSuccess = false;
-        });
+    sendOrder() {
     },
   },
 };

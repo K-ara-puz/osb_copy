@@ -49,7 +49,6 @@ import CustomInput from "../CustomInput.vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 import { reactive, computed } from "vue";
-import axios from "axios";
 import WarningPopup from "../popups/WarningPopup.vue";
 
 export default {
@@ -94,22 +93,7 @@ export default {
   methods: {
     async sendCallOrder(e) {
       e.preventDefault();
-      let isFormValid = await this.vUserData$.$validate();
-      if (isFormValid) {
-        let message = this.messageConstructorForBot();
-
-        axios.post(
-          `https://api.telegram.org/bot1516078387:AAFWpK7aN9bDXc4EMgfht13BKZq0Kopsvnc/sendMessage?chat_id=570413765&text=${message}&parse_mode=html`
-        )
-        .then( () => {
-            this.isOrderDelivered = true;
-            this.$root.popupsController.showWarningPopup();
-        })
-        .catch( () => {
-          this.isOrderDelivered = false;
-          this.$root.popupsController.showWarningPopup();
-        })
-      }
+      this.vUserData$.$validate();
     },
     messageConstructorForBot() {
       let userData = {
