@@ -59,6 +59,7 @@
               </div>
             </div>
             <div class="log-popup__center-bar__submit">
+              <GoogleLogin :callback="this.afterGoogleLogin"/>
               <button @click="this.logIn()" type="submit">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -252,6 +253,9 @@ export default {
         alert("form submitted");
         this.$root.popupsController.unshowLogPopup();
       } else return
+    },
+    afterGoogleLogin(v) {
+      console.log(v);
     },
     async register() {
       const res = await this.vReg$.$validate();
