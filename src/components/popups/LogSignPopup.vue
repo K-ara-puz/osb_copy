@@ -34,7 +34,9 @@
                 :inputLabel="'Пароль'"
                 :errors="this.vLog$.password.$errors"
                 :modelValue="this.vLog$.password.$model"
-                @update:modelValue="newValue => this.vLog$.password.$model = newValue"
+                @update:modelValue="
+                  (newValue) => (this.vLog$.password.$model = newValue)
+                "
               ></CustomInput>
               <button type="button" @click="this.changeLogPasswordVisibility()">
                 <svg xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +61,7 @@
               </div>
             </div>
             <div class="log-popup__center-bar__submit">
-              <GoogleLogin :callback="this.afterGoogleLogin"/>
+              <GoogleLogin :callback="this.afterGoogleLogin" />
               <button @click="this.logIn()" type="submit">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +122,9 @@
                 :inputLabel="'Email'"
                 :errors="this.vReg$.email.$errors"
                 :modelValue="this.vReg$.email.$model"
-                @update:modelValue="newValue => this.vReg$.email.$model = newValue"
+                @update:modelValue="
+                  (newValue) => (this.vReg$.email.$model = newValue)
+                "
               ></CustomInput>
             </div>
             <div class="log-popup__back__center-bar__password">
@@ -129,7 +133,9 @@
                 :inputLabel="'Пароль'"
                 :errors="this.vReg$.password.$errors"
                 :modelValue="this.vReg$.password.$model"
-                @update:modelValue="newValue => this.vReg$.password.$model = newValue"
+                @update:modelValue="
+                  (newValue) => (this.vReg$.password.$model = newValue)
+                "
               ></CustomInput>
               <button type="button" @click="this.changeRegPasswordVisibility()">
                 <svg xmlns="http://www.w3.org/2000/svg">
@@ -146,7 +152,9 @@
                 :inputLabel="'Подтвердите пароль'"
                 :errors="this.vReg$.confirmPass.$errors"
                 :modelValue="this.vReg$.confirmPass.$model"
-                @update:modelValue="newValue => this.vReg$.confirmPass.$model = newValue"
+                @update:modelValue="
+                  (newValue) => (this.vReg$.confirmPass.$model = newValue)
+                "
               ></CustomInput>
             </div>
             <div class="log-popup__back__center-bar__submit">
@@ -206,28 +214,52 @@ export default {
       email: "",
       password: "",
       confirmPass: "",
-    })
+    });
     const rulesForLog = computed(() => ({
       email: {
-        required: helpers.withMessage("Поле обязательно для заполнения", required),
-        email: helpers.withMessage("Введите валидный адрес электронной почты", email),
+        required: helpers.withMessage(
+          "Поле обязательно для заполнения",
+          required
+        ),
+        email: helpers.withMessage(
+          "Введите валидный адрес электронной почты",
+          email
+        ),
       },
       password: {
-        required: helpers.withMessage("Поле обязательно для заполнения", required),
-      }
+        required: helpers.withMessage(
+          "Поле обязательно для заполнения",
+          required
+        ),
+      },
     }));
     const rulesForReg = computed(() => ({
       email: {
-        required: helpers.withMessage("Поле обязательно для заполнения", required),
-        email: helpers.withMessage("Введите валидный адрес электронной почты", email),
+        required: helpers.withMessage(
+          "Поле обязательно для заполнения",
+          required
+        ),
+        email: helpers.withMessage(
+          "Введите валидный адрес электронной почты",
+          email
+        ),
       },
       password: {
-        required: helpers.withMessage("Поле обязательно для заполнения", required),
+        required: helpers.withMessage(
+          "Поле обязательно для заполнения",
+          required
+        ),
       },
       confirmPass: {
-        required: helpers.withMessage("Поле обязательно для заполнения", required),
-        sameAs: helpers.withMessage("Пароли должны совпадать", sameAs(stateForReg.password))
-      }
+        required: helpers.withMessage(
+          "Поле обязательно для заполнения",
+          required
+        ),
+        sameAs: helpers.withMessage(
+          "Пароли должны совпадать",
+          sameAs(stateForReg.password)
+        ),
+      },
     }));
     const vLog$ = useVuelidate(rulesForLog, stateForLog);
     const vReg$ = useVuelidate(rulesForReg, stateForReg);
@@ -252,17 +284,36 @@ export default {
       if (res) {
         alert("form submitted");
         this.$root.popupsController.unshowLogPopup();
-      } else return
+      } else return;
     },
-    afterGoogleLogin(v) {
-      console.log(v);
+    afterGoogleLogin(response) {
+      console.log(response);
+      const responsePayload = this.parseJwt(response.credential);
+      console.log(responsePayload);
+      console.log("ID: " + responsePayload.sub);
+      console.log("Full Name: " + responsePayload.name);
+    },
+    parseJwt(token) {
+      var base64Url = token.split(".")[1];
+      var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      var jsonPayload = decodeURIComponent(
+        window
+          .atob(base64)
+          .split("")
+          .map(function (c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join("")
+      );
+
+      return JSON.parse(jsonPayload);
     },
     async register() {
       const res = await this.vReg$.$validate();
       if (res) {
         alert("form submitted");
         this.$root.popupsController.unshowLogPopup();
-      } else return
+      } else return;
     },
     changeLogPasswordVisibility() {
       const password = document.querySelector(
@@ -277,7 +328,9 @@ export default {
       const password = document.querySelector(
         ".log-popup__back__center-bar__password input"
       );
-      const confirmPass = document.querySelector(".log-popup__back__center-bar__password_repeat input")
+      const confirmPass = document.querySelector(
+        ".log-popup__back__center-bar__password_repeat input"
+      );
       passwords.push(password);
       passwords.push(confirmPass);
       passwords.forEach((el) => {
