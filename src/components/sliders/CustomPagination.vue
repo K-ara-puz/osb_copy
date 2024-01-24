@@ -10,7 +10,7 @@
       <span class="custom-pagination__dot__span">
         <img v-if="this.isPhotoPagination === true && dot"
           :src="
-            require('../../assets/products-images/30_30/small_jpg/' + dot + '.jpg')
+            require('../../assets/products-images/30_30/small_webp/' + dot + '.webp')
           "
         />
       </span>
