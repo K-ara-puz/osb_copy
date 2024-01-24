@@ -158,7 +158,7 @@
           >
             <img
               :src="
-                require('../../assets/products-images/small/' +
+                require('../../assets/products-images/big/' +
                   item[0] +
                   '.webp')
               "
@@ -234,7 +234,7 @@
                   <img
                   class="pr-card__full-slider__image__img"
                   :src="
-                    require('../../assets/products-images/small/' +
+                    require('../../assets/products-images/big/' +
                       image +
                       '.webp')
                   "
